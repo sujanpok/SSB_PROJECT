@@ -14,32 +14,31 @@ import com.example.demo.controller.sujan.form.SujanForm3;
 public class SujanController {
 	@GetMapping("/sujan")
 	public String welcomePage() {
-		return "welcome_page";
+		return "sujan/welcome_page";
 	}
-	@GetMapping("/form1")
+	@GetMapping("sujan/form1")
 public String personalInfo1(@ModelAttribute SujanForm1 sujanForm1) {
 		
 		SujanDto dto = new SujanDto();
-		dto.setId(sujanForm1.getId());
-	return "personalInfoForm1";
+	return "sujan/personalInfoForm1";
 }
-	@PostMapping("/form2")
+	@PostMapping("sujan/form2")
 	public String personalInfo2(@ModelAttribute SujanForm2 sujanForm2) {
 		SujanDto dto = new SujanDto();
-		return "personalInfoForm2";
+		return "sujan/personalInfoForm2";
 	}
-	@PostMapping("/form3")
+	@PostMapping("sujan/form3")
 	public String personalInfo3(@ModelAttribute SujanForm3 sujanForm3) {
 		SujanDto dto = new SujanDto();
-		return "personalInfoForm3";
+		return "sujan/personalInfoForm3";
 	}
-	@PostMapping("/confirmation")
+	@PostMapping("sujan/confirmation")
 	public String confirmationScreen(@ModelAttribute SujanDto sujanDto) {
-		return "confirmationScreen";
+		return "sujan/confirmationScreen";
 	}
-	@PostMapping("/insertDb")
+	@PostMapping("sujan/insertDb")
 	public String DbInsert(@ModelAttribute SujanDto sujanDto) {
-		return "thankYou";
+		return "sujan/thankYou";
 	}
 	
 	
