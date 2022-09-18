@@ -16,5 +16,12 @@ public class SsbFinalProjectApplication implements CommandLineRunner{
   System.out.println("Starting of SSB_PROJECT ........................");
     
   }
+  @SpringBootApplication
+  public class CrudSampleApplication {
+
+      public static void main(String[] args) {
+          SpringApplication.run(CrudSampleApplication.class, args);
+      }
+  }
 
 }
