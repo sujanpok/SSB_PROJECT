@@ -6,7 +6,7 @@
 .header{
     width: 100%;
     min-height: 100vh;
-    background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ),url("../img/card01.jpg");
+    background-image: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4) ),url("../../img/sujan/card01.jpg");
     background-position: center;
     background-size: cover;
     position: relative;
@@ -96,7 +96,7 @@ p{
 .aboutus{
     width: 90%;
     min-height: 50vh;
-    background-image: url("../img/card02.jpg");
+    background-image: url("../../img/sujan/card02.jpg");
     margin:auto;
     margin-bottom: 10%;
     background-position: center;
