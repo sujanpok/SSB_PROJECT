@@ -9,12 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("")
 public class HomeController {
   
-  @GetMapping("/")
-  public String creatHomer(Model model) {
-	  model.addAttribute("title", "SSB_home_page");
-    return "home";
-  }
-  
   @GetMapping("/abouts")
   public String abouts(Model model) {
 	  model.addAttribute("title", "SSB_about_page");
