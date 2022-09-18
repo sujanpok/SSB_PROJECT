@@ -24,9 +24,8 @@ if(second<10){
 let date= time.toLocaleDateString(undefined, options);
 let setTime= hour +":"+ minute + ":"+ second + "  " + timeofDay ;
 document.getElementById("timeSet").innerHTML=setTime + "  " + date;
-
-
-
 }, 1000);
+
+
 
 
