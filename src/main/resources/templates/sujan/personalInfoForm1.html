@@ -83,7 +83,7 @@
 		</div>
 		<div class="container pt-5">
 			<div class="progress ">
-				<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:33%"></div>
+				<div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width:25%"></div>
 			</div>
 		</div>
 		<div class="container mt-3">
@@ -109,24 +109,35 @@
 						</label>
 					</div>
 				</div>
-				<div class="w-50 dropdown　form-group h3 mt-3">
+				<div class="w-50 dropdown　form-group h3 ">
 					<label class="control-label">婚姻状況</label>
-					<select class="form-control" id="exampleSelect" name="fselect" button type="button"
-						class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
-						<option value=""></option>
-						<option th:each="item : ${merriageSts}" th:value="${item.value}" th:text="${item.key}"
-							th:selected="${item.value} == *{fselect}">pulldown</option>
-					</select>
-					</button>
+					<select th:field="*{merriageSts}">
+					<option value="">選択してください</option>
+                   <option th:each="item : ${merriageStsList}" th:value="${item.key}" th:text="${item.value}"/></select>
+				</div>
+				<div class="row">
+					<div class="h4">
+						<label for="name" class="form-label">生年月日</label>
+					<div class="col-md-10" data-toggle="dropdown">
+						<select name="dateOfYear" class="dropdown　form-group">
+					<option value="">選択してください</option>
+                   <option th:each="item : ${dateOfYearList}" th:value="${item.key}" th:text="${item.value}"/></select>年
+						</select>
+						<select name="dateOfMonth" class="dropdown" >
+					<option value="">選択してください</option>
+                   <option th:each="item : ${dateOfMonthList}" th:value="${item.key}" th:text="${item.value}"/></select>月
+						</select>
+						<select name="dateOfDay" class="dropdown">
+					<option value="">選択してください</option>
+                   <option th:each="item : ${dateOfDayList}" th:value="${item.key}" th:text="${item.value}"/></select>日
+				</div>
 				</div>
 				<div class="text-center pt-3">
-					<div class="container-fluid">
-						<input class="display-6" type="submit" value="次へ">
-						<br />
-						<br />
-						<button type="button" class=" btn btn-outline-info h3"><a href="#"
-								th:href="@{/sujan}">トップページ</a></button>
-					</div>
+						<input   type="submit"  class="display-6" name ="next" value="次へ">
+					<br>
+					<br>
+						<input   type="submit"  class="display-6" name ="back" value="戻る">
+						
 				</div>
 			</form>
 		</div>

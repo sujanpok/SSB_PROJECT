@@ -1,12 +1,15 @@
 package com.example.demo.controller.sujan.dto;
 
+
+
 import lombok.Data;
 @Data
 public class SujanDto  {
 	
-	private Integer id;
-    private String name;
-    private boolean nationality;
+	private Long id;
+
+	private String name;
+    private String nationality;
     private String gender;
     private  String dateOfYear;
 	private  String dateOfMonth;
@@ -17,18 +20,23 @@ public class SujanDto  {
     private String mobileNo2;
     private String mobileNo3;
     private String postNO;
-    private String Adress1;
-    private String Adress2;
+    private String address1;
+	private String address2;
     private String livingSituation;
-    private String HousingLoan;
-    private boolean drivingLicenseLabel;
+    private String housingLoan;
+    private String drivingLicenseLabel;
     private String drivingLicense;
 	
+    
+    private String userId;
+    private String pwd;
+    private String rePwd;
 	
-	    public Integer getId() {
+
+    public Long getId() {
 		return id;
 	}
-	public void setId(Integer id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
@@ -36,12 +44,6 @@ public class SujanDto  {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public boolean isNationality() {
-		return nationality;
-	}
-	public void setNationality(boolean nationality) {
-		this.nationality = nationality;
 	}
 	public String getGender() {
 		return gender;
@@ -103,18 +105,6 @@ public class SujanDto  {
 	public void setPostNO(String postNO) {
 		this.postNO = postNO;
 	}
-	public String getAdress1() {
-		return Adress1;
-	}
-	public void setAdress1(String adress1) {
-		Adress1 = adress1;
-	}
-	public String getAdress2() {
-		return Adress2;
-	}
-	public void setAdress2(String adress2) {
-		Adress2 = adress2;
-	}
 	public String getLivingSituation() {
 		return livingSituation;
 	}
@@ -122,16 +112,10 @@ public class SujanDto  {
 		this.livingSituation = livingSituation;
 	}
 	public String getHousingLoan() {
-		return HousingLoan;
+		return housingLoan;
 	}
 	public void setHousingLoan(String housingLoan) {
-		HousingLoan = housingLoan;
-	}
-	public boolean isDrivingLicenseLabel() {
-		return drivingLicenseLabel;
-	}
-	public void setDrivingLicenseLabel(boolean drivingLicenseLabel) {
-		this.drivingLicenseLabel = drivingLicenseLabel;
+		this.housingLoan = housingLoan;
 	}
 	public String getDrivingLicense() {
 		return drivingLicense;
@@ -140,7 +124,48 @@ public class SujanDto  {
 		this.drivingLicense = drivingLicense;
 	}
 		
-	
+ 	public String getAddress1() {
+		return address1;
+	}
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+	public String getAddress2() {
+		return address2;
+	}
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+	public String getDrivingLicenseLabel() {
+		return drivingLicenseLabel;
+	}
+	public void setDrivingLicenseLabel(String drivingLicenseLabel) {
+		this.drivingLicenseLabel = drivingLicenseLabel;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
+	}
+	public String getRePwd() {
+		return rePwd;
+	}
+	public void setRePwd(String rePwd) {
+		this.rePwd = rePwd;
+	}
+	public String getNationality() {
+		return nationality;
+	}
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
 	
 	
 }
