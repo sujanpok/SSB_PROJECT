@@ -29,7 +29,12 @@ public class HomeController {
 	  return "services";
   }
   
-
+  @GetMapping("/chooseUser")
+  public String chooseUseer(Model model) {
+    model.addAttribute("title", "SSB_User_Choosee");
+    return "login/chooseUser";
+  }
+ 
   @GetMapping("/gmail")
   public String sengemail(Model model) {
 	  model.addAttribute("title", "SSB_client_support_email_page");
