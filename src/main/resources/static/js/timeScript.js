@@ -23,7 +23,13 @@ if(second<10){
 
 let date= time.toLocaleDateString(undefined, options);
 let setTime= hour +":"+ minute + ":"+ second + "  " + timeofDay ;
+<<<<<<< HEAD
 document.getElementById("timeSet").innerHTML=setTime + "  " + date;
+=======
+//document.getElementById("timeSet").innerHTML=setTime + "  " + date;
+document.getElementById("timeSetByBody").innerHTML=setTime; 
+document.getElementById("dateSetByBody").innerHTML=date;
+>>>>>>> refs/remotes/origin/BISHNU
 }, 1000);
 
 

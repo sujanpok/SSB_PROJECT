@@ -15,14 +15,46 @@ public class HomeController {
 		  return "home";
 		  
 	  }
+<<<<<<< HEAD
   @GetMapping
   public String creatHome() {
     return "home";
-  }
+=======
+  
   @GetMapping("/abouts")
   public String abouts(Model model) {
 	  model.addAttribute("title", "SSB_about_page");
 	  return "abouts";
+	  
+>>>>>>> refs/remotes/origin/BISHNU
+  }
+<<<<<<< HEAD
+  @GetMapping("/abouts")
+  public String abouts(Model model) {
+	  model.addAttribute("title", "SSB_about_page");
+	  return "abouts";
+=======
+  
+  @GetMapping("/services")
+  public String services(Model model) {
+	  model.addAttribute("title", "SSB_sercices_page");
+	  return "services";
+  }
+  
+  @GetMapping("/chooseUser")
+  public String chooseUseer(Model model) {
+    model.addAttribute("title", "SSB_User_Choosee");
+    return "login/chooseUser";
+  }
+ 
+  @GetMapping("/gmail")
+  public String sengemail(Model model) {
+	  model.addAttribute("title", "SSB_client_support_email_page");
+	  return "gmail";
+  }
+	  
+
+>>>>>>> refs/remotes/origin/BISHNU
 
   }
   
