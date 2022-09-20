@@ -1,15 +1,12 @@
 package com.example.demo.controller.sujan.dto;
 
-
-
 import lombok.Data;
+
 @Data
 public class SujanDto  {
 	
-	private Long id;
-
 	private String name;
-    private String nationality;
+	private boolean nationality;
     private String gender;
     private  String dateOfYear;
 	private  String dateOfMonth;
@@ -26,19 +23,10 @@ public class SujanDto  {
     private String housingLoan;
     private String drivingLicenseLabel;
     private String drivingLicense;
-	
-    
     private String userId;
     private String pwd;
     private String rePwd;
 	
-
-    public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	public String getName() {
 		return name;
 	}
@@ -105,6 +93,18 @@ public class SujanDto  {
 	public void setPostNO(String postNO) {
 		this.postNO = postNO;
 	}
+	public String getAddress1() {
+		return address1;
+	}
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+	public String getAddress2() {
+		return address2;
+	}
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
 	public String getLivingSituation() {
 		return livingSituation;
 	}
@@ -117,30 +117,17 @@ public class SujanDto  {
 	public void setHousingLoan(String housingLoan) {
 		this.housingLoan = housingLoan;
 	}
-	public String getDrivingLicense() {
-		return drivingLicense;
-	}
-	public void setDrivingLicense(String drivingLicense) {
-		this.drivingLicense = drivingLicense;
-	}
-		
- 	public String getAddress1() {
-		return address1;
-	}
-	public void setAddress1(String address1) {
-		this.address1 = address1;
-	}
-	public String getAddress2() {
-		return address2;
-	}
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
 	public String getDrivingLicenseLabel() {
 		return drivingLicenseLabel;
 	}
 	public void setDrivingLicenseLabel(String drivingLicenseLabel) {
 		this.drivingLicenseLabel = drivingLicenseLabel;
+	}
+	public String getDrivingLicense() {
+		return drivingLicense;
+	}
+	public void setDrivingLicense(String drivingLicense) {
+		this.drivingLicense = drivingLicense;
 	}
 	public String getUserId() {
 		return userId;
@@ -160,12 +147,11 @@ public class SujanDto  {
 	public void setRePwd(String rePwd) {
 		this.rePwd = rePwd;
 	}
-	public String getNationality() {
+	public boolean isNationality() {
 		return nationality;
 	}
-	public void setNationality(String nationality) {
+	public void setNationality(boolean nationality) {
 		this.nationality = nationality;
 	}
-	
 	
 }

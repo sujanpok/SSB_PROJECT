@@ -1,11 +1,9 @@
 package com.example.demo.controller.sujan.form;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
@@ -14,16 +12,14 @@ import lombok.Data;
 
 
 @Data
-
-public class SujanForm1 implements Serializable {
+public class SujanForm1{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	
-	private Long id;
 	@NotEmpty(message = "名前を入力してください")
 	@Size(max = 100, message = "名前は100桁以内で入力してください")
+	private Long id;
+	
     private String name; 
 	
     private String gender;
@@ -111,8 +107,8 @@ public class SujanForm1 implements Serializable {
 
 	public static Map<String,String> getGenderItem() {
 		Map<String, String> sexMap = new LinkedHashMap<>();
-		sexMap.put("1", "男性");
-		sexMap.put("2", "女性");
+		sexMap.put("男性", "男性");
+		sexMap.put("女性", "女性");
 		return sexMap;
 	}
 

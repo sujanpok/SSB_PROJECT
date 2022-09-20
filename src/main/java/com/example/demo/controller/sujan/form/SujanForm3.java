@@ -13,8 +13,6 @@ public class SujanForm3 {
     private String livingSituation;
     private String housingLoan;
     private String drivingLicenseLabel;
-    
-
 	private String drivingLicense;
     
 	 public String getPostNO() {
@@ -76,25 +74,25 @@ public class SujanForm3 {
 
 			public static Map<String,String> getLivingSituationList() {
 				Map<String, String> livingMap = new LinkedHashMap<>();
-				livingMap.put("1", "自己・家族所有");
-				livingMap.put("2", "社宅");
-				livingMap.put("3", "賃貸");
-				livingMap.put("4", "寮・下宿");
+				livingMap.put("自己・家族所有", "自己・家族所有");
+				livingMap.put("社宅", "社宅");
+				livingMap.put("賃貸", "賃貸");
+				livingMap.put("寮・下宿", "寮・下宿");
 				return livingMap;
 			}
 
 			
 			public static Map<String,String>getHousingLoanButton(){
 				Map<String,String>housingLoan = new LinkedHashMap<String,String>();
-				housingLoan.put("1", "有り");
-				housingLoan.put("2", "無し");
+				housingLoan.put("有り", "有り");
+				housingLoan.put("無し", "無し");
 				return housingLoan;
 			}
 			
 			public static Map<String,String>getDrivingLicenseLabelButton(){
 				Map<String,String>drivingLicense = new LinkedHashMap<String,String>();
-				drivingLicense.put("1", "有り");
-				drivingLicense.put("2", "無し");
+				drivingLicense.put("有り", "有り");
+				drivingLicense.put("無し", "無し");
 				return drivingLicense;
 			}
 			

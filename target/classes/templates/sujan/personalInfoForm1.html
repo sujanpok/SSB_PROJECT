@@ -87,7 +87,7 @@
 			</div>
 		</div>
 		<div class="container mt-3">
-			<form method="post" th:action="@{/form2}" th:object="${sujanForm1}">
+			<form method="post" th:action="@{form1}" th:object="${sujanForm1}">
 				<div class="w-50">
 					<label for="name" class="form-label h3">名前:</label>
 					<input type="text" class="form-control" id="name" th:field="*{name}" th:value="${name}"><br>

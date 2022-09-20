@@ -21,29 +21,30 @@ p {
 　　 <h2>入力内容を確認し、問題なければ「送信」ボタンを押下してください。</h2>
 	<form method="post" th:action="@{/sendData}" th:object="${sujanDto}">
 	<div class="container">
-		<p th:text="'名前： ' + *{name}"></p>
-		<p th:text="'国籍： ' + *{nationality}"></p>
-		<p th:text="'性別： ' + *{gender}"></p>
+		<p th:text="'名前： ' + ${sujanDto.name}"></p>
+		
+		<p th:text="'性別： ' + ${sujanDto.gender}"></p>
+		<p th:text="${sujanDto.isNationality == false} ? 日本 : 外国籍"></p><!-- p1が表示される-->
 		<p
-			th:text="'生年月日： ' + *{dateOfYear} + '年'+ *{dateOfMonth} + '月'+ *{dateOfDay} + '日'"></p>
-		<p th:text="'メールアドレス： ' + *{email}"></p>
+			th:text="'生年月日： ' + ${sujanDto.dateOfYear} + '年'+ ${sujanDto.dateOfMonth} + '月'+ ${sujanDto.dateOfDay} + '日'"></p>
+		<p th:text="'メールアドレス： ' + ${sujanDto.email}"></p>
 		<p
-			th:text="'電話番号： ' + *{mobileNo1} + 'ー'+ *{mobileNo2} + 'ー'+ *{mobileNo3} "></p>
-		<p th:text="'メ郵便番号： ' + *{postNO}"></p>
-		<p th:text="'住所： ' + *{address1}"></p>
-		<p th:text="'番地： ' + *{address2}"></p>
-		<p th:text="'居住状況： ' + *{livingSituation}"></p>
-		<p th:text="'住宅ローン： ' + *{housingLoan}"></p>
-		<p th:text="'運転免許証:： ' + *{drivingLicenseLabel}"></p>
-		<p th:text="'運転免許証番号: ' + *{drivingLicense}"></p>
-		<p th:text="'ユーザーID ' + *{drivingLicense}"></p>
-		<p th:text="'パスワード ' + *{drivingLicense}"></p>
+			th:text="'電話番号： ' + ${sujanDto.mobileNo1} + 'ー'+ ${sujanDto.mobileNo2} + 'ー'+ ${sujanDto.mobileNo3} "></p>
+		<p th:text="'メ郵便番号： ' + ${sujanDto.postNO}"></p>
+		<p th:text="'住所： ' + ${sujanDto.address1}"></p>
+		<p th:text="'番地： ' + ${sujanDto.address2}"></p>
+		<p th:text="'居住状況： ' + ${sujanDto.livingSituation}"></p>
+		<p th:text="'住宅ローン： ' + ${sujanDto.housingLoan}"></p>
+		<p th:text="'運転免許証:： ' + ${sujanDto.drivingLicenseLabel}"></p>
+		<p th:text="'運転免許証番号: ' + ${sujanDto.drivingLicense}"></p>
+		<p th:text="'ユーザーID ' + ${sujanDto.userId}"></p>
+		<p th:text="'パスワード ' + ${sujanDto.pwd}"></p>
         </div>
 
 		<div class="text-center pt-3">
 			<input type="submit" class="display-6" name="send" value="送信">
-			<br> <br> <input type="submit" class="display-6"
-				name="back" value="戻る">
+			<br> <br> <input type="submit" class="display-6" name="back" value="戻る">
+				
 		</div>
 		
 	</form>

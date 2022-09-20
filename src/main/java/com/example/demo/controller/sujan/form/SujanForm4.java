@@ -6,11 +6,14 @@ import lombok.Data;
 @Data
 public class SujanForm4 {
 	private String userId;
-    private String pwd;
+	private String pwd;
     private String rePwd;
-    
-
-
+    public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public String getPwd() {
 		return pwd;
 	}
@@ -23,11 +26,8 @@ public class SujanForm4 {
 	public void setRePwd(String rePwd) {
 		this.rePwd = rePwd;
 	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
 	
+    
+
+
 }
