@@ -18,7 +18,7 @@ import com.example.demo.controller.sujan.form.SujanForm4;
 public class SujanController {
 
 	// first page
-	@RequestMapping("/sujan")
+	@RequestMapping("/sujan/chooseCard")
 	public String welcomePage() {
 		return "sujan/welcome_page";
 	}
