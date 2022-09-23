@@ -8,9 +8,4 @@ import com.example.demo.controller.sujan.entity.SujanEntity;
 @Repository
 public interface SujanRepository extends JpaRepository<SujanEntity, Long> {
 
-
-
-
-
-
 }

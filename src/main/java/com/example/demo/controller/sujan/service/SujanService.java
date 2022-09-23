@@ -16,19 +16,19 @@ import com.example.demo.controller.sujan.repository.SujanRepository;
 public class SujanService {
 	@Autowired
 	SujanRepository sujanRepository;
-	
+
 	@Autowired
 	private ModelMapper modelMapper;
 
 	// insert data entry table
 	public void insertData(SujanDto sujanDto) {
-		
+
 		sujanRepository.save(insert(sujanDto));
 	}
 
 	// date update
 
-	private  SujanEntity insert(SujanDto sujanDto) {
+	private SujanEntity insert(SujanDto sujanDto) {
 		Date now = new Date();
 		SujanEntity dataEntry = new SujanEntity();
 		modelMapper.map(sujanDto, dataEntry);

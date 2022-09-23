@@ -1,4 +1,4 @@
-const toggleNavbar=()=>{
-     $(".collapse").slideToggle();
+const toggleNavbar = () => {
+	$(".collapse").slideToggle();
 }
 

@@ -80,7 +80,7 @@ public class SujanController {
 		model.addAttribute("dateOfYearList", SujanForm1.getYearItems());
 		model.addAttribute("dateOfMonthList", SujanForm1.getMonthItems());
 		model.addAttribute("dateOfDayList", SujanForm1.getDayItems());
-		
+
 		return "sujan/personalInfoForm1";
 	}
 
@@ -161,21 +161,20 @@ public class SujanController {
 		return "sujan/personalInfoForm4";
 	}
 
-	//insert do
-	
-	 /**
-     * ユーザー情報 Service
-     */
-    @Autowired
-    SujanService sujanService;
-	
+	// insert do
+
+	/**
+	 * ユーザー情報 Service
+	 */
+	@Autowired
+	SujanService sujanService;
+
 	@RequestMapping(value = "sendData", params = "send", method = RequestMethod.POST)
 	public String DbInsert(@ModelAttribute SujanDto sujanDto, HttpSession session, SessionStatus status, Model model) {
-		
-		   // ユーザー情報の登録
+
+		// ユーザー情報の登録
 		sujanService.insertData(sujanDto);
-		
-		
+
 		status.setComplete();
 		session.removeAttribute("sujanDto");
 		model.addAttribute("message", "お申し込みが完了しました。");
