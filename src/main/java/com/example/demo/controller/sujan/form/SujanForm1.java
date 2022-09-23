@@ -22,61 +22,6 @@ public class SujanForm1 {
 
 	private String dateOfDay;
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getGender() {
-		return gender;
-	}
-
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-
-	public boolean isNationality() {
-		return nationality;
-	}
-
-	public void setNationality(boolean nationality) {
-		this.nationality = nationality;
-	}
-
-	public String getMerriageSts() {
-		return merriageSts;
-	}
-
-	public void setMerriageSts(String merriageSts) {
-		this.merriageSts = merriageSts;
-	}
-
-	public String getDateOfYear() {
-		return dateOfYear;
-	}
-
-	public void setDateOfYear(String dateOfYear) {
-		this.dateOfYear = dateOfYear;
-	}
-
-	public String getDateOfMonth() {
-		return dateOfMonth;
-	}
-
-	public void setDateOfMonth(String dateOfMonth) {
-		this.dateOfMonth = dateOfMonth;
-	}
-
-	public String getDateOfDay() {
-		return dateOfDay;
-	}
-
-	public void setDateOfDay(String dateOfDay) {
-		this.dateOfDay = dateOfDay;
-	}
 
 	// gender
 

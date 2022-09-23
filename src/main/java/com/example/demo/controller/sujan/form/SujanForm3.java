@@ -15,61 +15,6 @@ public class SujanForm3 {
 	private String drivingLicenseLabel;
 	private String drivingLicense;
 
-	public String getPostNO() {
-		return postNO;
-	}
-
-	public void setPostNO(String postNO) {
-		this.postNO = postNO;
-	}
-
-	public String getAddress1() {
-		return address1;
-	}
-
-	public void setAddress1(String address1) {
-		this.address1 = address1;
-	}
-
-	public String getAddress2() {
-		return address2;
-	}
-
-	public void setAddress2(String address2) {
-		this.address2 = address2;
-	}
-
-	public String getLivingSituation() {
-		return livingSituation;
-	}
-
-	public void setLivingSituation(String livingSituation) {
-		this.livingSituation = livingSituation;
-	}
-
-	public String getHousingLoan() {
-		return housingLoan;
-	}
-
-	public void setHousingLoan(String housingLoan) {
-		this.housingLoan = housingLoan;
-	}
-
-	public String getDrivingLicense() {
-		return drivingLicense;
-	}
-
-	public void setDrivingLicense(String drivingLicense) {
-		this.drivingLicense = drivingLicense;
-	}
-
-	public String getDrivingLicenseLabel() {
-		return drivingLicenseLabel;
-	}
-
-	public void setDrivingLicenseLabel(String drivingLicenseLabel) {
-		this.drivingLicenseLabel = drivingLicenseLabel;
-	}
 
 	// gender
 
