@@ -129,7 +129,7 @@
 						</select>
 						<select name="dateOfDay" class="dropdown">
 					<option value="">選択してください</option>
-                   <option th:each="item : ${dateOfDayList}" th:value="${item.key}" th:text="${item.value}"/></select>日
+                   <option th:each="item : ${dateOfDayList}" th:value="${item.key}" th:text="${item.value}" th:selected="${item.key} == *{dateOfDay}"/></select>日
 				</div>
 				</div>
 				<div class="text-center pt-3">

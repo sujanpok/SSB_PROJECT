@@ -3,6 +3,7 @@ package com.example.demo.controller.sujan;
 import javax.servlet.http.HttpSession;
 
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +17,7 @@ import com.example.demo.controller.sujan.form.SujanForm1;
 import com.example.demo.controller.sujan.form.SujanForm2;
 import com.example.demo.controller.sujan.form.SujanForm3;
 import com.example.demo.controller.sujan.form.SujanForm4;
+import com.example.demo.controller.sujan.service.SujanService;
 
 @Controller
 @SessionAttributes(value = "sujanDto", types = SujanDto.class)
@@ -159,8 +161,21 @@ public class SujanController {
 		return "sujan/personalInfoForm4";
 	}
 
+	//insert do
+	
+	 /**
+     * ユーザー情報 Service
+     */
+    @Autowired
+    SujanService sujanService;
+	
 	@RequestMapping(value = "sendData", params = "send", method = RequestMethod.POST)
 	public String DbInsert(@ModelAttribute SujanDto sujanDto, HttpSession session, SessionStatus status, Model model) {
+		
+		   // ユーザー情報の登録
+		sujanService.insertData(sujanDto);
+		
+		
 		status.setComplete();
 		session.removeAttribute("sujanDto");
 		model.addAttribute("message", "お申し込みが完了しました。");

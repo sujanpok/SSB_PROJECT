@@ -23,7 +23,7 @@ p {
 	<div class="container">
 		<p th:text="'名前： ' + ${sujanDto.name}"></p>
 		
-		<p th:text="'性別： ' + ${sujanDto.gender}"></p>
+		<p>性別： <span th:text="${sujanDto.gender == null} ? '' : |${sujanDto.gender}|"></span></p>
 		<p th:text="${sujanDto.isNationality == false} ? 日本 : 外国籍"></p><!-- p1が表示される-->
 		<p
 			th:text="'生年月日： ' + ${sujanDto.dateOfYear} + '年'+ ${sujanDto.dateOfMonth} + '月'+ ${sujanDto.dateOfDay} + '日'"></p>
