@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.bishnu.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.demo.model.LoginForm1;
-import com.example.demo.model.LoginForm3;
+import com.example.demo.bishnu.model.LoginForm1;
+import com.example.demo.bishnu.model.LoginForm3;
 
 @Controller
 @RequestMapping("/bishnu")
