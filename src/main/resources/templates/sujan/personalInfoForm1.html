@@ -9,6 +9,7 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>入力フォーム</title>
 </head>
 <body>
@@ -125,7 +126,8 @@
 					</div>
 				</div>
 				<div class="w-50 dropdown　form-group h3 ">
-					<label class="control-label">婚姻状況</label> <select name="merriageSts" class="dropdown　form-group">
+					<label class="control-label">婚姻状況</label> 
+					<select name="merriageSts" class="dropdown　form-group">
 						<option value="">選択してください</option>
 						<option th:each="item : ${merriageStsList}" th:value="${item.key}" th:field="*{merriageSts}"
 							th:text="${item.value}" th:selected="${item.key} == *{merriageSts}"></option>

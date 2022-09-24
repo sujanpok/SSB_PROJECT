@@ -113,14 +113,7 @@ ModelMapper modelMapper = new ModelMapper();
 		return "sujan/personalInfoForm2";
 	}
 
-	// page2 back
-	@RequestMapping(value = "form3", params = "back", method = RequestMethod.POST)
-	public String personalInfo3Back(@ModelAttribute SujanForm2 sujanForm2,
-			@ModelAttribute SujanDto SujanDto,Model model) {
-		modelMapper.map(SujanDto, sujanForm2);
-		return "sujan/personalInfoForm2";
-	}
-
+	
 	// entry page3
 	@RequestMapping(value = "form2", params = "next", method = RequestMethod.POST)
 	public String personalInfo3(@ModelAttribute SujanForm3 sujanForm3,@ModelAttribute SujanDto SujanDto,
@@ -138,31 +131,29 @@ ModelMapper modelMapper = new ModelMapper();
 		modelMapper.map(sujanForm2, SujanDto);
 		return "sujan/personalInfoForm3";
 	}
-
+	
 	// page3 back
-	@RequestMapping(value = "form4", params = "back", method = RequestMethod.POST)
-	public String personalInfo4Back(@ModelAttribute SujanForm3 sujanForm3,
-			@ModelAttribute SujanDto SujanDto,Model model) {
-		model.addAttribute("livingSituationList", SujanForm3.getLivingSituationList());
-		model.addAttribute("housingLoanButton", SujanForm3.getHousingLoanButton());
-		model.addAttribute("drivingLicenseLabelButton", SujanForm3.getDrivingLicenseLabelButton());
-		modelMapper.map(SujanDto, sujanForm3);
-		return "sujan/personalInfoForm3";
+	@RequestMapping(value = "form3", params = "back", method = RequestMethod.POST)
+	public String personalInfo4Back(@ModelAttribute SujanDto sujanDto, @ModelAttribute SujanForm2 sujanForm2,
+			Model model) {
+		modelMapper.map(sujanDto, sujanForm2);
+		return "sujan/personalInfoForm2";
 	}
-
+	
 	// entry page4
 	@RequestMapping(value = "form3", params = "next", method = RequestMethod.POST)
-	public String personalInfo4(@ModelAttribute SujanForm4 sujanForm4,@ModelAttribute SujanDto SujanDto,
-			@Validated SujanForm3 sujanForm3,BindingResult error,
-			 Model model) {
+	public String personalInfo4(@ModelAttribute SujanForm4 sujanForm4,@ModelAttribute SujanDto sujanDto,
+			@Validated SujanForm3 sujanForm3,BindingResult error, Model model) {
 		if(error.hasErrors()){
-			personalInfo3(sujanForm3, SujanDto, null, error, model);
+			personalInfo3(sujanForm3, sujanDto, null, error, model);
+			model.addAttribute("livingSituationList", SujanForm3.getLivingSituationList());
+			model.addAttribute("housingLoanButton", SujanForm3.getHousingLoanButton());
+			model.addAttribute("drivingLicenseLabelButton", SujanForm3.getDrivingLicenseLabelButton());
 			return "sujan/personalInfoForm3";
         }
-		modelMapper.map(sujanForm3, SujanDto);
+		modelMapper.map(sujanForm3, sujanDto);
 		return "sujan/personalInfoForm4";
 	}
-
 	// check page
 	@RequestMapping(value = "form4", params = "next", method = RequestMethod.POST)
 	public String personalInfo5(@ModelAttribute SujanDto sujanDto,
@@ -171,7 +162,17 @@ ModelMapper modelMapper = new ModelMapper();
 		model.addAttribute("sujanDto", sujanDto);
 		return "sujan/confirmationScreen";
 	}
-
+	// page4 back
+			@RequestMapping(value = "form4", params = "back", method = RequestMethod.POST)
+			public String personalInfo3Back(@ModelAttribute SujanDto sujanDto,@ModelAttribute SujanForm3 sujanForm3, @ModelAttribute SujanForm2 sujanForm2,
+					Model model) {
+				model.addAttribute("livingSituationList", SujanForm3.getLivingSituationList());
+				model.addAttribute("housingLoanButton", SujanForm3.getHousingLoanButton());
+				model.addAttribute("drivingLicenseLabelButton", SujanForm3.getDrivingLicenseLabelButton());
+				modelMapper.map(sujanDto, sujanForm3);
+				return "sujan/personalInfoForm3";
+			}
+			
 	// check page back
 	@RequestMapping(value = "sendData", params = "back", method = RequestMethod.POST)
 	public String DbInsertback(@ModelAttribute SujanForm4 sujanForm4,

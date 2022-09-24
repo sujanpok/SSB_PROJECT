@@ -17,21 +17,14 @@ import lombok.Data;
 public class SujanForm3 {
 	@Size(max = 4, min = 4, message = "{length_check_number}")
 	private String postNO;
-	@Min(value = 20, message = "{min_check}")
-	@Max(value = 100, message = "{max_check}")
 	private String address1;
-	@Min(value = 20, message = "{min_check}")
-	@Max(value = 100, message = "{max_check}")
 	private String address2;
-	@NotBlank(message = "{select_check}")
 	private String livingSituation;
 	@NotBlank(message = "{select_check}")
 	private String housingLoan;
 	@NotBlank(message = "{select_check}")
 	private String drivingLicenseLabel;
 	@NotBlank(message = "{require_check}")
-	@NotNull(message = "{require_check}")
-	@Length(min = 10, max = 10, message = "{length_check_number}")
 	private String drivingLicense;
 
 	// gender
@@ -52,10 +45,10 @@ public class SujanForm3 {
 		return housingLoan;
 	}
 
-	public static Map<Boolean, String> getDrivingLicenseLabelButton() {
-		Map<Boolean, String> drivingLicense = new LinkedHashMap<Boolean, String>();
-		drivingLicense.put(true, "有り");
-		drivingLicense.put(false, "無し");
+	public static Map<String, String> getDrivingLicenseLabelButton() {
+		Map<String, String> drivingLicense = new LinkedHashMap<String, String>();
+		drivingLicense.put("有り", "有り");
+		drivingLicense.put("無し", "無し");
 		return drivingLicense;
 	}
 

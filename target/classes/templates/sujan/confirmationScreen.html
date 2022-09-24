@@ -30,7 +30,7 @@ p {
 					性別： <span
 						th:text="${sujanDto.gender == null} ? '' : |${sujanDto.gender}|"></span>
 				</p>
-				<p th:text="${sujanDto.isNationality == false} ? 日本 : 外国籍"></p>
+				<p> 国籍： <span th:text="${sujanDto.isNationality == false} ? 日本 : 外国籍"></span></p>
 				<!-- p1が表示される-->
 				<p
 					th:text="'生年月日： ' + ${sujanDto.dateOfYear} + '年'+ ${sujanDto.dateOfMonth} + '月'+ ${sujanDto.dateOfDay} + '日'"></p>
@@ -44,8 +44,8 @@ p {
 				<p th:text="'住宅ローン： ' + ${sujanDto.housingLoan}"></p>
 				<p th:text="'運転免許証:： ' + ${sujanDto.drivingLicenseLabel}"></p>
 				<p th:text="'運転免許証番号: ' + ${sujanDto.drivingLicense}"></p>
-				<p th:text="'ユーザーID ' + ${sujanDto.userId}"></p>
-				<p th:text="'パスワード ' + ${sujanDto.pwd}"></p>
+				 <p th:text="'ユーザーID ' + ${sujanDto.userId}"></p>
+				<p th:text="'パスワード ' + ${sujanDto.pwd}"></p> 
 			</div>
 
 			<div class="text-center pt-3">

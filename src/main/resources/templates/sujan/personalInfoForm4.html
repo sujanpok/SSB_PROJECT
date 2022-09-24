@@ -27,19 +27,28 @@
 			<form method="post" th:action="@{form4}" th:object="${sujanForm4}">
 
 				<div class="w-50">
-					<label for="email" class="form-label h3">ユーザーID:</label> <input
-						type="text" class="form-control" id="name" th:field="*{userId}"
-						th:value="${userId}"><br>
+					<label for="email" class="form-label h3">ユーザーID:</label> 
+					<div class="form-group" th:classappend="${#fields.hasErrors('userId')} ? 'has-error'"></div>
+					 <span class="text-danger h5" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span>
+					<input
+						type="text" class="form-control" id="name" th:text="${userId}"  th:field="*{userId}"
+						th:value="${userId}" ><br>
 				</div>
 				<br />
 				<div class="w-50">
-					<label for="email" class="form-label h3">パスワード:</label> <input
-						type="password" class="form-control" id="name" th:field="*{pwd}"
+					<label for="email" class="form-label h3">パスワード:</label> 
+					<div class="form-group" th:classappend="${#fields.hasErrors('pwd')} ? 'has-error'"></div>
+					 <span class="text-danger h5" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span>
+					<input
+						type="password" class="form-control" id="name" th:text="${pwd}"  th:field="*{pwd}"
 						th:value="${pwd}"><br>
 				</div>
 				<div class="w-50">
-					<label for="email" class="form-label h3">再確認パスワード:</label> <input
-						type="password" class="form-control" id="name" th:field="*{rePwd}"
+					<label for="email" class="form-label h3">再確認パスワード:</label>
+					<div class="form-group" th:classappend="${#fields.hasErrors('rePwd')} ? 'has-error'"></div>
+					 <span class="text-danger h5" th:if="${#fields.hasErrors('rePwd')}" th:errors="*{rePwd}"></span>
+					 <input
+						type="password" class="form-control" id="name"  th:text="${rePwd}" th:field="*{rePwd}"
 						th:value="${rePwd}"><br>
 				</div>
 				<div class="text-center pt-3">

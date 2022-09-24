@@ -30,7 +30,7 @@
 				<div class="row">
 					<div class="col-2">
 						<input type="text" class="form-control" th:value="*{postNO}"
-							size="4" maxlength="4" th:field="*{postNO}" />
+							size="7" maxlength="7" th:field="*{postNO}" />
 					</div>
 				</div>
 				
@@ -54,10 +54,10 @@
 					<label class="control-label">居住状況</label> 
 					<div class="form-group" th:classappend="${#fields.hasErrors('livingSituation')} ? 'has-error'"></div>
 					 <span class="text-danger h5" th:if="${#fields.hasErrors('livingSituation')}" th:errors="*{livingSituation}"></span>
-						<select name="dateOfYear" class="dropdown　form-group">
+						<select name="livingSituation" class="dropdown">
 						<option value="">選択してください</option>
-						<option th:each="item : ${livingSituationList}"
-							th:value="${item.key}" th:text="${item.value}" th:field="*{livingSituation}" th:selected="${item.key} == *{livingSituation}"  />>
+						<option th:each="item : ${livingSituationList}" th:value="${item.key}" 
+							th:text="${item.value}" th:selected="${item.key} == *{livingSituation}" th:field="*{livingSituation}"/>
 					</select>
 				</div>
 				<br />
