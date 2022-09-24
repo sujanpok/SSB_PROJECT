@@ -12,35 +12,101 @@ th:replace="index::layout(~{::section})">
 <div class="col-md-6 offset-md-3">
 <div class="my-card mt-3">
 
-<h3 class="font-weight-bold">LOGIN FORM OF SSB CARD</h3>
-<h4>基本情報登録画面</h4><br>
+<h3 class="font-weight-bold" style="text-align:center">LOGIN FORM OF SSB CARD</h3>
+<h4 style="text-align:center">基本情報登録画面 3</h4><br>
 
-<form>
+<form th:action="@{/bishnu/login_page4}" th:object="${loginForm3}" method="post">
 
 <div class="mb-3">
-   <label for="name_field">Your Name:</label>
-   <input type="text" class="form-control" id="name_field" placeholder="Enter your name..." required>
-
+   <label for="zipCode_field">Zip Code :</label>
+   <p><span>ex : 1010021</span></p>
+   <input type="number" class="form-control" name="zipCode" id="zipCode_field"   />
+</div>
+<a th:href="@{https://www.post.japanpost.jp/zipcode/}" target="blank">Search Zip Code</a>
+<br><br>
+<div class="mb-3">
+   <label for="address1_field">Address1 :</label>
+   <input type="text" class="form-control" name="address1" id="address1_field"   />
 </div>
 
-
-
-
-<div  style=" text-align:right;">
-<button  class="loginBtn" style="color:white; background-color:yellow;">Back</button>
+<div class="mb-3">
+   <label for="address2_field">Address2 :</label>
+   <input type="text" class="form-control" name="address2" id="address2_field"   />
 </div>
 
-<div  style=" text-align:right; margin-right:-50px">
-<button  class="loginBtn" style="color:white; background-color:blue;">Next</button>
+<div class="mb-3">
+   <label for="address3_field">Address3 :</label>
+   <input type="text" class="form-control" name="address3" id="address3_field"   />
 </div>
+
+<div class="mb-3">
+   <label for="livingSituation_field">living Situation :</label>
+   <br>
+   <select name="livingSituation" class="dropdown" >
+            <option value="">Select  Living Situation</option>
+            <option th:each="item : ${livingCondition}" th:value="${item.key}"
+            th:text="${item.value}"></option>
+         </select>
+</div>
+
+<div class="mb-3">
+ <label for="mortageLoan_field">Mortgage and rent payments (individual or spouse payment) :</label>
+<div class="form-check col" >
+  <input class="form-check-input" type="radio" name="mortageLoan" id="flexRadioDefault1">
+  <label class="form-check-label" for="mortageLoan_field">
+ Yes
+  </label>
+</div>
+<div class="form-check col">
+  <input class="form-check-input" type="radio" name="mortageLoan" id="flexRadioDefault2" >
+  <label class="form-check-label" for="mortageLoan_field">
+  No
+  </label>
+</div>
+</div>
+
+<div class="mb-3">
+ <label for="drivingLicense_field">Driving License :</label>
+<div class="form-check col" >
+  <input class="form-check-input" type="radio" name="drivingLicense" id="flexRadioDefault1">
+  <label class="form-check-label" for="drivingLicense_field">
+ Yes
+  </label>
+</div>
+<div class="form-check col">
+  <input class="form-check-input" type="radio" name="drivingLicense" id="flexRadioDefault2" >
+  <label class="form-check-label" for="drivingLicense_field">
+  No
+  </label>
+</div>
+</div>
+
+<div class="mb-3">
+   <label for="licenseNumber_field">License Number :</label>
+   <input type="text" class="form-control" name="licenseNumber" id="licenseNumber_field"   />
+</div>
+
+<div class="mt-5" style="text-align:center;">
+<button class="loginNextbtn1" type="submit" >Next</button>
+</div>
+
+<div class="mt-5" style="text-align:center;">
+<button class="loginNextbtn2" type="submit" >Back</button>
+</div> 
 </form>
 
-</div>
-</div>
 
 </div>
 
 </div>
+
+
+</div>
+
+</div>
+<br><br><br>
+<br><br><br>
+<br><br><br>
 
 
 <script>

@@ -4,14 +4,116 @@ th:replace="index::layout(~{::section})">
 <head>
 <meta charset="UTF-8">
 <title>abouts</title>
+
 </head>
 <body>
 <section>
-<div class="text-center">
-<h1 class="font-weight-bold">LOGIN FORM OF SSB CARD</h1>
-<h4>基本情報登録画面</h4><br>
-<button class="btn bg-primary btn-lg text-white">Get Start</button>
+<div class="container">
+<div class="row">
+<div class="col-md-6 offset-md-3">
+<div class="my-card mt-3">
+
+<h3 class="font-weight-bold" style="text-align:center">LOGIN FORM OF SSB CARD</h3>
+<h4 style="text-align:center">基本情報登録画面 1</h4><br>
+
+<form th:action="@{/bishnu/login_page2}" th:object="${loginForm1}" method="post">
+
+<div class="mb-3">
+   <label for="firstName_field">First Name:</label>
+   <input type="text" class="form-control" name="firstName" id="firstName_field" placeholder="Enter your firstName..." required>
 </div>
+
+<div class="mb-3">
+   <label for="lastName_field">Last Name:</label>
+   <input type="text" class="form-control" name="lastName" id="lastName_field" placeholder="Enter your lastName..." required>
+</div>
+
+<div class="mb-3">
+<label for="gender_field" >Gender :</label>
+   <div th:each="item : ${gender}" class="form-check-inline">
+   <input type="radio" class="form-check-input" name="gender" id="gender_field"
+   th:text="${item.value}" th:value="${item.key}" th:field="*{gender}">
+   </div>
+</div>
+
+<div class="mb-3">
+   <label for="year_field" >Date Of Birth:</label>
+       <div class="col-md-12" data-toggle="dropdown">
+       
+         <select name="dateofyear" class="dropdown　form-group">
+            <option value="">Select  year</option>
+            <option th:each="item : ${year}" th:value="${item.key}"
+            th:text="${item.value}"></option>
+         </select>Year
+                      
+         <select name="dateofmonth" class="dropdown" >
+            <option value="">Select  month</option>
+            <option th:each="item : ${month}" th:value="${item.key}"
+            th:text="${item.value}"></option>
+         </select>Month
+                 
+         <select name="dateofday" class="dropdown">
+           <option value="">Select  date</option>
+           <option th:each="item : ${day}" th:value="${item.key}"
+            th:text="${item.value}" th:selected="${item.key} == *{dateofday}"></option>
+         </select>Date
+         
+    </div>
+</div>
+
+<div class="mb-3">
+ <label for="marriedStatus_field">Married Status:</label>
+<div class="form-check" >
+  <input class="form-check-input" type="radio" name="marriedStatus" value="Married" id="flexRadioDefault1">
+  <label class="form-check-label" for="marriedStatus_field">
+  Married
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="marriedStatus" value="Unmarried" id="flexRadioDefault2" >
+  <label class="form-check-label" for="marriedStatus_field">
+   Unmarried
+  </label>
+</div>
+</div>
+
+<div class="mb-3">
+ <label for="countryStatus_field">Country Status:</label>
+<div class="form-check" >
+  <input class="form-check-input" type="radio" name="countryStatus" id="flexRadioDefault1">
+  <label class="form-check-label" for="countryStatus_field">
+  Japan
+  </label>
+</div>
+<div class="form-check">
+  <input class="form-check-input" type="radio" name="countryStatus" id="flexRadioDefault2" >
+  <label class="form-check-label" for="countryStatus_field">
+   Foregin
+  </label>
+</div>
+</div>
+
+
+<div class="mt-5" style="text-align:center;">
+<button class="loginNextbtn1" type="submit" name="next" >Next</button>
+</div>
+
+<div class="mt-5" style="text-align:center;">
+<button class="loginNextbtn2" type="submit" name="back">Back</button>
+</div>
+</form>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+<br><br><br>
+<br><br><br>
+<br><br><br>
 <script>
 $(document).ready(()=>{
     $(".item").removeClass("item");

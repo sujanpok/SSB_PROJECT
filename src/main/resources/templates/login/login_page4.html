@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="index::layout(~{::section})">
+<head>
+<meta charset="UTF-8">
+<title>abouts</title>
+</head>
+<body>
+<section>
+<div class="container">
+<div class="row">
+<div class="col-md-6 offset-md-3">
+<div class="my-card mt-3">
+
+<h3 class="font-weight-bold" style="text-align:center">LOGIN FORM OF SSB CARD</h3>
+<h4 style="text-align:center">基本情報登録画面 4</h4><br>
+
+<form th:action="@{/bishnu/login_conform_page}" th:object="${loginForm4}" method="post">
+
+
+<div class="mb-3">
+   <label for="password_field">PassWord :</label>
+   <input type="text" class="form-control" name="password" id="password_field"   />
+</div>
+
+<div class="mb-3">
+   <label for="re_password_field">Re-Password :</label>
+   <input type="text" class="form-control" name="re_password" id="re_password_field"   />
+</div>
+
+
+
+
+<div class="mt-5" style="text-align:center;">
+<button class="loginNextbtn1" type="submit" >Next</button>
+</div>
+
+<div class="mt-5" style="text-align:center;">
+<button class="loginNextbtn2" type="submit" >Back</button>
+</div> 
+</form>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+<br><br><br>
+<br><br><br>
+<br><br><br>
+
+
+<script>
+$(document).ready(()=>{
+    $(".item").removeClass("item");
+    $("#chooseUser-link").addClass("item");
+});
+</script>
+</section>
+</body>
+</html>
