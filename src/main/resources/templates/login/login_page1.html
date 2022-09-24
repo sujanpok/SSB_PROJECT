@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-th:replace="index::layout(~{::section})">
+	th:replace="index::layout(~{::section})">
 <head>
 <meta charset="UTF-8">
 <title>abouts</title>
 
 </head>
 <body>
+
 <section>
 <div class="container">
 <div class="row">
@@ -115,11 +116,12 @@ th:replace="index::layout(~{::section})">
 <br><br><br>
 <br><br><br>
 <script>
+
 $(document).ready(()=>{
     $(".item").removeClass("item");
     $("#chooseUser-link").addClass("item");
 });
 </script>
-</section>
+	</section>
 </body>
 </html>
