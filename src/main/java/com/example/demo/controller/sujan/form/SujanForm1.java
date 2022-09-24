@@ -4,22 +4,32 @@ import java.time.LocalDate;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.Length;
+
 import lombok.Data;
 
 @Data
 public class SujanForm1 {
+	
+	@NotBlank(message = "{require_check}")
+	@NotNull(message = "{require_check}")
+	@Length(min= 4 ,max = 100, message = "{length_check}")
 	private String name;
-
+	
+	@NotNull(message = "{select_check}")
 	private String gender;
 
 	private boolean nationality;
-
+	@NotBlank(message = "{select_check}")
 	private String merriageSts;
-
+	@NotBlank(message = "{select_check}")
 	private String dateOfYear;
-
+	@NotBlank(message = "{select_check}")
 	private String dateOfMonth;
-
+	@NotBlank(message = "{select_check}")
 	private String dateOfDay;
 
 

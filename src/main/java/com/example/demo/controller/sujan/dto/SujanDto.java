@@ -19,7 +19,7 @@ public class SujanDto implements Serializable {
 	private String dateOfYear;
 	private String dateOfMonth;
 	private String dateOfDay;
-	private String merriage;
+	private String merriageSts;
 	private String email;
 	private String mobileNo1;
 	private String mobileNo2;
@@ -34,8 +34,4 @@ public class SujanDto implements Serializable {
 	private String userId;
 	private String pwd;
 	private String rePwd;
-
-	
-
-
 }

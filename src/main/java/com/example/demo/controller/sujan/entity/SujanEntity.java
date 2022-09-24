@@ -58,7 +58,7 @@ public class SujanEntity implements Serializable {
 	 * 結婚
 	 */
 	@Column(name = "merriage")
-	private String merriage;
+	private String MerriageSts;
 	/**
 	 * メールアドレス
 	 */

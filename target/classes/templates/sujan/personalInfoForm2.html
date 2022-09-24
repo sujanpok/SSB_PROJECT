@@ -28,10 +28,18 @@
 					<label for="email" class="form-label h3">メールアドレス:</label> <input
 						type="text" class="form-control" id="name" th:field="*{email}"
 						th:value="${email}"><br>
+						<div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-error'"></div>
+					 <span class="text-danger h5" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
 				</div>
+				 
 
 				<label for="phone" class="form-label h3"> 電話番号：</label>
-
+                     <div class="form-group" th:classappend="${#fields.hasErrors('mobileNo1')} ? 'has-error'"></div>
+					 <span class="text-danger h5" th:if="${#fields.hasErrors('mobileNo1')}" th:errors="*{mobileNo1}"></span>
+					 <div class="form-group" th:classappend="${#fields.hasErrors('mobileNo2')} ? 'has-error'"></div>
+					 <span class="text-danger h5" th:if="${#fields.hasErrors('mobileNo2')}" th:errors="*{mobileNo2}"></span>
+					 <div class="form-group" th:classappend="${#fields.hasErrors('mobileNo3')} ? 'has-error'"></div>
+					 <span class="text-danger h5" th:if="${#fields.hasErrors('mobileNo3')}" th:errors="*{mobileNo3}"></span>
 				<div class="row">
 					<div class="col-2">
 						<input type="text" class="form-control" th:value="*{mobileNo1}"
