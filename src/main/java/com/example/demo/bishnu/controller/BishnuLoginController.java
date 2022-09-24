@@ -27,44 +27,44 @@ public class BishnuLoginController {
     model.addAttribute("month", LoginForm1.getMonth());
     model.addAttribute("day", LoginForm1.getDay());
     model.addAttribute("gender", LoginForm1.getByGender());
-    return "login/login_page1";
+    return "bishnu/login_page1";
   }
   
   @RequestMapping(value = "/login_page2", params = "next", method = RequestMethod.POST)
   public String loginPage2(Model model) {
     model.addAttribute("title", "SSB_login_page2");
-    return "login/login_page2";
+    return "bishnu/login_page2";
   }
 
   @RequestMapping(value = "/login_page1", params = "back", method = RequestMethod.POST)
   public String loginPageReturn1(Model model) {
     model.addAttribute("title", "SSB_login_page2");
-    return "login/login_page1";
+    return "bishnu/login_page1";
   }
   
   @PostMapping("/login_page3")
   public String loginPage3(LoginForm3 loginForm3, Model model) {
     model.addAttribute("title", "SSB_login_page3");
     model.addAttribute("livingCondition", LoginForm3.getLivingCondition());
-    return "login/login_page3";
+    return "bishnu/login_page3";
   }
   
   @PostMapping("/login_page4")
   public String loginPage4(Model model) {
     model.addAttribute("title", "SSB_login_page4");
-    return "login/login_page4";
+    return "bishnu/login_page4";
   }
   
   @PostMapping("/login_conform_page")
   public String login_conform_page(Model model) {
     model.addAttribute("title", "SSB_login_conform");
-    return "login/login_conform_page";
+    return "bishnu/login_conform_page";
   }
   
   @PostMapping("/login_success_page")
   public String login_success_page(Model model) {
     model.addAttribute("title", "SSB_login_success");
-    return "login/login_success_page";
+    return "bishnu/login_success_page";
   }
   
   @GetMapping("/login_success_home")
