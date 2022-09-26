@@ -19,56 +19,56 @@ th:replace="index::layout(~{::section})">
 
 <form th:action="@{/bishnu/login_success_page}" method="post">
 
-<p th:text="'FirstName : ' "></p>
+<p th:text="'FirstName : ' + ${bishnuDto.firstName}"></p>
 
-<p th:text="'LastName : ' "></p>
+<p th:text="'LastName : ' + ${bishnuDto.lastName}"></p>
 
-<p th:text="'Gender : ' "></p>
+<p>Gender : <span th:text="${bishnuDto.gender == null} ? '': ${bishnuDto.gender}"></span></p>
 
-<p th:text="'Date of birth : ' "></p>
+<p th:text="'Date of birth : ' + ${bishnuDto.dateofyear} + ' year ' + ${bishnuDto.dateofmonth} + ' month ' + ${bishnuDto.dateofday} + ' day' "></p>
 
-<p th:text="'Married Status : ' "></p>
+<p>Married Status :<span th:text="${bishnuDto.marriedStatus == null} ? '' : ${bishnuDto.marriedStatus} "></span></p>
 
-<p th:text="'Country Status : ' "></p>
+<p>Country Status :<span th:text="${bishnuDto.countryStatus == null} ? '' : ${bishnuDto.countryStatus} "></span> </p>
 
-<p th:text="'Email : ' "></p>
+<p th:text="'Email : ' + ${bishnuDto.email} "></p>
 
-<p th:text="'Mobile Number : ' "></p>
+<p th:text="'Mobile Number : ' + ${bishnuDto.mobile1} + ' - ' + ${bishnuDto.mobile2} + ' - ' + ${bishnuDto.mobile3} "></p>
 
-<p th:text="'Tel Number : ' "></p>
+<p th:text="'Tel Number : ' + ${bishnuDto.tel1} + ' - ' + ${bishnuDto.tel2} + ' - ' + ${bishnuDto.tel3} "></p>
 
-<p th:text="'Zip Code : ' "></p>
+<p th:text="'Zip Code : ' + ${bishnuDto.zipCode} "></p>
 
-<p th:text="'Address : ' "></p>
+<p th:text="'Address : ' + ${bishnuDto.address1} "></p>
 
-<p th:text="'City : ' "></p>
+<p th:text="'City : ' + ${bishnuDto.address2} "></p>
 
-<p th:text="'Building Name : ' "></p>
+<p th:text="'Building Name : ' + ${bishnuDto.address3} "></p>
 
-<p th:text="'living Situationr : ' "></p>
+<p th:text="'living Situation : ' + ${bishnuDto.livingSituation} "></p>
 
-<p th:text="'Mortgage : ' "></p>
+<p>Mortgage :<span th:text="${bishnuDto.mortageLoan == null} ? '' : ${bishnuDto.mortageLoan}  "></span> </p>
 
-<p th:text="'Driving License : ' "></p>
+<p>Driving License :<span th:text= "${bishnuDto.drivingLicense == null} ? '' : ${bishnuDto.drivingLicense} "></span> </p>
 
-<p th:text="'License Number : ' "></p>
+<p th:text="'License Number : ' + ${bishnuDto.licenseNumber} "></p>
 
-<p th:text="'UserId : ' "></p>
+<p th:text="'UserId : ' + ${bishnuDto.userId} "></p>
 
-<p th:text="'Password : ' "></p>
+<p th:text="'Password : ' + ${bishnuDto.password} "></p>
 
-<p th:text="'Re-Password : ' "></p>
+<p th:text="'Re-Password : ' + ${bishnuDto.re_password} "></p>
 
-<p th:text="'Card Type : ' "></p>
+<p th:text="'Card Type : ' + ${bishnuDto.cardType} "></p>
 
 
 
 <div class="mt-5" style="text-align:center;">
-<button class="loginNextbtn1" type="submit" >Next</button>
+<button class="loginNextbtn1" type="submit" name="next" >Next</button>
 </div>
 
 <div class="mt-5" style="text-align:center;">
-<button class="loginNextbtn2" type="submit" >Back</button>
+<button class="loginNextbtn2" type="submit" name="back" >Back</button>
 </div> 
 </form>
 
@@ -79,8 +79,9 @@ th:replace="index::layout(~{::section})">
 
 
 </div>
-
 </div>
+
+
 
 <br><br><br>
 <br><br><br>

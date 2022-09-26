@@ -52,13 +52,13 @@ th:replace="index::layout(~{::section})">
 <div class="mb-3">
  <label for="mortageLoan_field">Mortgage and rent payments (individual or spouse payment) :</label>
 <div class="form-check col" >
-  <input class="form-check-input" type="radio" name="mortageLoan" id="flexRadioDefault1">
+  <input class="form-check-input" type="radio" name="mortageLoan" value="Yes" id="flexRadioDefault1">
   <label class="form-check-label" for="mortageLoan_field">
  Yes
   </label>
 </div>
 <div class="form-check col">
-  <input class="form-check-input" type="radio" name="mortageLoan" id="flexRadioDefault2" >
+  <input class="form-check-input" type="radio" name="mortageLoan" value="No" id="flexRadioDefault2" >
   <label class="form-check-label" for="mortageLoan_field">
   No
   </label>
@@ -68,13 +68,13 @@ th:replace="index::layout(~{::section})">
 <div class="mb-3">
  <label for="drivingLicense_field">Driving License :</label>
 <div class="form-check col" >
-  <input class="form-check-input" type="radio" name="drivingLicense" id="flexRadioDefault1">
+  <input class="form-check-input" type="radio" name="drivingLicense" value="Yes" id="flexRadioDefault1">
   <label class="form-check-label" for="drivingLicense_field">
  Yes
   </label>
 </div>
 <div class="form-check col">
-  <input class="form-check-input" type="radio" name="drivingLicense" id="flexRadioDefault2" >
+  <input class="form-check-input" type="radio" name="drivingLicense" value="No" id="flexRadioDefault2" >
   <label class="form-check-label" for="drivingLicense_field">
   No
   </label>
@@ -87,11 +87,11 @@ th:replace="index::layout(~{::section})">
 </div>
 
 <div class="mt-5" style="text-align:center;">
-<button class="loginNextbtn1" type="submit" >Next</button>
+<button class="loginNextbtn1" type="submit" name="next" >Next</button>
 </div>
 
 <div class="mt-5" style="text-align:center;">
-<button class="loginNextbtn2" type="submit" >Back</button>
+<button class="loginNextbtn2" type="submit" name="back" >Back</button>
 </div> 
 </form>
 

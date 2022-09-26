@@ -8,7 +8,7 @@ import lombok.Data;
 @Data
 public class LoginForm3 {
   
-  private int zipCode;
+  private String zipCode;
   private String address1;
   private String address2;
   private String address3;

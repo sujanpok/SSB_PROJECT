@@ -19,25 +19,38 @@ th:replace="index::layout(~{::section})">
 
 <div class="mb-3">
    <label for="email_field">Your Email:</label>
-   <input type="email" class="form-control" name="email" id="email_field" placeholder="sample@ssbcard.co.jp..." required>
+    <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-error'">
+   <input type="email" class="form-control" name="email" id="email_field" placeholder="sample@ssbcard.co.jp..." th:value="${email}" th:field="*{email}" >
+   <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+</div>
 </div>
 
 <div class="mb-3">
-                <label for="mobile" > Mobile Number：</label>
+                <label > Mobile Number：</label>
                 <p> <span>ex:090-1234-5678</span></p>
+                <div class="form-group" th:classappend="${#fields.hasErrors('mobile1')} ? 'has-error'">
+                <div class="form-group" th:classappend="${#fields.hasErrors('mobile2')} ? 'has-error'">
+                <div class="form-group" th:classappend="${#fields.hasErrors('mobile3')} ? 'has-error'">
                 <div class="row">
                     <div class="col-3">
-                        <input type="number" class="form-control" name="mobile1"
-                            size="3" maxlength="3" />
+                        <input type="text" class="form-control" name="mobile1" th:value="${mobile1}"
+                         th:field="*{mobile1}"  size="3" maxlength="3" />
                     </div>-
                     <div class="col-3">
-                        <input type="number" class="form-control"  name="mobile2"
-                            size="4" maxlength="4"  />
+                        <input type="text" class="form-control"  name="mobile2"  th:value="${mobile2}"
+                         th:field="*{mobile2}" size="4" maxlength="4"  />
                     </div>-
                     <div class="col-3">
-                        <input type="number" class="form-control" name="mobile3"
-                            size="4" maxlength="4"  />
+                        <input type="text" class="form-control" name="mobile3"  th:value="${mobile3}"
+                         th:field="*{mobile3}"  size="4" maxlength="4"  />
                     </div>
+                    
+                     <span class="text-danger" th:if="${#fields.hasErrors('mobile1')}" th:errors="*{mobile1}"></span>
+                     <span class="text-danger" th:if="${#fields.hasErrors('mobile2')}" th:errors="*{mobile2}"></span>
+                     <span class="text-danger" th:if="${#fields.hasErrors('mobile3')}" th:errors="*{mobile3}"></span>
+              </div>
+              </div>
+              </div>
 </div>
 </div>
 
@@ -45,33 +58,41 @@ th:replace="index::layout(~{::section})">
                 <label for="tel" > TEL Number： </label>
               <p> <span>ex:03-1234-5678</span></p>
                
+               <div class="form-group" th:classappend="${#fields.hasErrors('tel1')} ? 'has-error'">
+                <div class="form-group" th:classappend="${#fields.hasErrors('tel2')} ? 'has-error'">
+                <div class="form-group" th:classappend="${#fields.hasErrors('tel3')} ? 'has-error'">
                 <div class="row">
                     <div class="col-3">
-                        <input type="number" class="form-control" name="tel1"
-                            size="2" maxlength="2" />
+                        <input type="text" class="form-control" name="tel1" th:value="${tel1}"
+                          th:field="*{tel1}"  size="2" maxlength="2" />
                     </div>-
                     <div class="col-3">
-                        <input type="number" class="form-control" name="tel2"
-                            size="4" maxlength="4"  />
+                        <input type="text" class="form-control" name="tel2" th:value="${tel2}"
+                          th:field="*{tel2}"   size="4" maxlength="4"  />
                     </div>-
                     <div class="col-3">
-                        <input type="number" class="form-control" name="tel3"
-                            size="4" maxlength="4"  />
+                        <input type="text" class="form-control" name="tel3"  th:value="${tel3}"
+                          th:field="*{tel3}"  size="4" maxlength="4"  />
                     </div>
+                    
+                    <span class="text-danger" th:if="${#fields.hasErrors('tel1')}" th:errors="*{tel1}"></span>
+                     <span class="text-danger" th:if="${#fields.hasErrors('tel2')}" th:errors="*{tel2}"></span>
+                     <span class="text-danger" th:if="${#fields.hasErrors('tel3')}" th:errors="*{tel3}"></span>
 </div>
 </div>
-
-
+</div>
+</div>
+</div>
 
 
 
 
 <div class="mt-5" style="text-align:center;">
-<button class="loginNextbtn1" type="submit" >Next</button>
+<button class="loginNextbtn1" type="submit" name="next">Next</button>
 </div>
 
 <div class="mt-5" style="text-align:center;">
-<button class="loginNextbtn2" type="submit" >Back</button>
+<button class="loginNextbtn2" type="submit" name="back">Back</button>
 </div>
 </form>
 
