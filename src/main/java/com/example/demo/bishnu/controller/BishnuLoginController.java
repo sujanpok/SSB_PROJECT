@@ -61,6 +61,7 @@ public class BishnuLoginController {
       model.addAttribute("month", LoginForm1.getMonth());
       model.addAttribute("day", LoginForm1.getDay());
       model.addAttribute("gender", LoginForm1.getByGender());
+      model.addAttribute("message", "お手数ですが、赤字コメント項目をご確認いただき再入力をお願い致します。");
       this.modelMapper.map(bishnuDto, loginForm1);
       return "bishnu/login_page1";
         }
@@ -83,6 +84,7 @@ public class BishnuLoginController {
     
     if(result.hasErrors()){
       model.addAttribute("title", "SSB_login_page2");
+      model.addAttribute("message", "お手数ですが、赤字コメント項目をご確認いただき再入力をお願い致します。");
       return "bishnu/login_page2";
     }
     model.addAttribute("title", "SSB_login_page3");
@@ -109,6 +111,7 @@ public class BishnuLoginController {
     if(result.hasErrors()) {
       model.addAttribute("title", "SSB_login_page3");
       model.addAttribute("livingCondition", LoginForm3.getLivingCondition());
+      model.addAttribute("message", "お手数ですが、赤字コメント項目をご確認いただき再入力をお願い致します。");
       return "bishnu/login_page3";
     }
     model.addAttribute("title", "SSB_login_page4");
@@ -129,11 +132,19 @@ public class BishnuLoginController {
   public String login_conform_page(@Valid LoginForm4 loginForm4, BindingResult result, BishnuDto bishnuDto, Model model) {
    if(result.hasErrors()) {
      model.addAttribute("title", "SSB_login_page4");
+     model.addAttribute("message", "お手数ですが、赤字コメント項目をご確認いただき再入力をお願い致します。");
      return "bishnu/login_page4";
    }
-    model.addAttribute("title", "SSB_login_conform");
+    
+    if(loginForm4.getPassword().equals(loginForm4.getRe_password())) {
+      model.addAttribute("title", "SSB_login_conform");
     this.modelMapper.map(bishnuDto, loginForm4);
     return "bishnu/login_conform_page";
+  } else {
+    model.addAttribute("title", "SSB_login_page4");
+    model.addAttribute("message1", "Please enter a same password....");
+    return "bishnu/login_page4";
+  }
   }
   
   //Login page 3 open (click back button from login login page 4)

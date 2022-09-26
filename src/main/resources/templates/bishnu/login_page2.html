@@ -15,6 +15,10 @@ th:replace="index::layout(~{::section})">
 <h3 class="font-weight-bold" style="text-align:center">LOGIN FORM OF SSB CARD</h3>
 <h4 style="text-align:center">基本情報登録画面 2</h4><br>
 
+<div th:if="${message}">
+<p th:text="${message}" class="p-3 mb-2 bg-danger text-white"></p>
+</div>
+
 <form th:action="@{/bishnu/login_page3}" th:object="${loginForm2}" method="post">
 
 <div class="mb-3">
