@@ -88,13 +88,13 @@
  <label for="marriedStatus_field">Married Status:</label>
   <div class="form-group" th:classappend="${#fields.hasErrors('marriedStatus')} ? 'has-error'">
 <div class="form-check" >
-  <input class="form-check-input" type="radio" name="marriedStatus" value="Married" id="flexRadioDefault1" th:field="*{marriedStatus}">
+  <input class="form-check-input" type="radio" name="marriedStatus" th:value="Married" id="flexRadioDefault1" th:field="*{marriedStatus}">
   <label class="form-check-label" for="marriedStatus_field">
   Married
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="marriedStatus" value="Unmarried" id="flexRadioDefault2" th:field="*{marriedStatus}">
+  <input class="form-check-input" type="radio" name="marriedStatus" th:value="Unmarried" id="flexRadioDefault2" th:field="*{marriedStatus}">
   <label class="form-check-label" for="marriedStatus_field">
    Unmarried
   </label>
@@ -107,13 +107,13 @@
  <label for="countryStatus_field">Country Status:</label>
   <div class="form-group" th:classappend="${#fields.hasErrors('countryStatus')} ? 'has-error'">
 <div class="form-check" >
-  <input class="form-check-input" type="radio" name="countryStatus" value="Japan" id="flexRadioDefault1" th:field="*{countryStatus}">
+  <input class="form-check-input" type="radio" name="countryStatus" th:value="Japan" id="flexRadioDefault1" th:field="*{countryStatus}">
   <label class="form-check-label" for="countryStatus_field">
   Japan
   </label>
 </div>
 <div class="form-check">
-  <input class="form-check-input" type="radio" name="countryStatus" value="Foregin" id="flexRadioDefault2" th:field="*{countryStatus}" >
+  <input class="form-check-input" type="radio" name="countryStatus" th:value="Foregin" id="flexRadioDefault2" th:field="*{countryStatus}" >
   <label class="form-check-label" for="countryStatus_field">
    Foregin
   </label>

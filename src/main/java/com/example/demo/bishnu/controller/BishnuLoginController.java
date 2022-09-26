@@ -73,6 +73,7 @@ public class BishnuLoginController {
   @RequestMapping(value = "/login_page2", params = "back", method = RequestMethod.POST)
   public String loginPageReturn1(LoginForm2 loginForm2, ChooseCard chooseCard, BishnuDto bishnuDto, Model model) {
     model.addAttribute("title", "SSB_login_chooseCard");
+    this.modelMapper.map(bishnuDto, chooseCard);
     return "login/chooseCard";
   }
   
@@ -92,18 +93,24 @@ public class BishnuLoginController {
   
   //Login Page 1 open (click Back button from login page 2 )
   @RequestMapping(value = "/login_page3", params = "back", method = RequestMethod.POST)
-  public String loginPageReturn1(LoginForm1 loginForm1, LoginForm3 loginForm3, BishnuDto bishnuDto, Model model) {
+  public String loginPageReturn1(LoginForm1 loginForm1, LoginForm2 loginForm2, BishnuDto bishnuDto, Model model) {
     model.addAttribute("title", "SSB_login_page1");
     model.addAttribute("year", LoginForm1.yearMap());
     model.addAttribute("month", LoginForm1.getMonth());
     model.addAttribute("day", LoginForm1.getDay());
     model.addAttribute("gender", LoginForm1.getByGender());
+    this.modelMapper.map(bishnuDto, loginForm1);
     return "bishnu/login_page1";
   }
   
   //Login Page 4 open (click Next button from login page 3)
   @RequestMapping(value = "/login_page4", params = "next", method = RequestMethod.POST)
-  public String loginPage4(LoginForm4 loginForm4, BishnuDto bishnuDto, Model model) {
+  public String loginPage4(@Valid LoginForm3 loginForm3, BindingResult result, LoginForm4 loginForm4, BishnuDto bishnuDto, Model model) {
+    if(result.hasErrors()) {
+      model.addAttribute("title", "SSB_login_page3");
+      model.addAttribute("livingCondition", LoginForm3.getLivingCondition());
+      return "bishnu/login_page3";
+    }
     model.addAttribute("title", "SSB_login_page4");
     this.modelMapper.map(bishnuDto, loginForm4);
     return "bishnu/login_page4";
@@ -111,16 +118,21 @@ public class BishnuLoginController {
   
   //Login Page 2 open (click back button from login page 3)
   @RequestMapping(value = "/login_page4", params = "back", method = RequestMethod.POST)
-  public String loginPageReturn2(LoginForm4 loginForm4, LoginForm2 loginForm2, BishnuDto bishnuDto, Model model) {
+  public String loginPageReturn2(LoginForm3 loginForm3, LoginForm2 loginForm2, BishnuDto bishnuDto, Model model) {
     model.addAttribute("title", "SSB_login_page2");
+    this.modelMapper.map(bishnuDto, loginForm2);
     return "bishnu/login_page2";
   }
   
   //Login conform page open (click next button from login login page 4)
   @RequestMapping(value = "/login_conform_page", params = "next", method = RequestMethod.POST)
-  public String login_conform_page(BishnuDto bishnuDto, Model model) {
+  public String login_conform_page(@Valid LoginForm4 loginForm4, BindingResult result, BishnuDto bishnuDto, Model model) {
+   if(result.hasErrors()) {
+     model.addAttribute("title", "SSB_login_page4");
+     return "bishnu/login_page4";
+   }
     model.addAttribute("title", "SSB_login_conform");
-    
+    this.modelMapper.map(bishnuDto, loginForm4);
     return "bishnu/login_conform_page";
   }
   
@@ -129,6 +141,7 @@ public class BishnuLoginController {
   public String login_conform_pageReturn(BishnuDto bishnuDto, LoginForm3 loginForm3, Model model) {
     model.addAttribute("title", "SSB_login_page3");
     model.addAttribute("livingCondition", LoginForm3.getLivingCondition());
+    this.modelMapper.map(bishnuDto, loginForm3);
     return "bishnu/login_page3";
   }
   
@@ -142,8 +155,9 @@ public class BishnuLoginController {
   
   //Login  page 4 open (click back button from login conform page)
   @RequestMapping(value = "/login_success_page", params = "back", method = RequestMethod.POST)
-  public String login_success_pageReturn(BishnuDto bishnuDto, Model model) {
+  public String login_success_pageReturn(LoginForm4 loginForm4, BishnuDto bishnuDto, Model model) {
     model.addAttribute("title", "SSB_login_page4");
+    this.modelMapper.map(bishnuDto, loginForm4);
     return "bishnu/login_page4";
   }
   
