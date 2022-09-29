@@ -8,6 +8,8 @@ function setShowHide() {
 	} else {
 		$("#drivingLicense").removeClass("visibility_test");
 		$("#drivingLicense").addClass("visibility_test1");
+		  //document.form3.drivingLicense.value="";
+		$("#drivingLicense1").val("");
 	}
 
 }

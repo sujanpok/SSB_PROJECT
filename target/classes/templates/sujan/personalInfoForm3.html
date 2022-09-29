@@ -94,7 +94,7 @@ th:replace="sujan/common/common::layout(~{::section})">
 					<div  th:each="item : ${drivingLicenseLabelButton}" class="form-check-inline" id="drivingLicenseLabelButton" >
 						<input type="radio" class="form-check-input"
 							th:text="${item.value}"  th:value="${item.key}"
-							th:field="*{drivingLicenseLabel}" th:checked="${item.key == drivingLicense}"  th:onchange="setShowHide()" />
+							th:field="*{drivingLicenseLabel}" th:checked="${item.key == drivingLicenseLabel}"  th:onchange="setShowHide()" />
 					</div>
 						</div>
 	<br />
@@ -103,7 +103,7 @@ th:replace="sujan/common/common::layout(~{::section})">
 					<label for="email" class="form-label h3">運転免許証番号:</label>
 				<div class="form-group" th:classappend="${#fields.hasErrors('drivingLicense')} ? 'has-error'"></div>
 					 <span class="text-danger h5" th:if="${#fields.hasErrors('drivingLicense')}" th:errors="*{drivingLicense}"></span>
-					<input	type="text" class="form-control" id="name"
+					<input	type="text" class="form-control" id="drivingLicense1"
 						th:field="*{drivingLicense}" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"  th:value="${drivingLicense}"><br>
 				</div>
 				</div>

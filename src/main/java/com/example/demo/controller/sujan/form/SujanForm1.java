@@ -18,7 +18,6 @@ import lombok.Data;
 public class SujanForm1 {
 	
 	@NotBlank(message = "{require_check}",groups = First.class)
-	@NotNull(message = "{require_check}",groups = First.class)
 	@Length(min= 4 ,max = 100, message = "{length_check}",groups = Second.class)
 	private String name;
 	
