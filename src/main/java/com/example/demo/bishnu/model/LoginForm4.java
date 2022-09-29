@@ -10,12 +10,12 @@ public class LoginForm4 {
   
   private String userId;
   
-  @NotBlank(message="{require_check}")
   @NotNull(message="{require_check}")
+  @NotBlank(message="{require_check}")
   private String password;
   
-  @NotBlank(message="{require_check}")
   @NotNull(message="{require_check}")
+  @NotBlank(message="{require_check}")
   private String re_password;
 
 }

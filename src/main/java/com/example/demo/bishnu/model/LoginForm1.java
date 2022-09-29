@@ -7,40 +7,45 @@ import java.util.Map;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.validator.constraints.Length;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
 @Data
 public class LoginForm1 {
   
-  @NotBlank(message="{require_check}")
   @NotNull(message="{require_check}")
-  @Length(min = 4, max = 20, message = "{length_check}")
+  @NotBlank(message="{require_check}")
+  @Size(min = 4, max = 20, message = "{length_check}")
   private String firstName;
   
-  @NotBlank(message="{require_check}")
   @NotNull(message="{require_check}")
-  @Length(min = 4, max = 20, message = "{length_check}")
+  @NotBlank(message="{require_check}")
+  @Size(min = 4, max = 20, message = "{length_check}")
   private String lastName;
 
   @NotNull(message="{select_check}")
+  @NotBlank(message="{require_check}")
   private String gender;
   
-  @NotBlank(message="{select_check}")
+  @NotNull(message="{select_check}")
+  @NotBlank(message="{require_check}")
   private String dateofyear;
   
-  @NotBlank(message="{select_check}")
+  @NotNull(message="{select_check}")
+  @NotBlank(message="{require_check}")
   private String dateofmonth;
   
-  @NotBlank(message="{select_check}")
+  @NotNull(message="{require_check}")
+  @NotBlank(message="{require_check}")
   private String dateofday;
   
   @NotNull(message="{select_check}")
+  @NotBlank(message="{require_check}")
   private String marriedStatus;
   
   @NotNull(message="{select_check}")
+  @NotBlank(message="{require_check}")
   private String countryStatus;
  
   

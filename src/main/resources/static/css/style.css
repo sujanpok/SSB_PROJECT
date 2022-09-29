@@ -183,6 +183,13 @@ background-color:white;
 background-color:blue;
     color:white;
 }
+.test1{
+display:none;
+}
+.test2{
+display:block;
+}
+
 
 
 

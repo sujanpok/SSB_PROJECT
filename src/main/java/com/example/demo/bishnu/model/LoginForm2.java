@@ -2,7 +2,9 @@ package com.example.demo.bishnu.model;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -14,25 +16,34 @@ public class LoginForm2 {
   @NotBlank(message = "{require_check}")
   private String email;
   
+  @NotNull(message="{require_check}")
   @NotBlank(message = "{require_check}")
-  @Pattern(regexp="^[0-9]{3}$", message = "{length_check_number_patter}") 
+  @Size(max = 3, min = 3, message = "{length_check_number}")
   private String mobile1;
   
+  @NotNull(message="{require_check}")
   @NotBlank(message = "{require_check}")
-  @Pattern(regexp="^[0-9]{4}$", message = "{length_check_number_patter}") 
+  @Size(max = 4, min = 4, message = "{length_check_number}")
   private String mobile2;
   
+  @NotNull(message="{require_check}")
   @NotBlank(message = "{require_check}")
-  @Pattern(regexp="^[0-9]{4}$", message = "{length_check_number_patter}") 
+  @Size(max = 4, min = 4, message = "{length_check_number}")
   private String mobile3;
   
-  @Pattern(regexp="^[0-9]{2}$") 
+  @NotNull(message="{require_check}")
+  @NotBlank(message = "{require_check}")
+  @Size(max = 2, min = 2, message = "{length_check_number}")
   private String tel1;
   
-  @Pattern(regexp="^[0-9]{4}$")  
+  @NotNull(message="{require_check}")
+  @NotBlank(message = "{require_check}") 
+  @Size(max = 4, min = 4, message = "{length_check_number}")
   private String tel2;
   
-  @Pattern(regexp="^[0-9]{4}$") 
+  @NotNull(message="{require_check}")
+  @NotBlank(message = "{require_check}")
+  @Size(max = 4, min = 4, message = "{length_check_number}")
   private String tel3;
   
   

@@ -30,6 +30,7 @@ public class BishnuLoginController {
   
   @Autowired
   private ModelMapper modelMapper;
+
   
   //Choose card page open
   @PostMapping("/chooseCard")
@@ -61,7 +62,8 @@ public class BishnuLoginController {
       model.addAttribute("month", LoginForm1.getMonth());
       model.addAttribute("day", LoginForm1.getDay());
       model.addAttribute("gender", LoginForm1.getByGender());
-      model.addAttribute("message", "お手数ですが、赤字コメント項目をご確認いただき再入力をお願い致します。");
+      //  model.addAttribute("message",);
+     model.addAttribute("message", "お手数ですが、赤字コメント項目をご確認いただき再入力をお願い致します。");
       this.modelMapper.map(bishnuDto, loginForm1);
       return "bishnu/login_page1";
         }

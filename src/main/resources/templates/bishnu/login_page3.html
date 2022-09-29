@@ -4,7 +4,9 @@ th:replace="index::layout(~{::section})">
 <head>
 <meta charset="UTF-8">
 <title>abouts</title>
+
 </head>
+
 <body>
 <section>
 <div class="container">
@@ -25,7 +27,7 @@ th:replace="index::layout(~{::section})">
    <label for="zipCode_field">Zip Code :</label>
    <p><span>ex : 1010021</span></p>
    <div class="form-group" th:classappend="${#fields.hasErrors('zipCode')} ? 'has-error'">
-   <input type="text" class="form-control" name="zipCode" id="zipCode_field" th:value="${zipCode}" th:field="*{zipCode}" size="7" maxlength="7"  />
+   <input type="text" onkeypress="return onlyNumberKey(event)" class="form-control" name="zipCode" id="zipCode_field" th:value="${zipCode}" th:field="*{zipCode}" size="7" maxlength="7"  />
    <span class="text-danger" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></span>
 </div>
 </div>
@@ -90,17 +92,17 @@ th:replace="index::layout(~{::section})">
   </div>
 </div>
 
-<div class="mb-3">
+<div class="mb-3" >
  <label for="drivingLicense_field">Driving License :</label>
   <div class="form-group" th:classappend="${#fields.hasErrors('drivingLicense')} ? 'has-error'">
 <div class="form-check col" >
-  <input class="form-check-input" type="radio" name="drivingLicense" th:value="Yes" id="flexRadioDefault1"  th:field="*{drivingLicense}" >
+  <input class="form-check-input driving1" type="radio" onchange="myFunction()"  name="drivingLicense" th:value="Yes" id="flexRadioDefaultlicense1"  th:field="*{drivingLicense}" >
   <label class="form-check-label" for="drivingLicense_field">
  Yes
   </label>
 </div>
 <div class="form-check col">
-  <input class="form-check-input" type="radio" name="drivingLicense" th:value="No" id="flexRadioDefault2" th:field="*{drivingLicense}" >
+  <input class="form-check-input driving1" type="radio" onchange="myFunction()" name="drivingLicense" th:value="No" id="flexRadioDefaultlicense2" th:field="*{drivingLicense}" >
   <label class="form-check-label" for="drivingLicense_field">
   No
   </label>
@@ -110,7 +112,7 @@ th:replace="index::layout(~{::section})">
 </div>
 
 
-<div class="mb-3">
+<div class="mb-3 lic " id="license">
    <label for="licenseNumber_field">License Number :</label>
     <div class="form-group" th:classappend="${#fields.hasErrors('licenseNumber')} ? 'has-error'">
    <input type="text" class="form-control" name="licenseNumber" id="licenseNumber_field" th:value="${licenseNumber}" th:field="*{licenseNumber}"  />
