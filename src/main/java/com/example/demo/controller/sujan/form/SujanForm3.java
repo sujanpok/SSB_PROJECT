@@ -15,7 +15,7 @@ import lombok.Data;
 
 @Data
 public class SujanForm3 {
-	@Size(max = 4, min = 4, message = "{length_check_number}")
+	@Size(max = 7, min = 7, message = "{length_check_number}")
 	private String postNO;
 	private String address1;
 	private String address2;
@@ -24,7 +24,7 @@ public class SujanForm3 {
 	private String housingLoan;
 	@NotBlank(message = "{select_check}")
 	private String drivingLicenseLabel;
-	@NotBlank(message = "{require_check}")
+	@NotNull(message = "{require_check}")
 	private String drivingLicense;
 
 	// gender

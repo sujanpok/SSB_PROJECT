@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="sujan/common/common::layout(~{::section})">
+<section>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -16,7 +18,8 @@ p {
 </style>
 </head>
 <body>
-	<div class="container-fluid ">
+
+	<div class="sticky-top">
 		<div class="p-2 bg-primary text-white text-center ">
 			<h2>確認</h2>
 		</div>
@@ -57,5 +60,6 @@ p {
 
 		</form>
 	</div>
+	</section>
 </body>
 </html>

@@ -3,6 +3,8 @@ package com.example.demo.controller.sujan;
 import javax.servlet.http.HttpSession;
 
 import org.modelmapper.ModelMapper;
+import org.modelmapper.convention.MatchingStrategies;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
+import com.example.demo.ValidationSeq.All;
 import com.example.demo.controller.sujan.dto.SujanDto;
 import com.example.demo.controller.sujan.form.SujanForm1;
 import com.example.demo.controller.sujan.form.SujanForm2;
@@ -30,48 +33,14 @@ ModelMapper modelMapper = new ModelMapper();
 	@RequestMapping("/sujan/chooseCard")
 
 	public String welcomePage(SujanDto sujanDto) {
-		sujanDto.setName("");
-		sujanDto.setGender("");
-		sujanDto.setNationality(false);
-		sujanDto.setMerriageSts("");
-		sujanDto.setDateOfYear("");
-		sujanDto.setDateOfMonth("");
-		sujanDto.setDateOfDay("");
-		sujanDto.setEmail("");
-		sujanDto.setMobileNo1("");
-		sujanDto.setMobileNo2("");
-		sujanDto.setMobileNo3("");
-		sujanDto.setPostNO("");
-		sujanDto.setAddress1("");
-		sujanDto.setAddress2("");
-		sujanDto.setLivingSituation("");
-		sujanDto.setHousingLoan("");
-		sujanDto.setDrivingLicenseLabel("");
-		sujanDto.setDrivingLicense("");
+		init(sujanDto);
 		return "sujan/welcome_page";
 	}
 
 	// first page return
 	@RequestMapping(value = "form1", params = "back", method = RequestMethod.POST)
 	public String welcomePageBack(SujanDto sujanDto) {
-		sujanDto.setName("");
-		sujanDto.setGender("");
-		sujanDto.setNationality(false);
-		sujanDto.setMerriageSts("");
-		sujanDto.setDateOfYear("");
-		sujanDto.setDateOfMonth("");
-		sujanDto.setDateOfDay("");
-		sujanDto.setEmail("");
-		sujanDto.setMobileNo1("");
-		sujanDto.setMobileNo2("");
-		sujanDto.setMobileNo3("");
-		sujanDto.setPostNO("");
-		sujanDto.setAddress1("");
-		sujanDto.setAddress2("");
-		sujanDto.setLivingSituation("");
-		sujanDto.setHousingLoan("");
-		sujanDto.setDrivingLicenseLabel("");
-		sujanDto.setDrivingLicense("");
+		init(sujanDto);
 		return "sujan/welcome_page";
 	}
 
@@ -105,7 +74,7 @@ ModelMapper modelMapper = new ModelMapper();
 	@RequestMapping(value = "form1", params = "next", method = RequestMethod.POST)
 	public String personalInfo2(@ModelAttribute SujanForm2 sujanForm2,
 			@ModelAttribute SujanDto SujanDto,
-			@Validated SujanForm1 sujanForm1, BindingResult error,Model model) {
+			@Validated(All.class) SujanForm1 sujanForm1, BindingResult error,Model model) {
 		if(error.hasErrors()){
 			return personalInfo1(sujanForm1,SujanDto,model);
         }
@@ -158,7 +127,8 @@ ModelMapper modelMapper = new ModelMapper();
 	@RequestMapping(value = "form4", params = "next", method = RequestMethod.POST)
 	public String personalInfo5(@ModelAttribute SujanDto sujanDto,
 			@ModelAttribute SujanForm4 sujanForm4, Model model) {
-		modelMapper.map(sujanForm4, sujanDto);
+		BeanUtils.copyProperties(sujanForm4, sujanDto);
+		//modelMapper.map(sujanForm4, sujanDto);
 		model.addAttribute("sujanDto", sujanDto);
 		return "sujan/confirmationScreen";
 	}
@@ -187,6 +157,7 @@ ModelMapper modelMapper = new ModelMapper();
 	 */
 	@Autowired
 	SujanService sujanService;
+	
 
 	@RequestMapping(value = "sendData", params = "send", method = RequestMethod.POST)
 	public String DbInsert(@ModelAttribute SujanDto sujanDto, HttpSession session, SessionStatus status, Model model) {
@@ -194,10 +165,31 @@ ModelMapper modelMapper = new ModelMapper();
 		// ユーザー情報の登録
 		sujanService.insertData(sujanDto);
 
-		status.setComplete();
-		session.removeAttribute("sujanDto");
+		//status.setComplete();
+		//session.removeAttribute("sujanDto");
 		model.addAttribute("message", "お申し込みが完了しました。");
 		return "sujan/thankYou";
+	}
+	
+	private void init(SujanDto sujanDto) {
+		sujanDto.setName("");
+		sujanDto.setGender("");
+		sujanDto.setNationality(false);
+		sujanDto.setMerriageSts("");
+		sujanDto.setDateOfYear("");
+		sujanDto.setDateOfMonth("");
+		sujanDto.setDateOfDay("");
+		sujanDto.setEmail("");
+		sujanDto.setMobileNo1("");
+		sujanDto.setMobileNo2("");
+		sujanDto.setMobileNo3("");
+		sujanDto.setPostNO("");
+		sujanDto.setAddress1("");
+		sujanDto.setAddress2("");
+		sujanDto.setLivingSituation("");
+		sujanDto.setHousingLoan("");
+		sujanDto.setDrivingLicenseLabel("");
+		sujanDto.setDrivingLicense("");
 	}
 
 }

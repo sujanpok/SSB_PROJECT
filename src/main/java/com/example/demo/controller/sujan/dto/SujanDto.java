@@ -7,11 +7,9 @@ import lombok.Data;
 @Data
 public class SujanDto implements Serializable {
 
-	/**
-	 * Data Transfer object
-	 */
 	private static final long serialVersionUID = 1L;
-
+	
+	private Long id;
 	private String name;
 	private boolean nationality;
 	private String gender;

@@ -1,88 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-th:replace="sujan/common::layout(~{::section})">
-
+th:replace="sujan/common/common::layout(~{::section})">
+<section>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
 	rel="stylesheet">
+	<link th:href="@{/css/sujan/checkbox.css}" rel="stylesheet" type="text/css"/>
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <title>入力フォーム</title>
 </head>
 <body>
-	<style>
-.checkbox {
-	display: block;
-	position: relative;
-	padding-left: 35px;
-	margin-bottom: 12px;
-	cursor: pointer;
-	font-size: 22px;
-	-webkit-user-select: none;
-	-moz-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-/* Hide the browser's default checkbox */
-.checkbox input {
-	position: absolute;
-	opacity: 0;
-	cursor: pointer;
-	height: 0;
-	width: 0;
-}
-
-/* Create a custom checkbox */
-.checkmark {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 25px;
-	width: 25px;
-	background-color: #eee;
-}
-
-/* On mouse-over, add a grey background color */
-.checkbox input ~ .checkmark {
-	background-color: #ccc;
-}
-
-/* When the checkbox is checked, add a blue background */
-.checkbox input:checked ~ .checkmark {
-	background-color: #2196F3;
-}
-
-/* Create the checkmark/indicator (hidden when not checked) */
-.checkmark:after {
-	content: "";
-	position: absolute;
-	display: none;
-}
-
-/* Show the checkmark when checked */
-.container input:checked ~ .checkmark:after {
-	display: block;
-}
-
-/* Style the checkmark/indicator */
-.checkbox .checkmark:after {
-	left: 9px;
-	top: 5px;
-	width: 5px;
-	height: 10px;
-	border: solid white;
-	border-width: 0 3px 3px 0;
-	-webkit-transform: rotate(45deg);
-	-ms-transform: rotate(45deg);
-	transform: rotate(45deg);
-}
-</style>
-	<div class="container-fluid ">
+	<div id="wrap">
+	<div class="sticky-top">
 		<div class="p-2 bg-primary text-white text-center ">
 			<h2>基本情報入力①</h2>
 		</div>
@@ -167,11 +101,12 @@ th:replace="sujan/common::layout(~{::section})">
 						<input type="submit" class="display-6" name="next" value="次へ">
 						<br> <br> <input type="submit" class="display-6"
 							name="back" value="戻る">
-
 					</div>
 			</form>
 		</div>
 	</div>
-</body>
+	</div>
 
+</body>
+</section>
 </html>

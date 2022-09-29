@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	th:fragment="layout(content)">
 <head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
@@ -11,7 +12,7 @@
 
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="javascript:void(0)">Logo</a>
+    <a class="navbar-brand" href="javascript:void(0)">SUJAN</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -35,5 +36,19 @@
   </div>
 </nav>
 
+<!-- body replace of every page -->
+	<div th:replace="${content}"></div>
+
+<br>
+<br>
+<br>
+
+<div id="footer" class="bg-light text-center fixed-bottom">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+   Copyright © RAY MOND , Ltd. All Rights Reserved. <small> <script>document.write(new Date().getFullYear());</script>
+			</small>
+  </div>
+ </div>
 </body>
 </html>

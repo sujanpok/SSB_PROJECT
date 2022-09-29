@@ -9,27 +9,30 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.example.demo.ValidationSeqInterface.First;
+import com.example.demo.ValidationSeqInterface.Second;
+
 import lombok.Data;
 
 @Data
 public class SujanForm1 {
 	
-	@NotBlank(message = "{require_check}")
-	@NotNull(message = "{require_check}")
-	@Length(min= 4 ,max = 100, message = "{length_check}")
+	@NotBlank(message = "{require_check}",groups = First.class)
+	@NotNull(message = "{require_check}",groups = First.class)
+	@Length(min= 4 ,max = 100, message = "{length_check}",groups = Second.class)
 	private String name;
 	
-	@NotNull(message = "{select_check}")
+	@NotNull(message = "{select_check}",groups = First.class)
 	private String gender;
 
 	private boolean nationality;
-	@NotBlank(message = "{select_check}")
+	@NotBlank(message = "{select_check}",groups = First.class)
 	private String merriageSts;
-	@NotBlank(message = "{select_check}")
+	@NotBlank(message = "{select_check}",groups = First.class)
 	private String dateOfYear;
-	@NotBlank(message = "{select_check}")
+	@NotBlank(message = "{select_check}",groups = First.class)
 	private String dateOfMonth;
-	@NotBlank(message = "{select_check}")
+	@NotBlank(message = "{select_check}",groups = First.class)
 	private String dateOfDay;
 
 

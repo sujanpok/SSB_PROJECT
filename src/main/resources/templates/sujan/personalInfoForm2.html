@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="sujan/common/common::layout(~{::section})">
+<section>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,7 +13,9 @@
 <title>入力フォーム</title>
 </head>
 <body>
-	<div class="container-fluid ">
+<div id="wrap">
+
+	<div class="sticky-top">
 		<div class="p-2 bg-primary text-white text-center ">
 			<h2>基本情報入力②</h2>
 		</div>
@@ -42,16 +46,16 @@
 					 <span class="text-danger h5" th:if="${#fields.hasErrors('mobileNo3')}" th:errors="*{mobileNo3}"></span>
 				<div class="row">
 					<div class="col-2">
-						<input type="text" class="form-control" th:value="*{mobileNo1}"
-							size="4" maxlength="4" th:field="*{mobileNo1}" />
+						<input type="text" class="form-control"  onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" th:value="*{mobileNo1}"
+							size="3" maxlength="3" th:field="*{mobileNo1}" />
 					</div>
 					<div class="col-2">
-						<input type="text" class="form-control" th:value="*{mobileNo2}"
+						<input type="text" class="form-control"  onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" th:value="*{mobileNo2}"
 							size="4" maxlength="4" th:field="*{mobileNo2}" />
 					</div>
 
 					<div class="col-2">
-						<input type="text" class="form-control" th:value="*{mobileNo3}"
+						<input type="text" class="form-control"  onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')" th:value="*{mobileNo3}"
 							size="4" maxlength="4" th:field="*{mobileNo3}" />
 					</div>
 				</div>
@@ -64,6 +68,7 @@
 			</form>
 		</div>
 	</div>
+	</div>
 </body>
-
+</section>
 </html>

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-	th:replace="sujan/common::layout(~{::section})">
+th:replace="sujan/common/common::layout(~{::section})">
+<section>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>welcome</title>
-<link rel="stylesheet" href="./../../static/css/sujan/welcome_page.css" />
+ <link th:href="@{/css/sujan/welcome_page.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/js/sujan/test.js}"></script> 
 <link
 	href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
 	rel="stylesheet">
 </head>
 <body>
+
 	<section class="header1">
-		<nav>
 			<div class="textbox">
 				<h1>Welcome to Our PAY</h1>
 				<hr>
@@ -47,5 +49,7 @@
 				Here! </a>
 		</div>
 	</section>
+	
 </body>
+</section>
 </html>
