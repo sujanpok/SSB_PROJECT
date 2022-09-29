@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.example.demo.bishnu.dto.BishnuDto;
+import com.example.demo.bishnu.message.CommonMessage;
 import com.example.demo.bishnu.model.ChooseCard;
 import com.example.demo.bishnu.model.LoginForm1;
 import com.example.demo.bishnu.model.LoginForm2;
@@ -30,6 +31,9 @@ public class BishnuLoginController {
   
   @Autowired
   private ModelMapper modelMapper;
+  
+  //common message throw 
+   CommonMessage commonMessage= new CommonMessage();
 
   
   //Choose card page open
@@ -63,7 +67,7 @@ public class BishnuLoginController {
       model.addAttribute("day", LoginForm1.getDay());
       model.addAttribute("gender", LoginForm1.getByGender());
       //  model.addAttribute("message",);
-     model.addAttribute("message", "お手数ですが、赤字コメント項目をご確認いただき再入力をお願い致します。");
+     model.addAttribute("message", commonMessage.getMessage());
       this.modelMapper.map(bishnuDto, loginForm1);
       return "bishnu/login_page1";
         }
@@ -86,7 +90,7 @@ public class BishnuLoginController {
     
     if(result.hasErrors()){
       model.addAttribute("title", "SSB_login_page2");
-      model.addAttribute("message", "お手数ですが、赤字コメント項目をご確認いただき再入力をお願い致します。");
+      model.addAttribute("message", commonMessage.getMessage());
       return "bishnu/login_page2";
     }
     model.addAttribute("title", "SSB_login_page3");
@@ -113,7 +117,7 @@ public class BishnuLoginController {
     if(result.hasErrors()) {
       model.addAttribute("title", "SSB_login_page3");
       model.addAttribute("livingCondition", LoginForm3.getLivingCondition());
-      model.addAttribute("message", "お手数ですが、赤字コメント項目をご確認いただき再入力をお願い致します。");
+      model.addAttribute("message", commonMessage.getMessage());
       return "bishnu/login_page3";
     }
     model.addAttribute("title", "SSB_login_page4");
@@ -134,7 +138,7 @@ public class BishnuLoginController {
   public String login_conform_page(@Valid LoginForm4 loginForm4, BindingResult result, BishnuDto bishnuDto, Model model) {
    if(result.hasErrors()) {
      model.addAttribute("title", "SSB_login_page4");
-     model.addAttribute("message", "お手数ですが、赤字コメント項目をご確認いただき再入力をお願い致します。");
+     model.addAttribute("message", commonMessage.getMessage());
      return "bishnu/login_page4";
    }
     

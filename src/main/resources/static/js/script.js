@@ -22,21 +22,23 @@ function onlyNumberKey(evt) {
 }
 
 function myFunction() {
-  const x = document.getElementById("flexRadioDefaultlicense1").value;
- console.log(x)
-if(x=="Yes"){
- 
-   // $("#license").addClass("test2");
-    //$("#license").removeClass("test1");
+//  const x = document.getElementById("flexRadioDefaultlicense1").value;
+ var y = document.form3.drivingLicense.value;
+
+if(y=="Yes"){
+    $("#license").addClass("test2");
+    $("#license").removeClass("test1");
     
-}else if(x=="No"){
-    $("#license").style.display='none';
-   //$("#license").addClass("test1");
-  // $("#license").removeClass("test2");
- 
-    
+     
+}else if(y=="No"){
+      $("#license").addClass("test1");
+  $("#license").removeClass("test2");
+   
+form3.licenseNumber.value='　';
+
+ }
 }
-}
+
 
 
 

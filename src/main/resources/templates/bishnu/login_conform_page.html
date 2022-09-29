@@ -53,7 +53,7 @@ th:replace="index::layout(~{::section})">
 
 <p>Driving License :<span th:text= "${bishnuDto.drivingLicense == null} ? '' : ${bishnuDto.drivingLicense} "></span> </p>
 
-<p th:text="'License Number : ' + ${bishnuDto.licenseNumber} "></p>
+<p th:text="'License Number : ' +  ${bishnuDto.licenseNumber}"></p>
 
 <p th:text="'UserId : ' + ${bishnuDto.userId} "></p>
 

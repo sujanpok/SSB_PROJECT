@@ -4,12 +4,11 @@ th:replace="index::layout(~{::section})">
 <head>
 <meta charset="UTF-8">
 <title>abouts</title>
-
 </head>
+<section >
+<body th:onload='myFunction()'>
 
-<body>
-<section>
-<div class="container">
+<div class="container" >
 <div class="row">
 <div class="col-md-6 offset-md-3">
 <div class="my-card mt-3">
@@ -21,7 +20,7 @@ th:replace="index::layout(~{::section})">
 <p th:text="${message}" class="p-3 mb-2 bg-danger text-white"></p>
 </div>
 
-<form th:action="@{/bishnu/login_page4}" th:object="${loginForm3}" method="post">
+<form th:action="@{/bishnu/login_page4}" th:object="${loginForm3}" method="post" name="form3">
 
 <div class="mb-3">
    <label for="zipCode_field">Zip Code :</label>
@@ -112,7 +111,7 @@ th:replace="index::layout(~{::section})">
 </div>
 
 
-<div class="mb-3 lic " id="license">
+<div class="mb-3 lic test1" id="license"  >
    <label for="licenseNumber_field">License Number :</label>
     <div class="form-group" th:classappend="${#fields.hasErrors('licenseNumber')} ? 'has-error'">
    <input type="text" class="form-control" name="licenseNumber" id="licenseNumber_field" th:value="${licenseNumber}" th:field="*{licenseNumber}"  />
@@ -149,6 +148,7 @@ $(document).ready(()=>{
     $("#chooseUser-link").addClass("item");
 });
 </script>
-</section>
+
 </body>
+</section>
 </html>

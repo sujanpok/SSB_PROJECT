@@ -39,10 +39,8 @@ public class LoginForm3 {
   @NotNull(message="{select_check}")
   @NotBlank(message="{require_check}")
   private String drivingLicense;
-  /*
-  @NotNull(message="{require_check}")
+
   @NotBlank(message="{require_check}")
-  */
   private String licenseNumber;
 
   public static Map<String, String>getLivingCondition(){

@@ -187,7 +187,7 @@ background-color:blue;
 display:none;
 }
 .test2{
-display:block;
+visibility:visible;
 }
 
 
