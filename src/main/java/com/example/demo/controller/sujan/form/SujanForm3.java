@@ -3,6 +3,7 @@ package com.example.demo.controller.sujan.form;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
@@ -15,17 +16,29 @@ import lombok.Data;
 
 @Data
 public class SujanForm3 {
-	@Size(max = 7, min = 7, message = "{length_check_number}")
+	@NotNull(message = "{require_check}")
 	private String postNO;
+	@NotNull(message = "{require_check}")
 	private String address1;
+	@NotNull(message = "{require_check}")
 	private String address2;
+	@NotBlank(message = "{select_check}")
 	private String livingSituation;
 	@NotBlank(message = "{select_check}")
 	private String housingLoan;
 	@NotBlank(message = "{select_check}")
 	private String drivingLicenseLabel;
-	@NotNull(message = "{require_check}")
+
 	private String drivingLicense;
+
+	@AssertTrue(message = "有り選択の場合運転免許証番号入力してください。")
+	public boolean isDrivingValid() {
+		if (drivingLicenseLabel.equals("有り") && drivingLicense.equals("")) {
+			return false;
+		}
+		return true;
+
+	}
 
 	// gender
 

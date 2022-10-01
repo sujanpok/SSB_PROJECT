@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 th:replace="sujan/common/common::layout(~{::section})">
+<section>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,19 +13,38 @@ th:replace="sujan/common/common::layout(~{::section})">
 <title>入力フォーム</title>
 </head>
 <body>
-<section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+
 	<div class="sticky-top">
 		<div class="p-2 bg-primary text-white text-center ">
 			<h2>ログインID＆パスワード設定</h2>
 		</div>
-		<div class="container pt-5">
-			<div class="progress ">
-				<div
-					class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-					style="width: 100%"></div>
-			</div>
-			<br /> <br />
-		</div>
+		<canvas id="myChart" style="width:100%;max-width:400px"></canvas>
+		<script>
+		var xValues = ["ページ3"];
+		var yValues = [25,25,25,25];
+		var barColors = [
+			"#b91d47",
+			  "#b91d47",
+			  "#b91d47"
+		];
+
+		new Chart("myChart", {
+		  type: "doughnut",
+		  data: {
+		    datasets: [{
+		      backgroundColor: barColors,
+		      data: yValues
+		    }]
+		  },
+		  options: {
+		    title: {
+		      display: true,
+		      text: xValues,
+		    }
+		  }
+		});
+</script>
 		<div class="container mt-3">
 			<form method="post" th:action="@{form4}" th:object="${sujanForm4}">
 
@@ -37,6 +57,7 @@ th:replace="sujan/common/common::layout(~{::section})">
 						th:value="${userId}" ><br>
 				</div>
 				<br />
+				<p th:if="${#fields.hasErrors('passwordValid')}" th:errors="*{passwordValid}" class="text-danger h1"></p> 
 				<div class="w-50">
 					<label for="email" class="form-label h3">パスワード:</label> 
 					<div class="form-group" th:classappend="${#fields.hasErrors('pwd')} ? 'has-error'"></div>
@@ -47,6 +68,7 @@ th:replace="sujan/common/common::layout(~{::section})">
 				</div>
 				<div class="w-50">
 					<label for="email" class="form-label h3">再確認パスワード:</label>
+					
 					<div class="form-group" th:classappend="${#fields.hasErrors('rePwd')} ? 'has-error'"></div>
 					 <span class="text-danger h5" th:if="${#fields.hasErrors('rePwd')}" th:errors="*{rePwd}"></span>
 					 <input

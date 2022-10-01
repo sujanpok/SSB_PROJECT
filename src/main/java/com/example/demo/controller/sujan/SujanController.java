@@ -3,7 +3,6 @@ package com.example.demo.controller.sujan;
 import javax.servlet.http.HttpSession;
 
 import org.modelmapper.ModelMapper;
-import org.modelmapper.convention.MatchingStrategies;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -93,10 +92,10 @@ ModelMapper modelMapper = new ModelMapper();
 			personalInfo2(sujanForm2, SujanDto, null, error, model);
 			return "sujan/personalInfoForm2";
         }
-		
 		model.addAttribute("livingSituationList", SujanForm3.getLivingSituationList());
 		model.addAttribute("housingLoanButton", SujanForm3.getHousingLoanButton());
 		model.addAttribute("drivingLicenseLabelButton", SujanForm3.getDrivingLicenseLabelButton());
+		sujanForm3.setDrivingLicenseLabel("");
 		modelMapper.map(sujanForm2, SujanDto);
 		return "sujan/personalInfoForm3";
 	}
@@ -120,13 +119,18 @@ ModelMapper modelMapper = new ModelMapper();
 			model.addAttribute("drivingLicenseLabelButton", SujanForm3.getDrivingLicenseLabelButton());
 			return "sujan/personalInfoForm3";
         }
+		sujanForm4.setPwd("");
 		modelMapper.map(sujanForm3, sujanDto);
 		return "sujan/personalInfoForm4";
 	}
 	// check page
 	@RequestMapping(value = "form4", params = "next", method = RequestMethod.POST)
 	public String personalInfo5(@ModelAttribute SujanDto sujanDto,
-			@ModelAttribute SujanForm4 sujanForm4, Model model) {
+			@Validated SujanForm4 sujanForm4, BindingResult error, Model model) {
+		if(error.hasErrors()){
+			return "sujan/personalInfoForm4";
+		}
+		
 		BeanUtils.copyProperties(sujanForm4, sujanDto);
 		//modelMapper.map(sujanForm4, sujanDto);
 		model.addAttribute("sujanDto", sujanDto);
