@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="sujan/common/common::layout(~{::section})">
+<section>
 
 <head>
 	<title>ログイン</title>
@@ -61,9 +63,9 @@ function myFunction() {
 						name="back" value="新規登録へ">
 				</div>
 				</form>
-				</div>
-		</div>
-
+		</div>	
+			</div>
 </body>
 
+</section>
 </html>
