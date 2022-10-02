@@ -10,6 +10,7 @@ public class SujanDto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private Long id;
+	private Long idGenerator;
 	private String name;
 	private boolean nationality;
 	private String gender;

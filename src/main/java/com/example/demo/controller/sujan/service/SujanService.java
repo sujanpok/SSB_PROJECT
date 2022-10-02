@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.controller.sujan.dto.SujanDto;
 import com.example.demo.controller.sujan.entity.SujanEntity;
+import com.example.demo.controller.sujan.entity.SujanLoginEntity;
 import com.example.demo.controller.sujan.repository.SujanRepository;
 
 @Service
@@ -24,9 +25,10 @@ public class SujanService {
 	public void insertData(SujanDto sujanDto) {
 
 		sujanRepository.save(insert(sujanDto));
+		sujanRepository.save(insertLogin(sujanDto));
 	}
 
-	// date update
+	// date insert
 
 	private SujanEntity insert(SujanDto sujanDto) {
 		Date now = new Date();
@@ -37,4 +39,16 @@ public class SujanService {
 		return dataEntry;
 
 	}
+	//login table
+	private SujanLoginEntity insertLogin(SujanDto sujanDto) {
+		Date now = new Date();
+		SujanLoginEntity dataEntry = new SujanLoginEntity();
+		modelMapper.map(sujanDto, dataEntry);
+		dataEntry.setCreateDate(now);
+		dataEntry.setUpdateDate(now);
+		return dataEntry;
+
+	}
+	
+	
 }

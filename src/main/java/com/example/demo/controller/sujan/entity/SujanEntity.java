@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
@@ -19,10 +21,15 @@ public class SujanEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name = "id")
+	@Column(name = "id" ,nullable = false)
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	/**
+	 * 受付番号
+	 */
+	@Column(name = "id_generator")
+	private Long idGenerator;
 	/**
 	 * 名前
 	 */
@@ -146,6 +153,5 @@ public class SujanEntity implements Serializable {
 	 */
 	@Column(name = "delete_date")
 	private Date deleteDate;
-
 
 }

@@ -21,6 +21,7 @@ import com.example.demo.controller.sujan.form.SujanForm1;
 import com.example.demo.controller.sujan.form.SujanForm2;
 import com.example.demo.controller.sujan.form.SujanForm3;
 import com.example.demo.controller.sujan.form.SujanForm4;
+import com.example.demo.controller.sujan.service.IdGenerator;
 import com.example.demo.controller.sujan.service.SujanService;
 
 @Controller
@@ -171,11 +172,13 @@ ModelMapper modelMapper = new ModelMapper();
 
 		//status.setComplete();
 		//session.removeAttribute("sujanDto");
+		model.addAttribute("id",sujanDto.getIdGenerator() );
 		model.addAttribute("message", "お申し込みが完了しました。");
 		return "sujan/thankYou";
 	}
 	
 	private void init(SujanDto sujanDto) {
+		sujanDto.setIdGenerator(IdGenerator.getGenerateId());
 		sujanDto.setName("");
 		sujanDto.setGender("");
 		sujanDto.setNationality(false);
