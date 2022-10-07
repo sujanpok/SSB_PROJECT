@@ -23,6 +23,7 @@ import com.example.demo.bishnu.model.LoginForm1;
 import com.example.demo.bishnu.model.LoginForm2;
 import com.example.demo.bishnu.model.LoginForm3;
 import com.example.demo.bishnu.model.LoginForm4;
+import com.example.demo.bishnu.service.CreatService;
 import com.example.demo.bishnu.validation.SeqVali.All;
 
 
@@ -33,6 +34,9 @@ public class BishnuLoginController {
   
   @Autowired
   private ModelMapper modelMapper;
+  
+  @Autowired
+  private CreatService creatService;
   
   //common message throw 
    CommonMessage commonMessage= new CommonMessage();
@@ -211,7 +215,7 @@ public class BishnuLoginController {
     model.addAttribute("title", "SSB_home_page");
 
     //db insert
-    
+    this.creatService.insert(bishnuDto);
     status.setComplete();
     session.removeAttribute("bishnuDto");
     return "home";
