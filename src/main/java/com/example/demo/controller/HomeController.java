@@ -1,9 +1,12 @@
 package com.example.demo.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.support.SessionStatus;
 
 @Controller
 @RequestMapping("")
@@ -30,8 +33,10 @@ public class HomeController {
 	}
 
 	@GetMapping("/chooseUser")
-	public String chooseUseer(Model model) {
+	public String chooseUseer(Model model, HttpSession session, SessionStatus status) {
 		model.addAttribute("title", "SSB_User_Choosee");
+		status.setComplete();
+    session.removeAttribute("bishnuDto");
 		return "login/chooseUser";
 	}
 

@@ -9,6 +9,8 @@ public class BishnuDto {
   
   private String firstName;
   private String lastName;
+  private String kataFirstName;
+  private String kataLastName;
   private String gender;
   private String dateofyear;
   private String dateofmonth;
@@ -33,8 +35,8 @@ public class BishnuDto {
   private String drivingLicense;
   private String licenseNumber;
   
-  private String userId;
+  private String cardNumber;
   private String password;
-  private String re_password;
+
 
 }

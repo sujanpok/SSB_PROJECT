@@ -23,22 +23,46 @@
 
 <form th:action="@{/bishnu/login_page2}" th:object="${loginForm1}" method="post">
 
-<div class="mb-3">
+<div class="form-row">
+<h4>カードのローマ字表記</h4>
+<div class="col-md-5 mb-3 col1">
    <label for="firstName_field">First Name:</label>
    <div class="form-group" th:classappend="${#fields.hasErrors('firstName')} ? 'has-error'">
-   <input type="text"  onkeypress="return changeToUpperCase(event,this)" class="form-control" name="firstName" id="firstName_field" th:value="${firstName}" th:field="*{firstName}" placeholder="Enter your firstName..." >
+   <input type="text" onkeypress="return changeToUpperCase(event,this)"  class="form-control" name="firstName" id="firstName_field" th:value="${firstName}" th:field="*{firstName}" placeholder="Enter your firstName..." >
 <span class="text-danger" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></span>
 </div>
 </div>
+<!--  onkeypress="return changeToUpperCase(event,this)"-->
 
-<div class="mb-3">
+  
+<div class="col-md-5 mb-3 ">
    <label for="lastName_field">Last Name:</label>
    <div class="form-group" th:classappend="${#fields.hasErrors('lastName')} ? 'has-error'">
-   <input type="text"  onkeypress="return changeToUpperCase(event,this)" class="form-control" name="lastName" id="lastName_field" th:value="${lastName}" th:field="*{lastName}"  placeholder="Enter your lastName..." >
+   <input type="text" onkeypress="return changeToUpperCase(event,this)"  class="form-control" name="lastName" id="lastName_field" th:value="${lastName}" th:field="*{lastName}"  placeholder="Enter your lastName..." >
 <span class="text-danger" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></span>
 </div>
 </div>
+</div>
 
+  <div class="form-row">
+  <h4>フリガナ</h4>
+    <div class="col-md-5 mb-3 col1">
+  <label for="kataFirstName_field">メイ :</label>   
+    <div class="form-group" th:classappend="${#fields.hasErrors('kataFirstName')} ? 'has-error'">
+   <input type="text"   class="form-control" name="kataFirstName" id="kataFirstName_field" th:value="${kataFirstName}" th:field="*{kataFirstName}"  placeholder="カタカナ..." >
+<span class="text-danger" th:if="${#fields.hasErrors('kataFirstName')}" th:errors="*{kataFirstName}"></span>
+</div>
+</div>
+
+    <div class="col-md-5 mb-3 ">
+    <label for="kataLastName_field">セイ : </label>  
+     <div class="form-group" th:classappend="${#fields.hasErrors('kataLastName')} ? 'has-error'">
+   <input type="text"   class="form-control" name="kataLastName" id="kataLastName_field" th:value="${kataLastName}" th:field="*{kataLastName}"  placeholder="カタカナ..." >
+<span class="text-danger" th:if="${#fields.hasErrors('kataLastName')}" th:errors="*{kataLastName}"></span>
+</div>
+</div>
+</div>
+  
 <div class="mb-3">
 <label for="gender_field" >Gender :</label>
 <div class="form-group" th:classappend="${#fields.hasErrors('gender')} ? 'has-error'">
@@ -153,6 +177,7 @@ $(document).ready(()=>{
     $(".item").removeClass("item");
     $("#chooseUser-link").addClass("item");
 });
+
 </script>
 	</section>
 </body>

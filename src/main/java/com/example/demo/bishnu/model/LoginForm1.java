@@ -7,45 +7,59 @@ import java.util.Map;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+
+import com.example.demo.bishnu.validation.SeqValiInterface.Advance;
+import com.example.demo.bishnu.validation.SeqValiInterface.Basic;
 
 import lombok.Data;
 
 @Data
 public class LoginForm1 {
-  
-  @NotNull(message="{require_check}")
-  @NotBlank(message="{require_check}")
-  @Size(min = 4, max = 20, message = "{length_check}")
+
+  @NotNull(message="{require_check}", groups = Basic.class)
+  @NotBlank(message="{require_check}", groups = Basic.class)
+  @Size(min = 4, max = 20, message = "{length_check}", groups = Advance.class)
   private String firstName;
   
-  @NotNull(message="{require_check}")
-  @NotBlank(message="{require_check}")
-  @Size(min = 4, max = 20, message = "{length_check}")
+  @NotNull(message="{require_check}", groups = Basic.class)
+  @NotBlank(message="{require_check}", groups = Basic.class)
+  @Size(min = 4, max = 20, message = "{length_check}", groups = Advance.class)
   private String lastName;
+  
+  @NotNull(message="{require_check}", groups = Basic.class)
+  @NotBlank(message="{require_check}", groups = Basic.class)
+  @Pattern(regexp="^[\\u30A0-\\u30FF]+$", message = "{katakana_check}", groups = Advance.class)
+  private String kataFirstName;
+  
+  @NotNull(message="{require_check}", groups = Basic.class)
+  @NotBlank(message="{require_check}", groups = Basic.class)
+  @Pattern(regexp="^[\\u30A0-\\u30FF]+$", message = "{katakana_check}", groups = Advance.class)
+  private String kataLastName;
 
-  @NotNull(message="{select_check}")
-  @NotBlank(message="{require_check}")
+  @NotNull(message="{select_check}", groups = Advance.class )
+  @NotBlank(message="{require_check}", groups = Basic.class)
   private String gender;
   
-  @NotNull(message="{select_check}")
-  @NotBlank(message="{require_check}")
+  @NotNull(message="{select_check}", groups = Basic.class)
+  @NotBlank(message="{require_check}", groups = Basic.class)
   private String dateofyear;
   
-  @NotNull(message="{select_check}")
-  @NotBlank(message="{require_check}")
+  @NotNull(message="{select_check}", groups = Basic.class)
+  @NotBlank(message="{require_check}", groups = Basic.class)
   private String dateofmonth;
   
-  @NotNull(message="{require_check}")
-  @NotBlank(message="{require_check}")
+  @NotNull(message="{require_check}", groups = Basic.class)
+  @NotBlank(message="{require_check}", groups = Basic.class)
   private String dateofday;
   
-  @NotNull(message="{select_check}")
-  @NotBlank(message="{require_check}")
+  @NotNull(message="{select_check}", groups = Advance.class)
+  @NotBlank(message="{require_check}", groups = Basic.class)
   private String marriedStatus;
   
-  @NotNull(message="{select_check}")
-  @NotBlank(message="{require_check}")
+  @NotNull(message="{select_check}", groups = Advance.class)
+  @NotBlank(message="{require_check}", groups = Basic.class)
   private String countryStatus;
  
   

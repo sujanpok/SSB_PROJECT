@@ -25,6 +25,10 @@ th:replace="index::layout(~{::section})">
 
 <p th:text="'LastName : ' + ${bishnuDto.lastName}"></p>
 
+<p th:text="' メイ: ' + ${bishnuDto.kataFirstName}"></p>
+
+<p th:text="' セイ : ' + ${bishnuDto.kataLastName}"></p>
+
 <p>Gender : <span th:text="${bishnuDto.gender == null} ? '': ${bishnuDto.gender}"></span></p>
 
 <p th:text="'Date of birth : ' + ${bishnuDto.dateofyear} + ' year ' + ${bishnuDto.dateofmonth} + ' month ' + ${bishnuDto.dateofday} + ' day' "></p>
@@ -52,14 +56,16 @@ th:replace="index::layout(~{::section})">
 <p>Mortgage :<span th:text="${bishnuDto.mortageLoan == null} ? '' : ${bishnuDto.mortageLoan}  "></span> </p>
 
 <p>Driving License :<span th:text= "${bishnuDto.drivingLicense == null} ? '' : ${bishnuDto.drivingLicense} "></span> </p>
-
+ 
+ <p th:if="${bishnuDto.drivingLicense == 'Yes'}">
+<span th:text="'License Number : ' +  ${bishnuDto.licenseNumber}" ></span>
+</p>
+<!--
 <p th:text="'License Number : ' +  ${bishnuDto.licenseNumber}"></p>
-
-<p th:text="'UserId : ' + ${bishnuDto.userId} "></p>
+ -->
 
 <p th:text="'Password : ' + ${bishnuDto.password} "></p>
 
-<p th:text="'Re-Password : ' + ${bishnuDto.re_password} "></p>
 
 <p th:text="'Card Type : ' + ${bishnuDto.cardType} "></p>
 

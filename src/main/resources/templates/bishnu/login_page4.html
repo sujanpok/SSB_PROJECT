@@ -26,7 +26,7 @@ th:replace="index::layout(~{::section})">
 <div class="mb-3">
    <label for="password_field">PassWord :</label>
   <div class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-error'">
-   <input type="text" class="form-control" name="password" id="password_field" th:value="${password}" th:field="*{password}"  />
+   <input type="password" class="form-control" name="password" id="password_field" th:value="${password}" th:field="*{password}"  />
 <p class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
 </div>
 </div>
@@ -34,7 +34,7 @@ th:replace="index::layout(~{::section})">
 <div class="mb-3">
    <label for="re_password_field">Re-Password :</label>
   <div class="form-group" th:classappend="${#fields.hasErrors('re_password')} ? 'has-error'">
-   <input type="text" class="form-control" name="re_password" id="re_password_field"  th:value="${re_password}" th:field="*{re_password}" />
+   <input type="password" class="form-control" name="re_password" id="re_password_field"  th:value="${re_password}" th:field="*{re_password}" />
 <p class="text-danger" th:if="${#fields.hasErrors('re_password')}" th:errors="*{re_password}"></p>
 </div>
 </div>

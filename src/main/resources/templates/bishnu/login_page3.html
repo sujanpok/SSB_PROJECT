@@ -8,7 +8,7 @@ th:replace="index::layout(~{::section})">
 <section >
 <body th:onload='myFunction()'>
 
-<div class="container" >
+<div class="container"  id="search">
 <div class="row">
 <div class="col-md-6 offset-md-3">
 <div class="my-card mt-3">
@@ -27,7 +27,8 @@ th:replace="index::layout(~{::section})">
    <p><span>ex : 1010021</span></p>
    <div class="form-group" th:classappend="${#fields.hasErrors('zipCode')} ? 'has-error'">
    <input type="text" onkeypress="return onlyNumberKey(event)" class="form-control" name="zipCode" id="zipCode_field" th:value="${zipCode}" th:field="*{zipCode}" size="7" maxlength="7"  />
-   <span class="text-danger" th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></span>
+   <span class="text-danger"  th:if="${#fields.hasErrors('zipCode')}" th:errors="*{zipCode}"></span>
+   <p id="error" class="text-danger"></p>
 </div>
 </div>
 
@@ -60,7 +61,6 @@ th:replace="index::layout(~{::section})">
 <div class="mb-3">
    <label for="livingSituation_field">living Situation :</label>
     <div class="form-group" th:classappend="${#fields.hasErrors('livingSituation')} ? 'has-error'">
-   <br>
    <select name="livingSituation" class="dropdown" >
             <option value="">Select  Living Situation</option>
             <option th:each="item : ${livingCondition}" th:value="${item.key}"
@@ -114,7 +114,7 @@ th:replace="index::layout(~{::section})">
 <div class="mb-3 lic test1" id="license"  >
    <label for="licenseNumber_field">License Number :</label>
     <div class="form-group" th:classappend="${#fields.hasErrors('licenseNumber')} ? 'has-error'">
-   <input type="text" class="form-control" name="licenseNumber" id="licenseNumber_field" th:value="${licenseNumber}" th:field="*{licenseNumber}"  />
+   <input type="text"  onkeypress="return onlyNumberKey(event)" class="form-control" name="licenseNumber" id="licenseNumber_field" th:value="${licenseNumber}" th:field="*{licenseNumber}" size="12" maxlength="12" />
    <p class="text-danger" th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{licenseNumber}"></p>
 </div>
 </div>

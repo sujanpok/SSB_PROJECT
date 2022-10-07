@@ -1,13 +1,14 @@
 package com.example.demo.bishnu.controller;
 
 import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.example.demo.bishnu.model.LoginForm1;
 import com.example.demo.bishnu.model.LoginForm2;
 import com.example.demo.bishnu.model.LoginForm3;
 import com.example.demo.bishnu.model.LoginForm4;
+import com.example.demo.bishnu.validation.SeqVali.All;
 
 
 @Controller
@@ -58,7 +60,7 @@ public class BishnuLoginController {
   
   //Login Page 2 open (click Next button from login page1)
   @RequestMapping(value = "/login_page2", params = "next", method = RequestMethod.POST)
-  public String loginPage2(@Valid LoginForm1 loginForm1, BindingResult result, LoginForm2 loginForm2, BishnuDto bishnuDto, Model model) {
+  public String loginPage2(@Validated(All.class) LoginForm1 loginForm1, BindingResult result, LoginForm2 loginForm2, BishnuDto bishnuDto, Model model) {
    
     if(result.hasErrors()){
       model.addAttribute("title", "SSB_login_page1");
@@ -86,7 +88,7 @@ public class BishnuLoginController {
   
   //Login Page 3 open (click Next button from login page 2 )
   @RequestMapping(value = "/login_page3", params = "next", method = RequestMethod.POST)
-  public String loginPage3(@Valid LoginForm2 loginForm2, BindingResult result, LoginForm3 loginForm3, BishnuDto bishnuDto, Model model) {
+  public String loginPage3(@Validated(All.class) LoginForm2 loginForm2, BindingResult result, LoginForm3 loginForm3, BishnuDto bishnuDto, Model model) {
     
     if(result.hasErrors()){
       model.addAttribute("title", "SSB_login_page2");
@@ -113,15 +115,39 @@ public class BishnuLoginController {
   
   //Login Page 4 open (click Next button from login page 3)
   @RequestMapping(value = "/login_page4", params = "next", method = RequestMethod.POST)
-  public String loginPage4(@Valid LoginForm3 loginForm3, BindingResult result, LoginForm4 loginForm4, BishnuDto bishnuDto, Model model) {
+  public String loginPage4(@Validated(All.class) LoginForm3 loginForm3, BindingResult result, LoginForm4 loginForm4, BishnuDto bishnuDto, Model model) {
     if(result.hasErrors()) {
       model.addAttribute("title", "SSB_login_page3");
       model.addAttribute("livingCondition", LoginForm3.getLivingCondition());
       model.addAttribute("message", commonMessage.getMessage());
       return "bishnu/login_page3";
     }
+    if(loginForm3.getDrivingLicense().equals("Yes")&& loginForm3.getLicenseNumber().isEmpty()){
+      
+      FieldError fieldError = new FieldError(result.getObjectName(), "licenseNumber", "「免許番号」は必須入力です");
+      // エラーを追加する。
+      result.addError(fieldError);
+      model.addAttribute("title", "SSB_login_page3");
+      model.addAttribute("livingCondition", LoginForm3.getLivingCondition());
+      model.addAttribute("message", commonMessage.getMessage());
+      return "bishnu/login_page3";
+    }
+  if(loginForm3.getDrivingLicense().equals("Yes")&& loginForm3.getLicenseNumber().length()<12){
+      
+      FieldError fieldError = new FieldError(result.getObjectName(), "licenseNumber", "「免許番号」12桁数必要です。");
+      // エラーを追加する。
+      result.addError(fieldError);
+      model.addAttribute("title", "SSB_login_page3");
+      model.addAttribute("livingCondition", LoginForm3.getLivingCondition());
+      model.addAttribute("message", commonMessage.getMessage());
+      return "bishnu/login_page3";
+    }
+   
+
+    
     model.addAttribute("title", "SSB_login_page4");
     this.modelMapper.map(bishnuDto, loginForm4);
+   // loginForm4.setUserId(loginForm4.cardNumber());
     return "bishnu/login_page4";
   }
   
@@ -135,8 +161,9 @@ public class BishnuLoginController {
   
   //Login conform page open (click next button from login login page 4)
   @RequestMapping(value = "/login_conform_page", params = "next", method = RequestMethod.POST)
-  public String login_conform_page(@Valid LoginForm4 loginForm4, BindingResult result, BishnuDto bishnuDto, Model model) {
-   if(result.hasErrors()) {
+  public String login_conform_page(@Validated(All.class) LoginForm4 loginForm4, BindingResult result, BishnuDto bishnuDto, Model model) {
+  
+    if(result.hasErrors()) {
      model.addAttribute("title", "SSB_login_page4");
      model.addAttribute("message", commonMessage.getMessage());
      return "bishnu/login_page4";
@@ -164,9 +191,10 @@ public class BishnuLoginController {
   
   //Login Success page open (click next button from login conform page)
   @RequestMapping(value = "/login_success_page", params = "next", method = RequestMethod.POST)
-  public String login_success_page(BishnuDto bishnuDto,  Model model) {
+  public String login_success_page(BishnuDto bishnuDto, LoginForm4 loginForm4,  Model model) {
     model.addAttribute("title", "SSB_login_success");
     model.addAttribute("bishnuDto", bishnuDto);
+    bishnuDto.setCardNumber(loginForm4.cardNumber());
     return "bishnu/login_success_page";
   }
   
@@ -179,8 +207,9 @@ public class BishnuLoginController {
   }
   
   @GetMapping("/login_success_home")
-  public String login_success_home_page(BishnuDto bishnuDto, HttpSession session, SessionStatus status, Model model) {
+  public String login_success_home_page(BishnuDto bishnuDto,  HttpSession session, SessionStatus status, Model model) {
     model.addAttribute("title", "SSB_home_page");
+
     //db insert
     
     status.setComplete();

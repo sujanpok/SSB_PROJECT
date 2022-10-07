@@ -34,7 +34,7 @@ if(y=="Yes"){
       $("#license").addClass("test1");
   $("#license").removeClass("test2");
    
-form3.licenseNumber.value='　';
+form3.licenseNumber.value='';
 
  }
 }
