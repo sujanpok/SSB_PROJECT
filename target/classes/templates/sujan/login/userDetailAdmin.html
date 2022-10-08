@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+th:replace="sujan/common/common::layout(~{::section})">
+<section>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
+<title>詳細</title>
+
+</head>
+<body>
+  <div class="container">
+    <h1>ユーザー情報詳細</h1>
+    <div th:object="${userList}">
+    <div class="text-center">
+      <a th:href="@{/logined}" class="btn btn-secondary">一覧に戻る</a>
+       <a th:href="@{{id}/delete(id=*{id})}" class="btn btn-secondary">　削除　</a>
+    </div>
+     <br/>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">名前</div>
+        <div class="col pt-3 border">
+          <p th:text="*{name}"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">国籍</div>
+        <div class="col pt-3 border">
+          <p th:text="${userList.isNationality == false} ? 日本 : 外国籍"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">性別</div>
+        <div class="col pt-3 border">
+          <p th:text="*{gender}"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">生年月日</div>
+        <div class="col pt-3 border">
+          <p th:text="|*{dateOfYear}年*{dateOfMonth}月*{dateOfDay}日|"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">結婚</div>
+        <div class="col pt-3 border">
+          <p th:text="*{MerriageSts}"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">メールアドレス</div>
+        <div class="col pt-3 border">
+          <p th:text="*{email}"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">電話</div>
+        <div class="col pt-3 border">
+          <p th:text="|*{mobileNo1}-*{mobileNo2}-*{mobileNo3}|"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">郵便番号</div>
+        <div class="col pt-3 border">
+          <p th:text="*{postNO}"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">住所</div>
+        <div class="col pt-3 border">
+          <p th:text="|*{address1}*{address2}|"></p>
+        </div>
+      </div>
+     <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">居住状況</div>
+        <div class="col pt-3 border">
+          <p th:text="*{livingSituation}"></p>
+        </div>
+      </div>
+      <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">自宅ローン</div>
+        <div class="col pt-3 border">
+          <p th:text="*{housingLoan}"></p>
+        </div>
+      </div>
+       <div class="row mx-md-n5" >
+        <div class="col-2 pt-3 border bg-light">免許</div>
+        <div class="col pt-3 border">
+          <p th:text="*{drivingLicenseLabel}"></p>
+        </div>
+      </div>
+       <div class="row mx-md-n5" th:if="*{drivingLicenseLabel}=='有り'">
+        <div class="col-2 pt-3 border bg-light">免許番号</div>
+        <div class="col pt-3 border">
+          <p th:text="*{drivingLicense}"></p>
+        </div>
+      </div>
+       <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">ユーザーID</div>
+        <div class="col pt-3 border">
+          <p th:text="*{userId}"></p>
+        </div>
+      </div>
+       <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">パスワード</div>
+        <div class="col pt-3 border">
+          <p th:text="*{pwd}"></p>
+        </div>
+      </div>
+       <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">作成日日</div>
+        <div class="col pt-3 border">
+          <p th:text="${#dates.format(userList.createDate, 'yyyy/MM/dd')}"></p>
+        </div>
+      </div>
+       <div class="row mx-md-n5">
+        <div class="col-2 pt-3 border bg-light">更新日日</div>
+        <div class="col pt-3 border">
+          <p th:text="${#dates.format(userList.updateDate, 'yyyy/MM/dd')}"></p>
+        </div>
+      </div>
+    </div> 
+    <br />
+  </div>
+</body>
+</section>
+</html>

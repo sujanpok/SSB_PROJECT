@@ -1,6 +1,7 @@
 package com.example.demo.controller.sujan.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,4 +77,24 @@ public class SujanService {
 
 	}
 	
+	//all list
+	public List<SujanEntity> findAllListCustomer() {
+        return sujanRepository.findAll();
+    }
+	
+	//ポイント②
+    public void update(SujanDto sujanDto) {
+    	sujanRepository.save(sujanDto);
+    }
+    
+    
+  //ポイント③
+    public void delete(Long id) {
+    	sujanRepository.deleteById(id);
+    }
+
+	public SujanEntity findById(Long id) {
+		return sujanRepository.findById(id).get();
+	}
+	 
 }
