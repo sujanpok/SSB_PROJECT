@@ -33,12 +33,22 @@ public class SujanControllerLogin {
 		login.setUserId(loginForm.getLoginId());
 		login.setUserPwd(loginForm.getLoginPw());
 
+	
+
 		if (sujanService.loginCheck(login)) {
+			if (login.getUserId().equals("admin")) {
 			List<SujanEntity> customersList = sujanService.findAllListCustomer();
 			model.addAttribute("customersList", customersList);
 			model.addAttribute("message", "welcome home。");
-			return "sujan/login/userHome";
-
+			return "sujan/login/adminHome";
+			}else {
+				
+				
+				
+				
+				
+				return "sujan/login/userHome";
+			}
 		} else {
 			model.addAttribute("errormessage", "IDまたはパスワードが間違っています。");
 			return "sujan/login/userlogin";
@@ -50,7 +60,7 @@ public class SujanControllerLogin {
 	public String AllList(Model model) {
 		List<SujanEntity> customersList = sujanService.findAllListCustomer();
 		model.addAttribute("customersList", customersList);
-		return "sujan/login/userHome";
+		return "sujan/login/adminHome";
 	}
 
 	@GetMapping("{id}")
