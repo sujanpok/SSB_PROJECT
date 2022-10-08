@@ -25,16 +25,14 @@ public class SujanLoginEntity implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "email" )
-	private String email;
-	
-	@Column(name = "user_Id")
-	private String userId;
+	@Column(name = "user_id")
+	private String adminId;
 	/**
 	 * パスワード
 	 */
 	@Column(name = "pwd")
 	private String pwd;
+	
 
 	@Column(name = "update_date")
 	private Date updateDate;
