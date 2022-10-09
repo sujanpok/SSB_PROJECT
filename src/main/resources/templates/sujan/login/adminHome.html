@@ -11,8 +11,6 @@ th:replace="sujan/common/common::layout(~{::section})">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <title>admin</title>
-<meta charset="UTF-8">
-<title>顧客一覧</title>
 
 </head>
 <body class=" bg-light">
@@ -26,30 +24,9 @@ th:replace="sujan/common/common::layout(~{::section})">
 			</h2>
 			
 	</div>
-	     <hr>
-        <h1 class="my-2">顧客一覧</h1>
-        <table class="table table-borderd table-striped">
-            <tr>
-                <th>ID</th>
-                <th>名前</th>
-                <th>メールアドレス</th>
-                 <th>ユーザーID</th>
-                  <th>パスワード</th>
-                     <th colspan="3">編集</th>
-            </tr>
-            <tr th:each="customer : ${customersList}">
-                <td th:text="${customer.id}"></td>
-                <td th:text="${customer.name}"></td>
-                <td th:text="${customer.email}"></td>
-                 <td th:text="${customer.userId}"></td>
-                  <td th:text="${customer.pwd}"></td>
-                  
-                  
-                  <td>
-                     <td><a th:href="@{{id}(id=*{customer.id})}" class="btn btn-secondary">詳細</a></td>
-                </td>
-            </tr>
-        </table>
+	<a   class="btn btn-primary" type="button"  th:href="@{allList/0}">顧客一覧 </a></p>
+	
+        
     
 </body>
 </section>
