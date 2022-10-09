@@ -79,19 +79,19 @@ public class SujanControllerLogin {
 		   return "sujan/login/allUserList";
 		 }
 
-	@RequestMapping(value = "{id}", method = RequestMethod.GET)
+	@RequestMapping(value = "allList/detail/{id}", method = RequestMethod.GET)
 	public String detailUser(@PathVariable Long id, Model model) {
 		SujanEntity userList = sujanService.findById(id);
 		model.addAttribute("userList", userList);
 		return "sujan/login/userDetailAdmin";
 	}
 
-	@GetMapping("{id}/delete")
+	@GetMapping("allList/detail/{id}/delete")
 	public String delete(@PathVariable Long id, Model model) {
 		// ユーザー情報の削除
 
 		sujanService.delete(id);
-		return "redirect:/allList";
-	}
+		return "redirect:/home";
 
+	}
 }

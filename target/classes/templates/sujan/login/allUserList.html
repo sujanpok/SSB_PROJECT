@@ -60,7 +60,7 @@ th:replace="sujan/common/common::layout(~{::section})">
                   
                   
                   <td>
-                     <td><a th:href="@{{id}(id=*{customer.id})}" class="btn btn-secondary">詳細</a></td>
+                     <td><a th:href="@{detail/{id}(id=*{customer.id})}" class="btn btn-secondary">詳細</a></td>
             </tr>
            
            
