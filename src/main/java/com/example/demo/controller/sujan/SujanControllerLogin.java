@@ -91,7 +91,7 @@ public class SujanControllerLogin {
 		// ユーザー情報の削除
 
 		sujanService.delete(id);
-		return "redirect:/home";
+		return "redirect:/allList/0";
 
 	}
 }
