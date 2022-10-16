@@ -1,10 +1,24 @@
 package com.example.demo.controller.sujan;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
+import java.util.Random;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVPrinter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +31,7 @@ import com.example.demo.controller.sujan.entity.SujanEntity;
 import com.example.demo.controller.sujan.login.LoginForm;
 import com.example.demo.controller.sujan.repository.SujanRepository;
 import com.example.demo.controller.sujan.service.SujanService;
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 @Controller
 public class SujanControllerLogin {
@@ -94,4 +109,25 @@ public class SujanControllerLogin {
 		return "redirect:/allList/0";
 
 	}
+	
+	//csv download
+	@GetMapping("/csv")
+    public void employeeDetailsReport(HttpServletResponse response) throws IOException {
+	
+		
+		
+	}
+	
+	//pdf download
+		@GetMapping("/pdf")
+		public String pdfDownload() {
+			return null;
+			
+		}
+	
+	
+	
+	
+	
+	
 }
