@@ -13,7 +13,7 @@ public class SsbFinalProjectApplication implements CommandLineRunner {
 
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(SsbFinalProjectApplication.class, args);
-		openHomePage();
+//		openHomePage();
 	}
 
 	@Override

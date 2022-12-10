@@ -11,10 +11,8 @@ import com.example.demo.controller.sujan.entity.SujanLoginEntity;
 import com.example.demo.controller.sujan.entity.SujanProductEntity;
 
 @Repository
-public interface SujanRepository extends JpaRepository<SujanEntity, Long> {
+public interface SujanRepositoryProduct extends JpaRepository<SujanProductEntity, Long> {
+	
+	public Page<SujanProductEntity> findAll(Pageable pageable);
 
-	void save(SujanLoginEntity insertLogin);
-
-	void save(SujanDto sujanDto);
-	public Page<SujanEntity>findAll(Pageable pageable);
 }

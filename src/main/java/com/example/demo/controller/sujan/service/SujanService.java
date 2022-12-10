@@ -1,17 +1,13 @@
 package com.example.demo.controller.sujan.service;
 
-import java.io.ByteArrayInputStream;
 import java.util.Date;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.example.demo.controller.sujan.CsvDownloader;
 import com.example.demo.controller.sujan.dto.SujanDto;
 import com.example.demo.controller.sujan.dto.SujanDtoLogin;
 import com.example.demo.controller.sujan.entity.SujanEntity;
@@ -35,6 +31,7 @@ public class SujanService {
 
 		sujanRepository.save(insert(sujanDto));
 		sujanRepository.save(insertLogin(sujanDto));
+		
 	}
 
 	// date insert
@@ -81,6 +78,8 @@ public class SujanService {
 
 	}
 	
+	
+	
 	//all list
 	public List<SujanEntity> findAllListCustomer() {
         return sujanRepository.findAll();
@@ -103,4 +102,7 @@ public class SujanService {
 	public SujanEntity findById(Long id) {
 		return sujanRepository.findById(id).get();
 	}
+	
+	
+	
 }

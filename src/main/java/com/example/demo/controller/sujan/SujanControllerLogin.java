@@ -60,7 +60,7 @@ public class SujanControllerLogin {
 		if (sujanService.loginCheck(login)) {
 			if (login.getUserId().equals("admin")) {
 				
-				model.addAttribute("message", "welcome home。");
+				model.addAttribute("message", "welcome home!");
 				return "sujan/login/adminHome";
 			} else {
 				
@@ -109,25 +109,18 @@ public class SujanControllerLogin {
 		return "redirect:/allList/0";
 
 	}
-	
 	//csv download
 	@GetMapping("/csv")
-    public void employeeDetailsReport(HttpServletResponse response) throws IOException {
-	
-		
-		
-	}
-	
-	//pdf download
-		@GetMapping("/pdf")
-		public String pdfDownload() {
+		public String csvDownload() {
 			return null;
 			
 		}
-	
-	
-	
-	
-	
+		
+		//pdf download
+				@GetMapping("/pdf")
+				public String pdfDownload() {
+					return null;
+					
+				}
 	
 }
