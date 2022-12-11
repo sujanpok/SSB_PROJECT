@@ -26,14 +26,14 @@ th:replace="sujan/common/common::layout(~{::section})">
         function show_modal_product(id,productName,productPrize,productStock)
         {
             $('#myModaldetail').modal('show');
-            document.getElementById("delete_product").value =id;
+            document.getElementById("delete_product").value = id;
             document.getElementById("proName").innerHTML = "商品名："+productName;
-            document.getElementById("proPrize").innerHTML = "単価："+productPrize+"円";
-            //document.getElementById("p1").innerHTML = "New text!";
+           document.getElementById("proPrize").innerHTML = "単価："+productPrize+"円";
+           // document.getElementById("p1").innerHTML = "New text!";
             document.getElementById("proStock").innerHTML = "在庫数量："+productStock;
             
-           // var message = id+productName+productPrize+productStock;
-            //alert(message);
+            //var message = id+productName+productPrize+productStock;
+           // alert(message);
             return false;
         }
         
@@ -64,8 +64,9 @@ th:replace="sujan/common/common::layout(~{::section})">
         allowedExtensions: ".jpg,.png,.jpeg"
     });
     uploadObj.appendTo('#productImage'); */
-    function myFunction() {
-    	  document.getElementById("deleteproData").action = "/ok";
+    function myFunction(id) {
+    	  document.getElementById("deleteproData").action =id+"/delete";
+    	  return false;
     }
     </script>
     <style>
@@ -82,7 +83,7 @@ th:replace="sujan/common/common::layout(~{::section})">
   font-size: 22px;
 }
 
-.card input {
+.card button {
   border: none;
   outline: 0;
   padding: 12px;
@@ -150,10 +151,11 @@ th:replace="sujan/common/common::layout(~{::section})">
                   
                   <td>
                      <td><a 
+                     th:data_id="|${product.id}|"
                      th:data_name="|${product.productName}|"
                      th:data_prize="|${product.productPrize}|"
                      th:data_stock="|${product.productStock}|"
-                     th:onclick="|return show_modal_product('${product.id}',this.getAttribute('data_name'),
+                     th:onclick="|return show_modal_product(this.getAttribute('data_id'),this.getAttribute('data_name'),
                      this.getAttribute('data_prize'),this.getAttribute('data_stock'));|" 
                      class="btn btn-secondary">詳細</a></td>
             </tr><!--   th:href="@{detail/{id}(id=*{product.id})}" -->
@@ -212,7 +214,7 @@ th:replace="sujan/common/common::layout(~{::section})">
                 <h4 style="text-align: center">商品詳細</h4>
             </div>
             <div class="modal-body">
-                <form method="post"  id="deleteproData" name="deleteData">
+                <form method="get"  id="deleteproData" name="deleteData">
 							<div class="card">
 								<img th:src="@{/img/sujan/login.png}" alt="Denim Jeans"
 									style="width: 100%">
@@ -220,9 +222,9 @@ th:replace="sujan/common/common::layout(~{::section})">
 								<p id="proPrize"class="price">単価：円</p>
 								<p id="proStock" class="price">在庫数量：</p>
 								<p>
-									<input type="submit" onclick="myFunction()" value="削除する"><p>
+							<button type="submit" id="delete_product" th:onclick="|myFunction(this.value);|"  value="">削除する</button><p>
 										
-										<!-- class="button_delete" name="delete_product" id="delete_product" -->
+										<!-- class="button_delete" name="delete_product"  -->
 							</div>
 						</form>
             </div>

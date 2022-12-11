@@ -1,24 +1,9 @@
 package com.example.demo.controller.sujan;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.List;
-import java.util.Random;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,13 +16,12 @@ import com.example.demo.controller.sujan.entity.SujanEntity;
 import com.example.demo.controller.sujan.login.LoginForm;
 import com.example.demo.controller.sujan.repository.SujanRepository;
 import com.example.demo.controller.sujan.service.SujanService;
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 @Controller
 public class SujanControllerLogin {
 	@Autowired
 	SujanService sujanService;
-	
+
 	@Autowired
 	SujanRepository sujanRepository;
 
@@ -55,19 +39,15 @@ public class SujanControllerLogin {
 		login.setUserId(loginForm.getLoginId());
 		login.setUserPwd(loginForm.getLoginPw());
 
-	
-
 		if (sujanService.loginCheck(login)) {
 			if (login.getUserId().equals("admin")) {
-				
+
 				model.addAttribute("message", "welcome home!");
 				return "sujan/login/adminHome";
 			} else {
-				
-				
-				//user profile
-				
-				
+
+				// user profile
+
 				return "sujan/login/userHome";
 			}
 		} else {
@@ -76,23 +56,23 @@ public class SujanControllerLogin {
 		}
 
 	}
-	
-	
+
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home(Model model) {
 		return "sujan/login/adminHome";
 	}
+
 	@GetMapping("allList/{page}")
-	public String showContact(@PathVariable("page") int page,  Model model) {
-		   //current page-page
-		    //contact per page-5
-		   Pageable pageable= PageRequest.of(page, 5);
-		   Page<SujanEntity>contacts=this.sujanRepository.findAll(pageable);
-		   model.addAttribute("contacts", contacts);
-		   model.addAttribute("currentPage", page);
-		   model.addAttribute("totalPage", contacts.getTotalPages());
-		   return "sujan/login/allUserList";
-		 }
+	public String showContact(@PathVariable("page") int page, Model model) {
+		// current page-page
+		// contact per page-5
+		Pageable pageable = PageRequest.of(page, 5);
+		Page<SujanEntity> contacts = this.sujanRepository.findAll(pageable);
+		model.addAttribute("contacts", contacts);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPage", contacts.getTotalPages());
+		return "sujan/login/allUserList";
+	}
 
 	@RequestMapping(value = "allList/detail/{id}", method = RequestMethod.GET)
 	public String detailUser(@PathVariable Long id, Model model) {
@@ -109,18 +89,19 @@ public class SujanControllerLogin {
 		return "redirect:/allList/0";
 
 	}
-	//csv download
+
+	// csv download
 	@GetMapping("/csv")
-		public String csvDownload() {
-			return null;
-			
-		}
-		
-		//pdf download
-				@GetMapping("/pdf")
-				public String pdfDownload() {
-					return null;
-					
-				}
-	
+	public String csvDownload() {
+		return null;
+
+	}
+
+	// pdf download
+	@GetMapping("/pdf")
+	public String pdfDownload() {
+		return null;
+
+	}
+
 }

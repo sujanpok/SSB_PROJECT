@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.sujan.dto.SujanDtoProduct;
-import com.example.demo.controller.sujan.entity.SujanEntity;
 import com.example.demo.controller.sujan.entity.SujanProductEntity;
 import com.example.demo.controller.sujan.product.ProductForm;
 import com.example.demo.controller.sujan.productservice.SujanProductService;
@@ -24,64 +23,54 @@ import com.example.demo.controller.sujan.repository.SujanRepositoryProduct;
 public class SujanControllerProduct {
 	@Autowired
 	ModelMapper modelMapper = new ModelMapper();
-	
-	
+
 	@Autowired
 	SujanRepositoryProduct sujanRepositoryProduct;
-	
+
 	@Autowired
 	SujanProductService SujanProductService;
-	
-	//product home page
+
+	// product home page
 	@RequestMapping("product/allList/{page}")
-	public String productHomepage(@ModelAttribute ProductForm productForm,@PathVariable("page") int page,Model model) {
-		//初期化
+	public String productHomepage(@ModelAttribute ProductForm productForm, @PathVariable("page") int page,
+			Model model) {
+		// 初期化
 		init(productForm);
-		//current page-page
-	    //contact per page-10
-		   Pageable pageable= PageRequest.of(page, 10);
-		   Page<SujanProductEntity>productList=this.sujanRepositoryProduct.findAll(pageable);
-		   model.addAttribute("productList", productList);
-		   model.addAttribute("currentPage", page);
-		   model.addAttribute("totalPage", productList.getTotalPages());
-		
-		
+		// current page-page
+		// contact per page-10
+		// int page1=0;
+		Pageable pageable = PageRequest.of(page, 10);
+		Page<SujanProductEntity> productList = this.sujanRepositoryProduct.findAll(pageable);
+		model.addAttribute("productList", productList);
+		model.addAttribute("currentPage", page);
+		model.addAttribute("totalPage", productList.getTotalPages());
 		return "sujan/product/allProductList";
 	}
+
 	private void init(ProductForm productForm) {
 		productForm.setProductImage("");
 		productForm.setProductName("");
 		productForm.setProductPrize("");
 		productForm.setProductStock(0);
 	}
-	@RequestMapping(value ="/addProduct",params = "send", method = RequestMethod.POST)
-	public String addProduct(@ModelAttribute ProductForm productForm,SujanDtoProduct sujanDtoProduct,Model model) {
-		
-		//data marge
+
+	@RequestMapping(value = "/addProduct", params = "send", method = RequestMethod.POST)
+	public String addProduct(@ModelAttribute ProductForm productForm, SujanDtoProduct sujanDtoProduct, Model model) {
+
+		// data marge
 		modelMapper.map(sujanDtoProduct, productForm);
 		// 商品情報の登録
 		SujanProductService.insertProduct(sujanDtoProduct);
-		
-		
+
 		return "redirect:product/allList/0";
 	}
-	
-	@RequestMapping(value = "product/allList/detail/{id}", method = RequestMethod.GET)
-	public String detailProduct(@PathVariable Long id, Model model) {
-		SujanProductEntity productList = SujanProductService.findById(id);
-		model.addAttribute("productList", productList);
-		return "sujan/login/productDetail";
-	}
 
-	@GetMapping("product/detail/{id}/delete")
-	public String deleteProduct(@PathVariable Long id, Model model) {
+	@GetMapping("product/allList/{id}/delete")
+	public String delete(@PathVariable Long id, Model model) {
 		// ユーザー情報の削除
 
 		SujanProductService.delete(id);
-		return "redirect:product/allList/0";
+		return "redirect:/product/allList/0";
 
 	}
-	
 }
-
-
