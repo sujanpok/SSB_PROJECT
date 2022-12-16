@@ -21,9 +21,9 @@ public class SujanProductEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
-	@Column(name = "id" ,nullable = false)
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id", unique = true, updatable = false, nullable = false)
+    private Long id;
 	
 	@Column(name = "product_Name")
 	private String productName;
@@ -31,8 +31,11 @@ public class SujanProductEntity implements Serializable {
 	@Column(name = "product_Prize")
 	private String productPrize;
 	
-	@Column(name = "product_Image")
-	private String productImage;
+	@Column(name = "product_Image_Url")
+	private String productImageUrl;
+	
+	@Column(name = "product_Image_NAme")
+	private String productImageName;
 	
 	@Column(name = "product_Stock")
 	private int productStock;

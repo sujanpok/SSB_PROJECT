@@ -1,6 +1,7 @@
 package com.example.demo.controller.sujan.dto;
 
 import java.io.Serializable;
+import java.nio.file.Path;
 
 import lombok.Data;
 
@@ -12,7 +13,8 @@ public class SujanDtoProduct implements Serializable {
 	private Long id;
 	private String productName;
 	private String productPrize;
-	private String productImage;
+	private String productImageUrl;
+	private String productImageName;
 	private int productStock;
 	
 }

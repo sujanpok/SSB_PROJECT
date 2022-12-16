@@ -1,5 +1,10 @@
 package com.example.demo.controller.sujan;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,6 +17,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.example.demo.controller.sujan.dto.SujanDtoProduct;
 import com.example.demo.controller.sujan.entity.SujanProductEntity;
@@ -21,6 +28,7 @@ import com.example.demo.controller.sujan.repository.SujanRepositoryProduct;
 
 @Controller
 public class SujanControllerProduct {
+	public static String UPLOAD_DIRECTORY = System.getProperty("user.dir")+"/src/main/resources/static/img/sujan/productImg";
 	@Autowired
 	ModelMapper modelMapper = new ModelMapper();
 
@@ -48,16 +56,23 @@ public class SujanControllerProduct {
 	}
 
 	private void init(ProductForm productForm) {
-		productForm.setProductImage("");
+		productForm.setProductImageName(null);
+		productForm.setProductImageUrl(null);
 		productForm.setProductName("");
 		productForm.setProductPrize("");
 		productForm.setProductStock(0);
 	}
 
-	@RequestMapping(value = "/addProduct", params = "send", method = RequestMethod.POST)
-	public String addProduct(@ModelAttribute ProductForm productForm, SujanDtoProduct sujanDtoProduct, Model model) {
-
+	@RequestMapping(value = "/addProduct",method = RequestMethod.POST)
+	public String addProduct(@ModelAttribute ProductForm productForm, SujanDtoProduct sujanDtoProduct, Model model,
+			@RequestParam("image") MultipartFile file)throws IOException  {
+		StringBuilder fileNames = new StringBuilder();
+        Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
+        fileNames.append(file.getOriginalFilename());
+        Files.write(fileNameAndPath, file.getBytes());
 		// data marge
+        sujanDtoProduct.setProductImageName(file.getOriginalFilename());
+        sujanDtoProduct.setProductImageUrl("/img/sujan/productImg/"+file.getOriginalFilename().toString().trim());
 		modelMapper.map(sujanDtoProduct, productForm);
 		// 商品情報の登録
 		SujanProductService.insertProduct(sujanDtoProduct);

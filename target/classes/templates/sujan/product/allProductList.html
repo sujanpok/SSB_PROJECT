@@ -23,7 +23,7 @@ th:replace="sujan/common/common::layout(~{::section})">
 }
         
         //detail product
-        function show_modal_product(id,productName,productPrize,productStock)
+        function show_modal_product(id,productName,productPrize,productStock,productImageUrl)
         {
             $('#myModaldetail').modal('show');
             document.getElementById("delete_product").value = id;
@@ -31,7 +31,9 @@ th:replace="sujan/common/common::layout(~{::section})">
            document.getElementById("proPrize").innerHTML = "単価："+productPrize+"円";
            // document.getElementById("p1").innerHTML = "New text!";
             document.getElementById("proStock").innerHTML = "在庫数量："+productStock;
-            
+            if(productImageUrl!==null){
+            document.getElementById("proImg").src =productImageUrl;
+            }
             //var message = id+productName+productPrize+productStock;
            // alert(message);
             return false;
@@ -145,7 +147,7 @@ th:replace="sujan/common/common::layout(~{::section})">
                 <td th:text="${product.id}"></td>
                 <td th:text="${product.productName}"></td>
                 <td th:text="${product.productPrize}"></td>
-                 <!-- <td th:text="${product.productImage}"></td> -->
+                 <td th:text="${product.productImageName}"></td> 
                   <td th:text="${product.productStock}"></td>
                   
                   
@@ -155,8 +157,10 @@ th:replace="sujan/common/common::layout(~{::section})">
                      th:data_name="|${product.productName}|"
                      th:data_prize="|${product.productPrize}|"
                      th:data_stock="|${product.productStock}|"
+                     th:data_imgUrl="|${product.productImageUrl}|"
+                     
                      th:onclick="|return show_modal_product(this.getAttribute('data_id'),this.getAttribute('data_name'),
-                     this.getAttribute('data_prize'),this.getAttribute('data_stock'));|" 
+                     this.getAttribute('data_prize'),this.getAttribute('data_stock'),this.getAttribute('data_imgUrl'));|" 
                      class="btn btn-secondary">詳細</a></td>
             </tr><!--   th:href="@{detail/{id}(id=*{product.id})}" -->
            
@@ -169,7 +173,7 @@ th:replace="sujan/common/common::layout(~{::section})">
                 <h4 class="modal-title">登録する商品の情報を入力してください</h4>
             </div>
             <div class="modal-body">
-                <form method="post" th:onsubmit="return validateForm()"  th:action="@{/addProduct}" name="addData" th:object="${productForm}">
+                <form method="post" enctype="multipart/form-data" th:onsubmit="return validateForm()"  th:action="@{/addProduct}" name="addData" th:object="${productForm}">
 <!-- " -->
 				<div class="w-50">
 					<label for="name" class="form-label h6">商品名:</label> 
@@ -183,12 +187,11 @@ th:replace="sujan/common/common::layout(~{::section})">
 						type="text" class="form-control" id="productPrize" name="productPrize" th:text="${productPrize}"
 						th:value="${productPrize}" required onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')">円
 				</div>
-				<!-- <div class="w-50">
+				<div class="w-50">
 					<label for="email" class="form-label h6">商品画像:</label> 
 					<input
-						type="file" class="form-control" id="productImage" name="productImage" th:text="${productImage}" 
-						th:value="${productImage}" required>
-				</div> -->
+						type="file" class="form-control" id="productImage" name="image" accept="image/*" required>
+				</div>
 				<div class="w-50">
 					<label for="email" class="form-label h6">在庫:</label> 
 					<input
@@ -197,7 +200,7 @@ th:replace="sujan/common/common::layout(~{::section})">
 				</div>
 				
 				<div class="text-center pt-3">
-					<input type="submit" class="display-6" name="send" value="登録する">
+					<input type="submit" class="display-6" value="登録する">
 				</div>
 			</form>
             </div>
@@ -216,7 +219,7 @@ th:replace="sujan/common/common::layout(~{::section})">
             <div class="modal-body">
                 <form method="get"  id="deleteproData" name="deleteData">
 							<div class="card">
-								<img th:src="@{/img/sujan/login.png}" alt="Denim Jeans"
+								<img id="proImg" th:src="@{/img/sujan/login.png}" alt="productImg"
 									style="width: 100%">
 								<h3 id="proName">商品名：</h3>
 								<p id="proPrize"class="price">単価：円</p>

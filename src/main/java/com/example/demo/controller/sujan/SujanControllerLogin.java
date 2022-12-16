@@ -1,5 +1,7 @@
 package com.example.demo.controller.sujan;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.demo.controller.sujan.dto.SujanDtoLogin;
+import com.example.demo.controller.sujan.dto.SujanLoginUserInfoDto;
 import com.example.demo.controller.sujan.entity.SujanEntity;
 import com.example.demo.controller.sujan.login.LoginForm;
 import com.example.demo.controller.sujan.repository.SujanRepository;
@@ -45,7 +48,13 @@ public class SujanControllerLogin {
 				model.addAttribute("message", "welcome home!");
 				return "sujan/login/adminHome";
 			} else {
-
+           ArrayList<SujanLoginUserInfoDto> loginuser= new ArrayList<>();
+           
+           
+           for (SujanLoginUserInfoDto LoginUserInfoDto : loginuser) {
+        	   LoginUserInfoDto.setAdminORNot(false);
+        	   
+		}
 				// user profile
 
 				return "sujan/login/userHome";
