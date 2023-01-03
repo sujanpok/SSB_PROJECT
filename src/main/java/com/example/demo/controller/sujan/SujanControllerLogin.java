@@ -16,14 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.demo.controller.sujan.dto.SujanDto;
 import com.example.demo.controller.sujan.dto.SujanDtoLogin;
 import com.example.demo.controller.sujan.dto.SujanLoginUserInfoDto;
 import com.example.demo.controller.sujan.entity.SujanEntity;
-import com.example.demo.controller.sujan.entity.SujanProductEntity;
 import com.example.demo.controller.sujan.login.LoginForm;
-import com.example.demo.controller.sujan.productservice.UserService;
 import com.example.demo.controller.sujan.repository.SujanRepository;
+import com.example.demo.controller.sujan.repository.SujanRepositoryLogin;
 import com.example.demo.controller.sujan.service.SujanService;
 
 @Controller
@@ -34,7 +32,7 @@ public class SujanControllerLogin {
 	@Autowired
 	SujanRepository sujanRepository;
 	@Autowired
-	private UserService userservice;
+	private SujanRepositoryLogin sujanRepositoryLogin;
 	@Autowired
 	private ModelMapper modelMapper;
 
@@ -68,10 +66,10 @@ public class SujanControllerLogin {
 				user.setUserId(login.getUserId());
 				user.setUserId(login.getUserPwd());
 				// ユーザー検索
-				SujanDto userList = userservice.getOneMUser(user.getUserId());
-				//ArrayList<SujanLoginUserInfoDto> LoginUserInfo= new ArrayList<SujanLoginUserInfoDto>();
 				
-				model.addAttribute("userDetailList", userList);
+				List<SujanEntity> LoginUserInfo= new ArrayList<SujanEntity>();
+				LoginUserInfo = sujanRepositoryLogin.findOneUserAllDetail(user.getUserId());
+				//model.addAttribute("userDetailList", userList);
 				return "sujan/login/userHome";
 			}
 			
