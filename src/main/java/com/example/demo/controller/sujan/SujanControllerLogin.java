@@ -3,7 +3,10 @@ package com.example.demo.controller.sujan;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.modelmapper.ModelMapper;
+import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,10 +21,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.sujan.dto.SujanDtoLogin;
 import com.example.demo.controller.sujan.dto.SujanLoginUserInfoDto;
+import com.example.demo.controller.sujan.entity.EntryTable;
 import com.example.demo.controller.sujan.entity.SujanEntity;
 import com.example.demo.controller.sujan.login.LoginForm;
 import com.example.demo.controller.sujan.repository.SujanRepository;
-import com.example.demo.controller.sujan.repository.SujanRepositoryLogin;
+import com.example.demo.controller.sujan.repository.SujanRepositoryLoginDetail;
 import com.example.demo.controller.sujan.service.SujanService;
 
 @Controller
@@ -31,10 +35,15 @@ public class SujanControllerLogin {
 
 	@Autowired
 	SujanRepository sujanRepository;
-	@Autowired
-	private SujanRepositoryLogin sujanRepositoryLogin;
-	@Autowired
-	private ModelMapper modelMapper;
+	@PersistenceContext
+	EntityManager entityManager;
+	
+	SujanRepositoryLoginDetail userLoginInfoDao;
+	@PostConstruct
+	public void init() {
+		userLoginInfoDao = new SujanRepositoryLoginDetail(entityManager);
+	}
+	
 
 	// login page
 	@RequestMapping("/sujan/login")
@@ -64,12 +73,13 @@ public class SujanControllerLogin {
 				// ユーザー情報
 				SujanLoginUserInfoDto user =  new SujanLoginUserInfoDto();
 				user.setUserId(login.getUserId());
-				user.setUserId(login.getUserPwd());
+				user.setUserPwd(login.getUserPwd());
 				// ユーザー検索
 				
-				List<SujanEntity> LoginUserInfo= new ArrayList<SujanEntity>();
-				LoginUserInfo = sujanRepositoryLogin.findOneUserAllDetail(user.getUserId());
-				//model.addAttribute("userDetailList", userList);
+				List<EntryTable> LoginUserInfo= new ArrayList<EntryTable>();
+				//LoginUserInfo = sujanRepositoryLogin.findOneUserAllDetail(user.getUserId());
+				LoginUserInfo =userLoginInfoDao.findAllLoginDetailWithLoginID(user.getUserId());
+				model.addAttribute("userDetailList", LoginUserInfo);
 				return "sujan/login/userHome";
 			}
 			
