@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +50,13 @@ public class SujanControllerProduct {
 		// contact per page-10
 		// int page1=0;
 		Pageable pageable = PageRequest.of(page, 10);
-		Page<SujanProductEntity> productList = this.sujanRepositoryProduct.findAll(pageable);
-		model.addAttribute("productList", productList);
+		Page<SujanProductEntity> productListpage = this.sujanRepositoryProduct.findAll(pageable);
+		List<SujanProductEntity>productList=sujanRepositoryProduct.findAll();
+		model.addAttribute("productListcount", productList.size());
+		model.addAttribute("productList", productListpage);
+		model.addAttribute("productList", productListpage);
 		model.addAttribute("currentPage", page);
-		model.addAttribute("totalPage", productList.getTotalPages());
+		model.addAttribute("totalPage", productListpage.getTotalPages());
 		return "sujan/product/allProductList";
 	}
 
@@ -59,13 +64,15 @@ public class SujanControllerProduct {
 		productForm.setProductImageName(null);
 		productForm.setProductImageUrl(null);
 		productForm.setProductName("");
-		productForm.setProductPrize("");
+		productForm.setProductPrize(null);
 		productForm.setProductStock(0);
 	}
 
 	@RequestMapping(value = "/addProduct",method = RequestMethod.POST)
 	public String addProduct(@ModelAttribute ProductForm productForm, SujanDtoProduct sujanDtoProduct, Model model,
 			@RequestParam("image") MultipartFile file)throws IOException  {
+		
+		//image upload
 		StringBuilder fileNames = new StringBuilder();
         Path fileNameAndPath = Paths.get(UPLOAD_DIRECTORY, file.getOriginalFilename());
         fileNames.append(file.getOriginalFilename());

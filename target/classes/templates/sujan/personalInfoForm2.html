@@ -78,6 +78,17 @@ th:replace="sujan/common/common::layout(~{::section})">
 							size="4" maxlength="4" th:field="*{mobileNo3}" />
 					</div>
 				</div>
+				<div class="w-50 dropdown　form-group h3 ">
+					<label class="control-label">ご希望金額</label> 
+					<div class="form-group" th:classappend="${#fields.hasErrors('totalMoney')} ? 'has-error'"></div>
+					 <span class="text-danger h5" th:if="${#fields.hasErrors('totalMoney')}" th:errors="*{totalMoney}"></span>
+					 <br />
+						<select name="totalMoney" class="dropdown">
+						<option value="">選択してください</option>
+						<option th:each="item : ${avaliableList}" th:value="${item.key}" 
+							th:text="${item.value}" th:selected="${item.key} == *{totalMoney}" th:field="*{totalMoney}"/>
+					</select>
+				</div>
 
 				<div class="text-center pt-3">
 					<input type="submit" class="display-6" name="next" value="次へ">

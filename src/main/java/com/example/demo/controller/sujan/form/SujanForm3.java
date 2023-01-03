@@ -33,8 +33,10 @@ public class SujanForm3 {
 
 	@AssertTrue(message = "有り選択の場合運転免許証番号入力してください。")
 	public boolean isDrivingValid() {
+		if(drivingLicenseLabel != null) {
 		if (drivingLicenseLabel.equals("有り") && drivingLicense.equals("")) {
 			return false;
+		}
 		}
 		return true;
 

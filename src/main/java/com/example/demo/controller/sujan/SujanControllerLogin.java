@@ -1,7 +1,9 @@
 package com.example.demo.controller.sujan;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -13,10 +15,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.example.demo.controller.sujan.dto.SujanDto;
 import com.example.demo.controller.sujan.dto.SujanDtoLogin;
 import com.example.demo.controller.sujan.dto.SujanLoginUserInfoDto;
 import com.example.demo.controller.sujan.entity.SujanEntity;
+import com.example.demo.controller.sujan.entity.SujanProductEntity;
 import com.example.demo.controller.sujan.login.LoginForm;
+import com.example.demo.controller.sujan.productservice.UserService;
 import com.example.demo.controller.sujan.repository.SujanRepository;
 import com.example.demo.controller.sujan.service.SujanService;
 
@@ -27,6 +33,10 @@ public class SujanControllerLogin {
 
 	@Autowired
 	SujanRepository sujanRepository;
+	@Autowired
+	private UserService userservice;
+	@Autowired
+	private ModelMapper modelMapper;
 
 	// login page
 	@RequestMapping("/sujan/login")
@@ -43,22 +53,29 @@ public class SujanControllerLogin {
 		login.setUserPwd(loginForm.getLoginPw());
 
 		if (sujanService.loginCheck(login)) {
+			
+			
+			//login admin
 			if (login.getUserId().equals("admin")) {
 
 				model.addAttribute("message", "welcome home!");
 				return "sujan/login/adminHome";
+				//user
 			} else {
-           ArrayList<SujanLoginUserInfoDto> loginuser= new ArrayList<>();
-           
-           
-           for (SujanLoginUserInfoDto LoginUserInfoDto : loginuser) {
-        	   LoginUserInfoDto.setAdminORNot(false);
-        	   
-		}
-				// user profile
-
+				
+				// ユーザー情報
+				SujanLoginUserInfoDto user =  new SujanLoginUserInfoDto();
+				user.setUserId(login.getUserId());
+				user.setUserId(login.getUserPwd());
+				// ユーザー検索
+				SujanDto userList = userservice.getOneMUser(user.getUserId());
+				//ArrayList<SujanLoginUserInfoDto> LoginUserInfo= new ArrayList<SujanLoginUserInfoDto>();
+				
+				model.addAttribute("userDetailList", userList);
 				return "sujan/login/userHome";
 			}
+			
+			//error
 		} else {
 			model.addAttribute("errormessage", "IDまたはパスワードが間違っています。");
 			return "sujan/login/userlogin";
@@ -77,6 +94,8 @@ public class SujanControllerLogin {
 		// contact per page-5
 		Pageable pageable = PageRequest.of(page, 5);
 		Page<SujanEntity> contacts = this.sujanRepository.findAll(pageable);
+		List<SujanEntity>registerList=sujanRepository.findAll();
+		model.addAttribute("registerList", registerList.size());
 		model.addAttribute("contacts", contacts);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("totalPage", contacts.getTotalPages());

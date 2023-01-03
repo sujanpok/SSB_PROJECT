@@ -137,6 +137,13 @@ public class SujanEntity implements Serializable {
 	 */
 	@Column(name = "re_Pwd")
 	private String rePwd;
+	
+	
+	/**
+	 * 金額
+	 */
+	@Column(name = "total_Money")
+	private Integer totalMoney;
 
 	/**
 	 * 更新日時

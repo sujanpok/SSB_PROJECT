@@ -131,7 +131,7 @@ th:replace="sujan/common/common::layout(~{::section})">
 					<label for="email" class="form-label h3">運転免許証番号:</label>
 				  <p th:if="${#fields.hasErrors('drivingValid')}" th:errors="*{drivingValid}" class="text-danger h4"></p> 
 					<input	type="text" class="form-control" id="drivingLicense1"
-						th:field="*{drivingLicense}" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"  th:value="${drivingLicense}"><br>
+						th:field="*{drivingLicense}" maxlength="11" onkeyup="if (/\D/g.test(this.value)) this.value = this.value.replace(/\D/g,'')"  th:value="${drivingLicense}"><br>
 				</div>
 				</div>
 				<div class="text-center pt-3">

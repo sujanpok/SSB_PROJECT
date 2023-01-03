@@ -1,7 +1,5 @@
 package com.example.demo.controller.sujan;
 
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +18,7 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.example.demo.ValidationSeq.All;
 import com.example.demo.controller.sujan.dto.SujanDto;
+import com.example.demo.controller.sujan.entity.SujanEntity;
 import com.example.demo.controller.sujan.form.SujanForm1;
 import com.example.demo.controller.sujan.form.SujanForm2;
 import com.example.demo.controller.sujan.form.SujanForm3;
@@ -81,6 +80,7 @@ ModelMapper modelMapper = new ModelMapper();
 		if(error.hasErrors()){
 			return personalInfo1(sujanForm1,SujanDto,model);
         }
+		model.addAttribute("avaliableList", SujanForm2.getAvaliableList());
 		modelMapper.map(sujanForm1, SujanDto);
 		return "sujan/personalInfoForm2";
 	}
@@ -89,10 +89,11 @@ ModelMapper modelMapper = new ModelMapper();
 	// entry page3
 	@RequestMapping(value = "form2", params = "next", method = RequestMethod.POST)
 	public String personalInfo3(@ModelAttribute SujanForm3 sujanForm3,@ModelAttribute SujanDto SujanDto,
-			@Validated SujanForm2 sujanForm2, BindingResult error,
+			@Validated(All.class) SujanForm2 sujanForm2, BindingResult error,
 			 Model model) {
 		
 		if(error.hasErrors()){
+			model.addAttribute("avaliableList", SujanForm2.getAvaliableList());
 			personalInfo2(sujanForm2, SujanDto, null, error, model);
 			return "sujan/personalInfoForm2";
         }
@@ -168,14 +169,14 @@ ModelMapper modelMapper = new ModelMapper();
 	
 
 	@RequestMapping(value = "sendData", params = "send", method = RequestMethod.POST)
-	public String DbInsert(@ModelAttribute SujanDto sujanDto, HttpSession session, SessionStatus status, Model model) {
+	public String DbInsert(@ModelAttribute SujanDto sujanDto, HttpSession session,SujanEntity sujanEntity, SessionStatus status, Model model) {
 
 		// ユーザー情報の登録
 		sujanService.insertData(sujanDto);
 
 		//status.setComplete();
 		//session.removeAttribute("sujanDto");
-		model.addAttribute("id",sujanDto.getIdGenerator() );
+		//model.addAttribute("id",sujanEntity.getIdGenerator());
 		model.addAttribute("message", "お申し込みが完了しました。");
 		return "sujan/thankYou";
 	}
@@ -200,5 +201,6 @@ ModelMapper modelMapper = new ModelMapper();
 		sujanDto.setHousingLoan("");
 		sujanDto.setDrivingLicenseLabel("");
 		sujanDto.setDrivingLicense("");
+		sujanDto.setTotalMoney(0);
 	}
 }

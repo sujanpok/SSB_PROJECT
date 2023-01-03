@@ -33,4 +33,5 @@ public class SujanDto implements Serializable {
 	private String userId;
 	private String pwd;
 	private String rePwd;
+	private Integer totalMoney;
 }

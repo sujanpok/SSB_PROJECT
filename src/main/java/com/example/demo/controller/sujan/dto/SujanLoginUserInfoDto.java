@@ -17,6 +17,8 @@ public class SujanLoginUserInfoDto implements Serializable {
 	private long totalUserdMoney;
 	private boolean shoppingCart;
 	private String LastloginTime;
+	private String userId;
+	private String userPwd;
 	
 	
 }

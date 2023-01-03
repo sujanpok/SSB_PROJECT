@@ -26,6 +26,9 @@ th:replace="sujan/common/common::layout(~{::section})">
 			</h2>
 			
 	</div>
+	<section th:if="${registerList>0}">
+	
+	
 	<nav aria-label="Page navigation example">
 
   <ul class="pagination">
@@ -67,6 +70,11 @@ th:replace="sujan/common/common::layout(~{::section})">
            
            
         </table>
+        </section>
+        <section th:unless="${registerList>0}">
+	<h1 class="text-center">
+	顧客情報ありません。</h1>
+	</section>
         
     
 </body>

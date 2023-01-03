@@ -12,7 +12,7 @@ public class SujanDtoProduct implements Serializable {
 	
 	private Long id;
 	private String productName;
-	private String productPrize;
+	private Long productPrize;
 	private String productImageUrl;
 	private String productImageName;
 	private int productStock;

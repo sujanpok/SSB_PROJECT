@@ -29,7 +29,7 @@ public class SujanProductEntity implements Serializable {
 	private String productName;
 	
 	@Column(name = "product_Prize")
-	private String productPrize;
+	private Long productPrize;
 	
 	@Column(name = "product_Image_Url")
 	private String productImageUrl;

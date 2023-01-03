@@ -117,6 +117,8 @@ th:replace="sujan/common/common::layout(~{::section})">
 			</h2>
 			
 	</div>
+	<section th:if="${productListcount>0}">
+	
 	<nav aria-label="Page navigation example">
 
   <ul class="pagination">
@@ -166,6 +168,10 @@ th:replace="sujan/common/common::layout(~{::section})">
            
            
         </table>
+        </section>
+       <section th:unless="${productListcount>0}">
+       <h1 class="text-center">商品情報ありません。登録してください。</h1>
+        </section>
         <div class="modal fade" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
