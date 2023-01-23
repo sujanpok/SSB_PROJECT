@@ -1,9 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    
-<mapper namespace="com.example.demo.controller.sujan.mapper.LoginCheck">
+<mapper
+	namespace="com.example.demo.controller.sujan.mapper.LoginCheck">
+
+
+	<select id="loginUsercheck" resultType="int">
+		select
+		count(1)
+		from
+		login_table
+		where
+		(user_Id = #{userId} OR email = #{userId})
+	</select>
+
+	<select id="countErrorUser"
+		resultType="com.example.demo.controller.sujan.dto.SujanDtoLogin">
+		select
+		count_error as countError,
+		login_lock_time as loginLockTime
+		from
+		login_table
+		where
+		(user_Id = #{userId} OR email = #{userId})
+	</select>
+
+	<select id="countErrorSetUser">
+		UPDATE
+		login_table
+		SET count_error = #{countError}
+		where
+		(user_Id = #{userId} OR email = #{userId})
+	</select>
 
 
 	<select id="loginUserCountCheck" resultType="int">
@@ -13,7 +41,29 @@
 		login_table
 		where
 		(user_Id = #{userId} OR email = #{userId})
-		AND pwd = #{userPwd}
+		AND pwd =
+		#{userPwd}
 	</select>
-	
+
+
+	<select id="loginUserUpdate">
+		UPDATE
+		login_table
+		SET login_lock_time =
+		#{loginLockTime}
+		where
+		(user_Id = #{userId} OR email = #{userId})
+
+	</select>
+
+	<select id="lastloginUserTime">
+		UPDATE
+		login_table
+		SET last_login_time =
+		#{lastLoginTime}
+		where
+		(user_Id = #{userId} OR email = #{userId})
+
+	</select>
+
 </mapper>

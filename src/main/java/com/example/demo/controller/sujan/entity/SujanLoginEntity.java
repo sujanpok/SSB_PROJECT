@@ -1,6 +1,9 @@
 package com.example.demo.controller.sujan.entity;
 
 import java.io.Serializable;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -46,4 +49,8 @@ public class SujanLoginEntity implements Serializable {
 	 */
 	@Column(name = "delete_date")
 	private Date deleteDate;
+	
+	private Date loginLockTime;
+	private Date LastLoginTime;
+	private int countError;
 }

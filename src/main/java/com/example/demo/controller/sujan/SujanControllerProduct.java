@@ -49,7 +49,7 @@ public class SujanControllerProduct {
 		// current page-page
 		// contact per page-10
 		// int page1=0;
-		Pageable pageable = PageRequest.of(page, 10);
+		Pageable pageable = PageRequest.of(page, 2);
 		Page<SujanProductEntity> productListpage = this.sujanRepositoryProduct.findAll(pageable);
 		List<SujanProductEntity>productList=sujanRepositoryProduct.findAll();
 		model.addAttribute("productListcount", productList.size());

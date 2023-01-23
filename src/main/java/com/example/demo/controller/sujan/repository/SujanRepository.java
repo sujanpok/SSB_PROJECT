@@ -17,4 +17,5 @@ public interface SujanRepository extends JpaRepository<SujanEntity, Long> {
 
 	void save(SujanDto sujanDto);
 	public Page<SujanEntity>findAll(Pageable pageable);
+
 }
