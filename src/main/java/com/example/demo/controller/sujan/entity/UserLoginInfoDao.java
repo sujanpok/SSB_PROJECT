@@ -3,6 +3,6 @@ package com.example.demo.controller.sujan.entity;
 import java.io.Serializable;
 import java.util.List;
 
-public interface UserLoginInfoDao<T> extends Serializable{
-	public List<T> findAllLoginDetailWithLoginID(String LoginID);
+public interface UserLoginInfoDao extends Serializable{
+	public List<EntryloginInfoTable> findAllLoginDetailWithLoginID(String loginId);
 }

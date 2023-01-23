@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.controller.sujan.dto.SujanDto;
 import com.example.demo.controller.sujan.dto.SujanDtoLogin;
+import com.example.demo.controller.sujan.entity.EntryloginInfoTable;
 import com.example.demo.controller.sujan.entity.SujanEntity;
 import com.example.demo.controller.sujan.entity.SujanLoginEntity;
 import com.example.demo.controller.sujan.mapper.LoginCheck;
@@ -24,8 +25,8 @@ import com.example.demo.controller.sujan.repository.SujanRepository;
 @Service
 @Transactional(rollbackFor = Exception.class)
 public class SujanService {
-	
-	public static Integer getnull= null;
+
+	public static Integer getnull = null;
 	@Autowired
 	SujanRepository sujanRepository;
 
@@ -40,7 +41,18 @@ public class SujanService {
 
 		sujanRepository.save(insert(sujanDto));
 		sujanRepository.save(insertLogin(sujanDto));
+		sujanRepository.save(insertLogininfo(sujanDto));
 
+	}
+
+	private EntryloginInfoTable insertLogininfo(SujanDto sujanDto) {
+		EntryloginInfoTable dataEntry = new EntryloginInfoTable();
+		dataEntry.setAccount_no(sujanDto.getIdGenerator());
+		dataEntry.setName(sujanDto.getName());
+		dataEntry.setTotal_money(sujanDto.getTotalMoney());
+		dataEntry.setEmail(sujanDto.getEmail());
+		dataEntry.setUser_id(sujanDto.getUserId());
+		return dataEntry;
 	}
 
 	// date insert
@@ -56,7 +68,7 @@ public class SujanService {
 	}
 
 	// login check
-	
+
 	public boolean loginCheck(SujanDtoLogin login) {
 		int userFound = checkMapper.loginUsercheck(login);
 		if (userFound <= 0) {
@@ -64,21 +76,20 @@ public class SujanService {
 			login.setStatus("notFound");
 			return false;
 		} else {
-			//login check
+			// login check
 			int count = checkMapper.loginUserCountCheck(login);
-			
-			//error count check
-			SujanDtoLogin loginDto= checkMapper.countErrorUser(login);
+
+			// error count check
+			SujanDtoLogin loginDto = checkMapper.countErrorUser(login);
 			// loginCount
 			if (count <= 0) {
-				errorcount=loginDto.getCountError();
+				errorcount = loginDto.getCountError();
 				errorcount++;
 				login.setCountError(errorcount);
-				//insert error count
+				// insert error count
 				checkMapper.countErrorSetUser(login);
-				
-				
-				//4回以上
+
+				// 4回以上
 				if (login.getCountError() >= 4) {
 					erroLoginTime(login);
 					checkMapper.loginUserUpdate(login);
@@ -91,26 +102,41 @@ public class SujanService {
 				return false;
 
 			} else {
-				Date date =  new Date();
+				Date date = new Date();
 				Calendar calendar = Calendar.getInstance();
 				calendar.setTime(date);
-				calendar.add(Calendar.MINUTE, -1);
-				
-				if (loginDto.getLoginLockTime().after(calendar.getTime())) {
-					lastLoginTime(login);
-					checkMapper.lastloginUserTime(login);
-					login.setCountError(0);
-					
-					login.setStatus("ok");
-					login.setLoginSucess(true);
-					//insert error count
-					checkMapper.countErrorSetUser(login);
-					return true;
-				} else {
-					login.setLoginSucess(false);
-					login.setStatus("remainTime");
-					return false;
+				calendar.add(Calendar.MINUTE, -3);
+				if (loginDto.getLoginLockTime() != null) {
+
+					if (loginDto.getLoginLockTime().before(calendar.getTime())) {
+						lastLoginTime(login);
+						checkMapper.lastloginUserTime(login);
+						login.setCountError(0);
+
+						login.setStatus("ok");
+						login.setLoginSucess(true);
+						// insert error count
+						checkMapper.countErrorSetUser(login);
+						return true;
+					} else {
+						login.setLoginSucess(false);
+						login.setStatus("remainTime");
+						return false;
+					}
+
 				}
+				lastLoginTime(login);
+				checkMapper.lastloginUserTime(login);
+				login.setCountError(0);
+
+				login.setStatus("ok");
+				login.setLoginSucess(true);
+				// insert error count
+				checkMapper.countErrorSetUser(login);
+				return true;
+				
+				
+				
 				
 			}
 
@@ -122,18 +148,16 @@ public class SujanService {
 	private void erroLoginTime(SujanDtoLogin login) {
 		SujanLoginEntity dataEntry = new SujanLoginEntity();
 		// after 30 minute unlock login
-		Date date =  new Date();
+		Date date = new Date();
 		login.setLoginLockTime(date);
 		dataEntry.setLoginLockTime(login.getLoginLockTime());
 	}
-	
-	
-	
-	//last login time 
+
+	// last login time
 	private void lastLoginTime(SujanDtoLogin login) {
 		SujanLoginEntity dataEntry = new SujanLoginEntity();
 		// after 30 minute unlock login
-		Date date =  new Date();
+		Date date = new Date();
 		login.setLastLoginTime(date);
 		dataEntry.setLastLoginTime(login.getLastLoginTime());
 	}

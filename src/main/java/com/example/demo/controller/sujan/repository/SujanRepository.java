@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.controller.sujan.dto.SujanDto;
+import com.example.demo.controller.sujan.entity.EntryloginInfoTable;
 import com.example.demo.controller.sujan.entity.SujanEntity;
 import com.example.demo.controller.sujan.entity.SujanLoginEntity;
 import com.example.demo.controller.sujan.entity.SujanProductEntity;
@@ -14,7 +15,7 @@ import com.example.demo.controller.sujan.entity.SujanProductEntity;
 public interface SujanRepository extends JpaRepository<SujanEntity, Long> {
 
 	void save(SujanLoginEntity insertLogin);
-
+	void save(EntryloginInfoTable insertLogintable);
 	void save(SujanDto sujanDto);
 	public Page<SujanEntity>findAll(Pageable pageable);
 

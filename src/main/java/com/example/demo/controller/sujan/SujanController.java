@@ -176,7 +176,7 @@ ModelMapper modelMapper = new ModelMapper();
 
 		//status.setComplete();
 		//session.removeAttribute("sujanDto");
-		//model.addAttribute("id",sujanEntity.getIdGenerator());
+		model.addAttribute("id",(sujanEntity.getIdGenerator()));
 		model.addAttribute("message", "お申し込みが完了しました。");
 		return "sujan/thankYou";
 	}
@@ -201,6 +201,6 @@ ModelMapper modelMapper = new ModelMapper();
 		sujanDto.setHousingLoan("");
 		sujanDto.setDrivingLicenseLabel("");
 		sujanDto.setDrivingLicense("");
-		sujanDto.setTotalMoney(0);
+		sujanDto.setTotalMoney(null);
 	}
 }

@@ -20,7 +20,10 @@ th:replace="sujan/common/common::layout(~{::section})">
 			
 	</div>
 	     <hr>
-        <h1 class="my-2">こんにちは</h1>
+        <h1 class="my-2">こんにちは hiii</h1>
+        
+        <span th:each="user, st : *{userDetailList}">
+        <span th:text="'Hello, ' + ${st.name}"></span>
         <!-- <table class="table table-borderd table-striped">
             <tr>
                 <th>ID</th>
@@ -43,7 +46,7 @@ th:replace="sujan/common/common::layout(~{::section})">
                 </td>
             </tr>
         </table> -->
-    
+    </span>
 </body>
 </section>
 </html>

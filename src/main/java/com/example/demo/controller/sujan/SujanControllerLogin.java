@@ -1,6 +1,7 @@
 package com.example.demo.controller.sujan;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -21,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.demo.controller.sujan.dto.SujanDtoLogin;
 import com.example.demo.controller.sujan.dto.SujanLoginUserInfoDto;
-import com.example.demo.controller.sujan.entity.EntryTable;
+import com.example.demo.controller.sujan.entity.EntryloginInfoTable;
 import com.example.demo.controller.sujan.entity.SujanEntity;
 import com.example.demo.controller.sujan.login.LoginForm;
 import com.example.demo.controller.sujan.repository.SujanRepository;
@@ -76,10 +77,16 @@ public class SujanControllerLogin {
 				user.setUserPwd(login.getUserPwd());
 				// ユーザー検索
 
-				List<EntryTable> LoginUserInfo = new ArrayList<EntryTable>();
+				List<EntryloginInfoTable> loginUserInfo = new ArrayList<EntryloginInfoTable>();
 				// LoginUserInfo = sujanRepositoryLogin.findOneUserAllDetail(user.getUserId());
-				LoginUserInfo = userLoginInfoDao.findAllLoginDetailWithLoginID(user.getUserId());
-				model.addAttribute("userDetailList", LoginUserInfo);
+				loginUserInfo = userLoginInfoDao.findAllLoginDetailWithLoginID(user.getUserId());
+				
+				for (EntryloginInfoTable ele : loginUserInfo) {
+					user.setName(ele.getName());
+				}
+			
+				
+				model.addAttribute("userDetailList", loginUserInfo);
 				return "sujan/login/userHome";
 			}
 
@@ -88,16 +95,15 @@ public class SujanControllerLogin {
 
 			if ("lock".equals(login.getStatus())) {
 				model.addAttribute("errormessage", "アカウントロックされました。30分後再ログインお願いいたします。");
-				ok = "sujan/login/userlogin";
 			} else if ("notFound".equals(login.getStatus())) {
 				model.addAttribute("errormessage", "IDが登録されていません！！");
-				ok = "sujan/login/userlogin";
 			} else if ("wrong".equals(login.getStatus())) {
 				model.addAttribute("errormessage", "IDまたはパスワードが間違っています。");
-				ok = "sujan/login/userlogin";
+			}else if("remainTime".equals(login.getStatus())) {
+				model.addAttribute("errormessage", "まだ30分超えていません");
 			}
 		}
-		return ok;
+		return "sujan/login/userlogin";
 
 	}
 

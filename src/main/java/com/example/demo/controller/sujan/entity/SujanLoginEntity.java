@@ -29,14 +29,22 @@ public class SujanLoginEntity implements Serializable {
 	private Long id;
 	
 	@Column(name = "user_id")
-	private String adminId;
+	private String userId;
 	/**
 	 * パスワード
 	 */
 	@Column(name = "pwd")
 	private String pwd;
 	
-
+    private boolean isAdmin;
+    private String email;
+	
+	
+	private Date loginLockTime;
+	private Date LastLoginTime;
+	private int countError;
+	
+	
 	@Column(name = "update_date")
 	private Date updateDate;
 	/**
@@ -49,8 +57,4 @@ public class SujanLoginEntity implements Serializable {
 	 */
 	@Column(name = "delete_date")
 	private Date deleteDate;
-	
-	private Date loginLockTime;
-	private Date LastLoginTime;
-	private int countError;
 }
