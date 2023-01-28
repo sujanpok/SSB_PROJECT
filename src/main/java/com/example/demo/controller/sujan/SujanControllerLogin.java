@@ -1,5 +1,9 @@
 package com.example.demo.controller.sujan;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -56,7 +60,6 @@ public class SujanControllerLogin {
 	// user welcome page
 	@RequestMapping(value = "logined", params = "next", method = RequestMethod.POST)
 	public String loginCheckMethod(@ModelAttribute LoginForm loginForm, Model model) {
-		String ok = null;
 		SujanDtoLogin login = new SujanDtoLogin();
 		login.setUserId(loginForm.getLoginId());
 		login.setUserPwd(loginForm.getLoginPw());
@@ -75,6 +78,8 @@ public class SujanControllerLogin {
 				SujanLoginUserInfoDto user = new SujanLoginUserInfoDto();
 				user.setUserId(login.getUserId());
 				user.setUserPwd(login.getUserPwd());
+	
+				
 				// ユーザー検索
 
 				List<EntryloginInfoTable> loginUserInfo = new ArrayList<EntryloginInfoTable>();
@@ -83,10 +88,17 @@ public class SujanControllerLogin {
 				
 				for (EntryloginInfoTable ele : loginUserInfo) {
 					user.setName(ele.getName());
+					user.setEmail(ele.getEmail());
+					user.setAccount_no(ele.getAccount_no());
+					user.setTotal_money(ele.getTotal_money());
+					user.setAval_money(ele.getAval_money());
+					user.setUsed_money(ele.getUsed_money());
+					
 				}
 			
 				
-				model.addAttribute("userDetailList", loginUserInfo);
+				model.addAttribute("login", login);
+				model.addAttribute("userDetail", user);
 				return "sujan/login/userHome";
 			}
 
@@ -139,6 +151,17 @@ public class SujanControllerLogin {
 
 		sujanService.delete(id);
 		return "redirect:/allList/0";
+
+	}
+	
+	
+	
+	
+	//user Shopping site
+	@GetMapping("user/shoppingSite")
+	public String userShopping(Model model) {
+		
+		return "sujan/product/shopping/shoppingHome";
 
 	}
 

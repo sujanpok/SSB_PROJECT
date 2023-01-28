@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-th:replace="sujan/common/common::layout(~{::section})">
+	th:replace="sujan/common/common::layout(~{::section})">
 <section>
-<head>
+	<head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link
@@ -11,42 +11,48 @@ th:replace="sujan/common/common::layout(~{::section})">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
 <title>user</title>
-</head>
-<body class=" bg-light">
-	<div class="container-fluid ">
-	
-	<p class="text-end ">
-	<a   class="btn btn-primary" type="button"  th:href="@{sujan/login}">ログアウト </a></p>
-			
-	</div>
-	     <hr>
-        <h1 class="my-2">こんにちは hiii</h1>
-        
-        <span th:each="user, st : *{userDetailList}">
-        <span th:text="'Hello, ' + ${st.name}"></span>
-        <!-- <table class="table table-borderd table-striped">
-            <tr>
-                <th>ID</th>
-                <th>名前</th>
-                <th>メールアドレス</th>
-                 <th>ユーザーID</th>
-                  <th>パスワード</th>
-                     <th colspan="3">編集</th>
-            </tr>
-            <tr th:each="customer : ${customersList}">
-                <td th:text="${customer.id}"></td>
-                <td th:text="${customer.name}"></td>
-                <td th:text="${customer.email}"></td>
-                 <td th:text="${customer.userId}"></td>
-                  <td th:text="${customer.pwd}"></td>
-                  
-                  
-                  <td>
-                     <td><a th:href="@{{id}(id=*{customer.id})}" class="btn btn-secondary">詳細</a></td>
-                </td>
-            </tr>
-        </table> -->
-    </span>
-</body>
+	</head>
+	<body class="bg-light">
+		<div class="container-fluid">
+			<p class="text-end">
+				<a class="btn btn-primary display-6" type="button" th:href="@{sujan/login}">ログアウト</a>
+			</p>
+			<p class="text-center">
+				<h1 class="my-2" th:text="'前回ログイン時間：' + *{login.lastLoginTime}"></h1>
+			</p>
+			<hr>
+			<div th:object="${userDetail}">
+				<div class="container-fluid p-5 bg-primary text-white text-center">
+					<h1 class="my-2" th:text="'こんにちは, ' + *{name}+'様'"></h1>
+				</div>
+				<div class="container p-3 bg-info text-white">
+					<h3 class="my-2" th:text="'メール：' + *{email}"></h3>
+				</div>
+				<br>
+				<div class="container p-3 bg-info text-white">
+					<h3 class="my-2" th:text="'アカウントNo：' + *{account_no}"></h3>
+				</div>
+				<div class="container p-3 bg-info text-white">
+					<h3 class="my-2" th:text="'ご利用可能枠：' + *{total_money}"></h3>
+				</div>
+				<div class="container p-3 bg-info text-white">
+					<h3 class="my-2"
+						th:text="'現在ご利用可能額：' + ((*{aval_money} == null) ? '0' : *{aval_money})"></h3>
+				</div>
+				<div class="container p-3 bg-info text-white">
+					<h3 class="my-2"
+						th:text="'ご利用残高：' + ((*{used_money} == null) ? '0' : *{used_money}) "></h3>
+				</div>
+			</div>
+			<div class="text-center pt-3">
+						<a class="btn btn-primary display-6" type="button"  th:href="@{user/shoppingSite}">買い物へ </a>
+					</div>
+					<br>
+					<br>
+					<br>
+					
+					
+		</div>
+	</body>
 </section>
 </html>

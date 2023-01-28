@@ -12,13 +12,14 @@ public class SujanLoginUserInfoDto implements Serializable {
 	private int logincountError;
 	private boolean adminORNot;
 	private String name;
-	private long totalAvaliableMoney;
-	private long totalUseableMoney;
-	private long totalUserdMoney;
-	private boolean shoppingCart;
-	private String LastloginTime;
 	private String userId;
 	private String userPwd;
+	
+	private Long account_no;
+	private String email;
+	private Integer total_money;
+	private Integer aval_money;
+	private Integer used_money;
 	
 	
 }

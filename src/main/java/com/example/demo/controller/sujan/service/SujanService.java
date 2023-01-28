@@ -1,6 +1,10 @@
 
 package com.example.demo.controller.sujan.service;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -13,6 +17,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 
 import com.example.demo.controller.sujan.dto.SujanDto;
 import com.example.demo.controller.sujan.dto.SujanDtoLogin;
@@ -112,7 +117,7 @@ public class SujanService {
 						lastLoginTime(login);
 						checkMapper.lastloginUserTime(login);
 						login.setCountError(0);
-
+						timeGetLast(login);
 						login.setStatus("ok");
 						login.setLoginSucess(true);
 						// insert error count
@@ -128,15 +133,12 @@ public class SujanService {
 				lastLoginTime(login);
 				checkMapper.lastloginUserTime(login);
 				login.setCountError(0);
-
+				timeGetLast(login);
 				login.setStatus("ok");
 				login.setLoginSucess(true);
 				// insert error count
 				checkMapper.countErrorSetUser(login);
 				return true;
-				
-				
-				
 				
 			}
 
@@ -156,7 +158,6 @@ public class SujanService {
 	// last login time
 	private void lastLoginTime(SujanDtoLogin login) {
 		SujanLoginEntity dataEntry = new SujanLoginEntity();
-		// after 30 minute unlock login
 		Date date = new Date();
 		login.setLastLoginTime(date);
 		dataEntry.setLastLoginTime(login.getLastLoginTime());
@@ -172,6 +173,26 @@ public class SujanService {
 		return dataEntry;
 
 	}
+	
+	//get last time login  with jdbc
+	public void timeGetLast(SujanDtoLogin login) {
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/ssb", "root", "3030");
+			String query = "select last_login_time from login_table";
+			PreparedStatement preparedStatement = con.prepareStatement(query);
+			System.out.println("Connected to the database");
+            ResultSet rs = preparedStatement.executeQuery(query);
+			while (rs.next()) {
+				login.setLastLoginTime(rs.getDate(query));
+			}
+			
+			con.close();
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	
 
 	// all list
 	public List<SujanEntity> findAllListCustomer() {
