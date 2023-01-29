@@ -10,12 +10,12 @@
 	rel="stylesheet">
 <script
 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"></script>
-<title>user</title>
+<title>Home</title>
 	</head>
 	<body class="bg-light">
 		<div class="container-fluid">
 			<p class="text-end">
-				<a class="btn btn-primary display-6" type="button" th:href="@{sujan/login}">ログアウト</a>
+				<a class="btn btn-primary display-6" type="button" th:href="@{sujan/logout}">ログアウト</a>
 			</p>
 			<p class="text-center">
 				<h1 class="my-2" th:text="'前回ログイン時間：' + *{login.lastLoginTime}"></h1>

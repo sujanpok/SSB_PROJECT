@@ -11,6 +11,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -18,11 +19,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.controller.sujan.dto.SujanDtoLogin;
 import com.example.demo.controller.sujan.dto.SujanLoginUserInfoDto;
@@ -38,6 +42,9 @@ public class SujanControllerLogin {
 	public static int loginerrorLock = 4;
 	@Autowired
 	SujanService sujanService;
+	
+	@Autowired
+	  HttpSession session; 
 
 	@Autowired
 	SujanRepository sujanRepository;
@@ -56,10 +63,20 @@ public class SujanControllerLogin {
 	public String loginPage(@ModelAttribute LoginForm loginForm, Model model) {
 		return "sujan/login/userlogin";
 	}
+	
+	
+	
+	// logout page
+	@RequestMapping("sujan/logout")
+	public String logoutPage(@ModelAttribute LoginForm loginForm, Model model) {
+		
+		session.invalidate(); // クリア
+		return "sujan/login/userlogin";
+	}
 
 	// user welcome page
 	@RequestMapping(value = "logined", params = "next", method = RequestMethod.POST)
-	public String loginCheckMethod(@ModelAttribute LoginForm loginForm, Model model) {
+	public String loginCheckMethod(@ModelAttribute LoginForm loginForm,RedirectAttributes redirectAttributes, Model model) {
 		SujanDtoLogin login = new SujanDtoLogin();
 		login.setUserId(loginForm.getLoginId());
 		login.setUserPwd(loginForm.getLoginPw());
@@ -73,33 +90,15 @@ public class SujanControllerLogin {
 				return "sujan/login/adminHome";
 				// user
 			} else {
-
-				// ユーザー情報
-				SujanLoginUserInfoDto user = new SujanLoginUserInfoDto();
-				user.setUserId(login.getUserId());
-				user.setUserPwd(login.getUserPwd());
-	
+				 ModelMap modelMap = new ModelMap();
+				 modelMap.addAttribute("mydata", login);
+				 session.setAttribute("mydata", login);
+				 redirectAttributes.addFlashAttribute("model", modelMap);
 				
-				// ユーザー検索
-
-				List<EntryloginInfoTable> loginUserInfo = new ArrayList<EntryloginInfoTable>();
-				// LoginUserInfo = sujanRepositoryLogin.findOneUserAllDetail(user.getUserId());
-				loginUserInfo = userLoginInfoDao.findAllLoginDetailWithLoginID(user.getUserId());
-				
-				for (EntryloginInfoTable ele : loginUserInfo) {
-					user.setName(ele.getName());
-					user.setEmail(ele.getEmail());
-					user.setAccount_no(ele.getAccount_no());
-					user.setTotal_money(ele.getTotal_money());
-					user.setAval_money(ele.getAval_money());
-					user.setUsed_money(ele.getUsed_money());
-					
-				}
-			
-				
-				model.addAttribute("login", login);
-				model.addAttribute("userDetail", user);
-				return "sujan/login/userHome";
+				//model.addAttribute("login", login);
+				//model.addAttribute("userDetail", user);
+				return "redirect:/userHome";
+				//return "sujan/login/userHome";
 			}
 
 			// error
@@ -118,6 +117,41 @@ public class SujanControllerLogin {
 		return "sujan/login/userlogin";
 
 	}
+	
+	@GetMapping("/userHome")
+	 public String sample(@ModelAttribute("model")ModelMap modelMap, Model model) {
+		
+		//String data = session.getAttribute("mydata");  // 取得
+		SujanDtoLogin login = (SujanDtoLogin) session.getAttribute("mydata");  // 取得
+		// ユーザー情報
+		SujanLoginUserInfoDto user = new SujanLoginUserInfoDto();
+		user.setUserId(login.getUserId());
+		user.setUserPwd(login.getUserPwd());
+
+		
+		// ユーザー検索
+
+		List<EntryloginInfoTable> loginUserInfo = new ArrayList<EntryloginInfoTable>();
+		// LoginUserInfo = sujanRepositoryLogin.findOneUserAllDetail(user.getUserId());
+		loginUserInfo = userLoginInfoDao.findAllLoginDetailWithLoginID(user.getUserId());
+		
+		for (EntryloginInfoTable ele : loginUserInfo) {
+			user.setName(ele.getName());
+			user.setEmail(ele.getEmail());
+			user.setAccount_no(ele.getAccount_no());
+			user.setTotal_money(ele.getTotal_money());
+			user.setAval_money(ele.getAval_money());
+			user.setUsed_money(ele.getUsed_money());
+			
+		}
+	
+		
+		model.addAttribute("login", login);
+		model.addAttribute("userDetail", user);
+	      return "sujan/login/userHome";
+	  }
+	
+	
 
 	@RequestMapping(value = "home", method = RequestMethod.GET)
 	public String home(Model model) {
@@ -154,9 +188,6 @@ public class SujanControllerLogin {
 
 	}
 	
-	
-	
-	
 	//user Shopping site
 	@GetMapping("user/shoppingSite")
 	public String userShopping(Model model) {
@@ -164,7 +195,24 @@ public class SujanControllerLogin {
 		return "sujan/product/shopping/shoppingHome";
 
 	}
+	
+	//user Shopping site
+		@GetMapping("user/user/shoppingSite/cart")
+		public String userShoppingcart(Model model) {
+			
+			return "sujan/product/shopping/cart";
 
+		}
+		
+	
+	@GetMapping("/returnHome")
+	public String returnHome(Model model) {
+		
+		return "redirect:/redirectSample";
+
+	}
+
+	
 	// csv download
 	@GetMapping("/csv")
 	public String csvDownload() {
