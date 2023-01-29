@@ -25,40 +25,47 @@
 </style>
 
 	<body>
-		<div class="container-fluid p-5 bg-dark text-warning text-center ">
+		<div class="container-fluid p-5 bg-secondary text-warning text-center ">
 
 			<h1>Welcome</h1>
 			<div class="text-center">
 				<img th:src="@{/img/sujan/login.png}" class="rounded-circle"
 					alt="img" width="304" height="236" />
 				<hr>
-				<form  method="post" name="loginjs" th:action="@{/logined}" th:object="${loginForm}">
-				
-					 	<h1 th:text="${errormessage}"></h1> 
+				<form method="post" name="loginjs" th:action="@{/logined}"
+					th:object="${loginForm}">
+
+					<h1 th:text="${errormessage}"></h1>
 					<div class="center">
 						<div>
 							<label for="user" class="form-label h3">ユーザーID:</label>
 							<!-- <div class="form-group" th:classappend="${#fields.hasErrors('userId')} ? 'has-error'"></div>
 					 <span class="text-danger h5" th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}"></span> -->
-							<input type="text" class="form-control userid" id="loginId" th:text="${loginId}" th:value="${loginId}" th:field="*{loginId}"><br>
-								
+							<input type="text" class="form-control userid" id="loginId"
+								th:text="${loginId}" th:value="${loginId}" th:field="*{loginId}"><br>
+
 						</div>
 						<div>
 							<label for="password" class="form-label h3">パスワード:</label>
 							<!-- <div class="form-group" th:classappend="${#fields.hasErrors('pwd')} ? 'has-error'"></div>
 					 <span class="text-danger h5" th:if="${#fields.hasErrors('pwd')}" th:errors="*{pwd}"></span> -->
-							<input type="password" class="form-control userpw" id="loginPw" th:text="${loginPw}" th:field="*{loginPw}" th:value="${loginPw}"><br> <input
-								type="checkbox" onclick="myFunction()">パスワード表示する <br>
+							<input type="password" class="form-control userpw" id="loginPw"
+								th:text="${loginPw}" th:field="*{loginPw}" th:value="${loginPw}"><br>
+							<input type="checkbox" onclick="myFunction()">パスワード表示する <br>
 						</div>
 					</div>
 					<div class="text-center pt-3">
 						<input type="submit" class=" display-6 button" name="next"
-							value="ログイン"> <br> <br> <input type="submit"
-							class="display-6" name="back" value="新規登録へ">
+							value="ログイン"> <br> <br>
 					</div>
+					
 				</form>
+				 <a
+					class="btn btn-lg btn-default md-btn-flat mt-2 mr-3" type="button"
+					th:href="@{/sujan/chooseCard}">新規登録へ</a>
 			</div>
 		</div>
+		
 	</body>
 	<script>
 		function myFunction() {

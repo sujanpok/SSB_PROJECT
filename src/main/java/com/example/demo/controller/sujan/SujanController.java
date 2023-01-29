@@ -33,7 +33,6 @@ public class SujanController {
 ModelMapper modelMapper = new ModelMapper();
 	// first page
 	@RequestMapping("/sujan/chooseCard")
-
 	public String welcomePage(SujanDto sujanDto) {
 		init(sujanDto);
 		return "sujan/welcome_page";

@@ -32,9 +32,11 @@ import com.example.demo.controller.sujan.dto.SujanDtoLogin;
 import com.example.demo.controller.sujan.dto.SujanLoginUserInfoDto;
 import com.example.demo.controller.sujan.entity.EntryloginInfoTable;
 import com.example.demo.controller.sujan.entity.SujanEntity;
+import com.example.demo.controller.sujan.entity.SujanProductEntity;
 import com.example.demo.controller.sujan.login.LoginForm;
 import com.example.demo.controller.sujan.repository.SujanRepository;
 import com.example.demo.controller.sujan.repository.SujanRepositoryLoginDetail;
+import com.example.demo.controller.sujan.repository.SujanRepositoryProduct;
 import com.example.demo.controller.sujan.service.SujanService;
 
 @Controller
@@ -52,6 +54,9 @@ public class SujanControllerLogin {
 	EntityManager entityManager;
 
 	SujanRepositoryLoginDetail userLoginInfoDao;
+	
+	@Autowired
+	SujanRepositoryProduct sujanRepositoryProduct;
 
 	@PostConstruct
 	public void init() {
@@ -191,6 +196,9 @@ public class SujanControllerLogin {
 	//user Shopping site
 	@GetMapping("user/shoppingSite")
 	public String userShopping(Model model) {
+		List<SujanProductEntity>productList=sujanRepositoryProduct.findAll();
+		model.addAttribute("productList", productList);
+		
 		
 		return "sujan/product/shopping/shoppingHome";
 
@@ -208,12 +216,10 @@ public class SujanControllerLogin {
 	@GetMapping("/returnHome")
 	public String returnHome(Model model) {
 		
-		return "redirect:/redirectSample";
+		return "redirect:/userHome";
 
 	}
-
-	
-	// csv download
+		// csv download
 	@GetMapping("/csv")
 	public String csvDownload() {
 		return null;
