@@ -20,6 +20,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,11 +30,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.ValidationSeq.All;
+import com.example.demo.controller.sujan.dto.SujanDto;
 import com.example.demo.controller.sujan.dto.SujanDtoLogin;
 import com.example.demo.controller.sujan.dto.SujanLoginUserInfoDto;
 import com.example.demo.controller.sujan.entity.EntryloginInfoTable;
 import com.example.demo.controller.sujan.entity.SujanEntity;
 import com.example.demo.controller.sujan.entity.SujanProductEntity;
+import com.example.demo.controller.sujan.form.SujanForm1;
+import com.example.demo.controller.sujan.form.SujanForm2;
 import com.example.demo.controller.sujan.login.LoginForm;
 import com.example.demo.controller.sujan.repository.SujanRepository;
 import com.example.demo.controller.sujan.repository.SujanRepositoryLoginDetail;
@@ -192,26 +198,6 @@ public class SujanControllerLogin {
 		return "redirect:/allList/0";
 
 	}
-	
-	//user Shopping site
-	@GetMapping("user/shoppingSite")
-	public String userShopping(Model model) {
-		List<SujanProductEntity>productList=sujanRepositoryProduct.findAll();
-		model.addAttribute("productList", productList);
-		
-		
-		return "sujan/product/shopping/shoppingHome";
-
-	}
-	
-	//user Shopping site
-		@GetMapping("user/user/shoppingSite/cart")
-		public String userShoppingcart(Model model) {
-			
-			return "sujan/product/shopping/cart";
-
-		}
-		
 	
 	@GetMapping("/returnHome")
 	public String returnHome(Model model) {
